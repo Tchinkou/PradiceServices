@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pradice Services Nettoyage | Nettoyage professionnel &amp; éco-responsable à Tours (37)</title>
+<meta name="description" content="Pradice Services Nettoyage : entretien de bureaux, locaux commerciaux, remise en état, nettoyage approfondi. Particuliers &amp; professionnels à Tours et en Indre-et-Loire. Devis gratuit.">
+<style>
+/* ============ RESET & BASE ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-1:#1f6b34;
+  --green-2:#3fa15a;
+  --green-3:#e9f7ef;
+  --blue-1:#0d3b66;
+  --blue-2:#1a6fb5;
+  --blue-3:#eaf5fc;
+  --navy:#0b2545;
+  --text:#233142;
+  --text-light:#5b6b7c;
+  --bg:#ffffff;
+  --bg-alt:#f5faf8;
+  --border:#e3ecea;
+  --white:#ffffff;
+  --shadow:0 10px 30px -12px rgba(11,37,69,.18);
+  --shadow-sm:0 4px 14px -6px rgba(11,37,69,.12);
+  --radius:16px;
+  --radius-sm:10px;
+  --grad-brand:linear-gradient(135deg,var(--green-2),var(--blue-2));
+  --ff:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:var(--ff);
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.6;
+  overflow-x:hidden;
+  width:100%;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,textarea,select{font-family:inherit;font-size:1rem}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.hidden{display:none!important}
+h1,h2,h3,h4{color:var(--navy);line-height:1.2;font-weight:800}
+.eyebrow{
+  display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--green-1);background:var(--green-3);
+  padding:6px 14px;border-radius:999px;margin-bottom:16px;
+}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);text-align:center;margin-bottom:12px}
+.section-sub{text-align:center;color:var(--text-light);max-width:640px;margin:0 auto 48px;font-size:1.05rem}
+.section{padding:88px 0}
+.section-alt{background:var(--bg-alt)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:16px 32px;border-radius:999px;font-weight:700;font-size:1rem;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--grad-brand);color:#fff;box-shadow:0 8px 24px -8px rgba(26,111,181,.55)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 30px -8px rgba(26,111,181,.6)}
+.btn-secondary{background:#fff;color:var(--navy);border:2px solid var(--border)}
+.btn-secondary:hover{border-color:var(--green-2);transform:translateY(-3px)}
+.btn-light{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6);backdrop-filter:blur(4px)}
+.btn-light:hover{background:#fff;color:var(--navy)}
+.btn-block{width:100%}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1200px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:var(--navy)}
+.brand .logo-mark{width:44px;height:44px;border-radius:50%;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.brand small{display:block;font-size:.62rem;font-weight:700;letter-spacing:.08em;color:var(--green-1);text-transform:uppercase}
+nav.main-nav{display:flex;align-items:center;gap:6px}
+nav.main-nav>ul{display:flex;align-items:center;gap:2px}
+nav.main-nav a.nav-link{padding:10px 14px;border-radius:8px;font-weight:600;color:var(--text);font-size:.95rem;transition:.2s}
+nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
+.has-dropdown{position:relative}
+.dropdown{
+  position:absolute;top:calc(100% + 10px);left:0;background:#fff;border-radius:var(--radius-sm);
+  box-shadow:var(--shadow);border:1px solid var(--border);min-width:260px;padding:10px;
+  opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s;
+}
+.has-dropdown:hover .dropdown,.has-dropdown:focus-within .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-group-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-light);padding:8px 12px 4px}
+.dropdown a{display:block;padding:9px 12px;border-radius:8px;font-size:.9rem;font-weight:600}
+.dropdown a:hover{background:var(--green-3);color:var(--green-1)}
+.header-actions{display:flex;align-items:center;gap:10px}
+.call-chip{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--navy);font-size:.9rem}
+.call-chip .ic{width:34px;height:34px;border-radius:50%;background:var(--green-3);display:flex;align-items:center;justify-content:center;color:var(--green-1)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;z-index:200}
+.hamburger span{width:26px;height:2.5px;background:var(--navy);border-radius:2px;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;
+  background:
+    linear-gradient(120deg,rgba(11,37,69,.88),rgba(31,107,52,.78)),
+    radial-gradient(circle at 80% 20%,rgba(63,161,90,.5),transparent 60%),
+    linear-gradient(135deg,var(--blue-1),var(--green-1));
+  overflow:hidden;
+}
+.hero::before,.hero::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.25;
+}
+.hero::before{width:420px;height:420px;background:radial-gradient(circle,#fff,transparent 70%);top:-140px;right:-100px}
+.hero::after{width:300px;height:300px;background:radial-gradient(circle,#8fd6ff,transparent 70%);bottom:-100px;left:-60px}
+.hero-inner{position:relative;z-index:2;padding:120px 24px 80px;max-width:1200px;margin:0 auto;width:100%}
+.hero-inner .eyebrow{background:rgba(255,255,255,.15);color:#fff}
+.hero h1{font-size:clamp(2.3rem,5.2vw,3.8rem);color:#fff;max-width:820px;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(90deg,#a9f0c4,#bfe3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:1.2rem;max-width:600px;color:rgba(255,255,255,.92);margin-bottom:36px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hero-stats div strong{display:block;font-size:1.7rem;color:#fff}
+.hero-stats div span{font-size:.85rem;color:rgba(255,255,255,.75)}
+
+/* ============ INTRO ============ */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.intro-visual{
+  aspect-ratio:4/3;border-radius:var(--radius);background:var(--grad-brand);
+  display:flex;align-items:center;justify-content:center;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow);
+}
+.intro-visual .badge-float{
+  position:absolute;bottom:20px;left:20px;background:#fff;color:var(--navy);
+  border-radius:var(--radius-sm);padding:14px 18px;box-shadow:var(--shadow-sm);
+  display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem;
+}
+.intro-text p{color:var(--text-light);margin-bottom:16px;font-size:1.05rem}
+.intro-list{margin-top:24px;display:grid;gap:14px}
+.intro-list li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--navy)}
+.intro-list li .ic{width:26px;height:26px;border-radius:50%;background:var(--green-3);color:var(--green-1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+/* ============ SERVICE CARDS ============ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.service-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;
+}
+.service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.service-media{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--grad-brand)}
+.service-media .icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;transition:transform .4s ease}
+.service-card:hover .service-media .icon-wrap{transform:scale(1.12)}
+.service-media .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);color:var(--navy);font-size:.72rem;font-weight:800;padding:5px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.service-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.service-body h3{font-size:1.15rem}
+.service-body p{color:var(--text-light);font-size:.92rem;flex:1}
+.service-link{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--blue-2);margin-top:6px;transition:gap .2s}
+.service-card:hover .service-link{gap:10px}
+
+/* ============ COMPLEMENTARY ============ */
+.comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.comp-card{
+  display:flex;gap:20px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;align-items:center;transition:.3s;box-shadow:var(--shadow-sm);
+}
+.comp-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.comp-card .comp-icon{width:76px;height:76px;border-radius:var(--radius-sm);background:var(--blue-3);color:var(--blue-2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.comp-card h4{font-size:1.05rem;margin-bottom:4px}
+.comp-card p{color:var(--text-light);font-size:.88rem;margin-bottom:8px}
+.comp-card .service-link{font-size:.85rem}
+
+/* ============ CTA DEVIS ============ */
+.cta-devis{
+  background:linear-gradient(120deg,var(--blue-1),var(--green-1));
+  border-radius:28px;color:#fff;padding:64px 48px;display:flex;align-items:center;
+  justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;overflow:hidden;
+}
+.cta-devis::before{content:"";position:absolute;width:320px;height:320px;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);top:-120px;right:-60px;border-radius:50%}
+.cta-devis h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.cta-devis p{color:rgba(255,255,255,.88);max-width:480px}
+.cta-devis-content{position:relative;z-index:1;max-width:600px}
+.cta-devis-action{position:relative;z-index:1}
+
+/* ============ ENGAGEMENTS ============ */
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.eng-card{text-align:center;padding:8px}
+.eng-num{font-size:.8rem;font-weight:800;color:var(--green-1);letter-spacing:.1em;margin-bottom:14px}
+.eng-icon{width:72px;height:72px;border-radius:50%;background:var(--green-3);color:var(--green-1);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.eng-card h3{font-size:1.15rem;margin-bottom:10px}
+.eng-card p{color:var(--text-light);font-size:.93rem}
+
+/* ============ KEY INFO (zone/flex/tarifs) ============ */
+.key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+.key-col{background:#fff;padding:40px 32px;text-align:center;border-right:1px solid var(--border)}
+.key-col:last-child{border-right:none}
+.key-icon{width:64px;height:64px;border-radius:16px;background:var(--grad-brand);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.key-col h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+.key-col p{color:var(--text-light);font-size:.92rem}
+
+/* ============ BIG VISUAL ============ */
+.big-visual{
+  border-radius:28px;overflow:hidden;position:relative;min-height:420px;display:flex;align-items:center;
+  background:linear-gradient(120deg,rgba(11,37,69,.85),rgba(63,161,90,.55)),
+             repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 2px,transparent 2px 26px);
+  color:#fff;
+}
+.big-visual-inner{position:relative;z-index:2;padding:60px;max-width:560px}
+.big-visual h2{color:#fff;margin-bottom:16px}
+.big-visual p{color:rgba(255,255,255,.88);margin-bottom:28px}
+
+/* ============ VALUES ============ */
+.values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.value-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;box-shadow:var(--shadow-sm);transition:.3s}
+.value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.value-emoji{font-size:2.2rem;margin-bottom:14px}
+.value-card h4{font-size:1rem;margin-bottom:8px}
+.value-card p{font-size:.85rem;color:var(--text-light)}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-sm)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-weight:700;font-size:.85rem;color:var(--navy)}
+.field input,.field textarea,.field select{
+  padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;transition:.2s;background:#fbfdfc;
+}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--green-2);background:#fff;box-shadow:0 0 0 4px var(--green-3)}
+.field textarea{resize:vertical;min-height:120px}
+.form-note{font-size:.8rem;color:var(--text-light);margin-top:14px;text-align:center}
+.form-success{display:none;background:var(--green-3);color:var(--green-1);padding:16px;border-radius:12px;font-weight:700;text-align:center;margin-top:16px}
+.form-success.show{display:block}
+.contact-info-card{background:var(--bg-alt);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:22px}
+.info-row{display:flex;gap:16px;align-items:flex-start}
+.info-row .ic{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--green-1);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm)}
+.info-row h4{font-size:.95rem;margin-bottom:2px}
+.info-row p,.info-row a{color:var(--text-light);font-size:.92rem}
+.info-row a:hover{color:var(--blue-2)}
+.social-row{display:flex;gap:12px;margin-top:6px}
+.social-row a{width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--navy);box-shadow:var(--shadow-sm);transition:.2s}
+.social-row a:hover{background:var(--grad-brand);color:#fff;transform:translateY(-3px)}
+
+/* ============ FOOTER ============ */
+footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:1.15rem;margin-bottom:16px}
+.footer-brand .logo-mark{width:40px;height:40px;border-radius:50%;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;color:#fff}
+.footer-col h5{color:#fff;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{font-size:.92rem;transition:.2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 0;flex-wrap:wrap;gap:12px;font-size:.82rem}
+.footer-bottom .legal-links{display:flex;gap:18px}
+
+/* ============ SERVICE DETAIL VIEW ============ */
+.view{display:none}
+.view.active{display:block}
+.detail-hero{
+  background:linear-gradient(120deg,rgba(11,37,69,.88),rgba(31,107,52,.75)),var(--grad-brand);
+  color:#fff;padding:130px 0 70px;position:relative;
+}
+.breadcrumb{font-size:.85rem;color:rgba(255,255,255,.8);margin-bottom:18px}
+.breadcrumb a:hover{color:#fff;text-decoration:underline}
+.detail-hero h1{color:#fff;font-size:clamp(2rem,4vw,3rem);max-width:760px}
+.detail-body{padding:70px 0}
+.detail-layout{display:grid;grid-template-columns:2fr 1fr;gap:56px}
+.detail-block{margin-bottom:40px}
+.detail-block h2{font-size:1.5rem;margin-bottom:16px}
+.detail-block p{color:var(--text-light);margin-bottom:14px}
+.check-list{display:grid;gap:12px}
+.check-list li{display:flex;gap:12px;color:var(--text);font-weight:600}
+.check-list li .ic{width:24px;height:24px;border-radius:50%;background:var(--green-3);color:var(--green-1);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.why-card{background:var(--bg-alt);border-radius:var(--radius-sm);padding:20px}
+.why-card h4{font-size:.98rem;margin-bottom:6px}
+.why-card p{font-size:.85rem;color:var(--text-light)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery-grid .g-item{aspect-ratio:1;border-radius:var(--radius-sm);background:var(--grad-brand);display:flex;align-items:center;justify-content:center;color:#fff}
+.sidebar-card{background:var(--bg-alt);border-radius:var(--radius);padding:28px;position:sticky;top:96px}
+.sidebar-card h4{margin-bottom:14px}
+.sidebar-card .btn{margin-top:8px}
+.mini-list{display:grid;gap:10px;margin-top:16px}
+.mini-list a{display:flex;justify-content:space-between;padding:10px 12px;border-radius:8px;font-weight:600;font-size:.88rem;background:#fff}
+.mini-list a:hover{color:var(--blue-2)}
+
+/* ============ DEVIS MULTI-STEP ============ */
+.devis-wrap{max-width:760px;margin:0 auto}
+.progress-track{display:flex;align-items:center;margin-bottom:48px}
+.progress-step{flex:1;text-align:center;position:relative}
+.progress-step .dot{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 8px;color:var(--text-light);transition:.3s}
+.progress-step.active .dot,.progress-step.done .dot{background:var(--grad-brand);color:#fff;border-color:transparent}
+.progress-step span{font-size:.72rem;font-weight:700;color:var(--text-light)}
+.progress-step.active span{color:var(--navy)}
+.progress-line{position:absolute;top:18px;left:-50%;width:100%;height:2px;background:var(--border);z-index:-1}
+.progress-step.done .progress-line{background:var(--green-2)}
+.progress-step:first-child .progress-line{display:none}
+.devis-step{display:none}
+.devis-step.active{display:block}
+.devis-nav{display:flex;justify-content:space-between;margin-top:28px}
+.recap-box{background:var(--bg-alt);border-radius:var(--radius-sm);padding:20px;margin-bottom:20px;font-size:.92rem}
+.recap-box div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border)}
+.recap-box div:last-child{border-bottom:none}
+
+/* ============ LEGAL VIEW ============ */
+.legal-body{padding:150px 0 90px;max-width:800px;margin:0 auto}
+.legal-body h2{margin:28px 0 12px}
+.legal-body p{color:var(--text-light);margin-bottom:12px}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  nav.main-nav,.header-actions .call-chip{display:none}
+  .hamburger{display:flex}
+  .header-actions .btn-primary{padding:10px 18px;font-size:.85rem}
+  .intro-grid,.contact-grid,.detail-layout{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .comp-grid{grid-template-columns:1fr}
+  .eng-grid{grid-template-columns:1fr}
+  .key-grid{grid-template-columns:1fr}
+  .key-col{border-right:none;border-bottom:1px solid var(--border)}
+  .key-col:last-child{border-bottom:none}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .sidebar-card{position:static}
+}
+@media (max-width:480px){
+  .header-actions .btn-primary{display:none}
+  .brand span:not(.logo-mark){font-size:1.05rem}
+}
+@media (max-width:600px){
+  .services-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-devis{flex-direction:column;text-align:center;padding:48px 28px}
+  .hero-inner{padding:110px 20px 60px}
+  .hero-stats{gap:24px}
+  .section{padding:64px 0}
+  .gallery-grid{grid-template-columns:1fr}
+  .progress-step span{display:none}
+}
+
+/* Mobile nav panel */
+.mobile-nav{
+  position:fixed;inset:0;background:#fff;z-index:150;display:flex;flex-direction:column;
+  padding:100px 28px 40px;transform:translateX(100%);transition:transform .35s ease;overflow-y:auto;
+}
+.mobile-nav.open{transform:translateX(0)}
+.mobile-nav a{display:block;padding:16px 0;font-size:1.1rem;font-weight:700;color:var(--navy);border-bottom:1px solid var(--border)}
+.mobile-nav .mn-group{padding-left:14px}
+.mobile-nav .mn-group a{font-size:.95rem;font-weight:600;color:var(--text-light);border-bottom:none;padding:10px 0}
+.mobile-nav .btn{margin-top:24px}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#/" class="brand" data-link>
+      <span class="logo-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg>
+      </span>
+      <span>Pradice<small>Services Nettoyage</small></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#/" class="nav-link" data-link>Accueil</a></li>
+        <li class="has-dropdown">
+          <a href="#/services" class="nav-link" data-link>Services</a>
+          <div class="dropdown" id="nav-dropdown"></div>
+        </li>
+        <li><a href="#/a-propos" class="nav-link" data-link>À propos</a></li>
+        <li><a href="#/contact" class="nav-link" data-link>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="tel:+33784769536" class="call-chip">
+        <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/></svg></span>
+        07 84 76 95 36
+      </a>
+      <a href="#/devis" class="btn btn-primary" data-link>Demander un devis</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#/" data-link>Accueil</a>
+  <a href="#/services" data-link>Tous nos services</a>
+  <div class="mn-group" id="mobile-services-particuliers"></div>
+  <a href="#/a-propos" data-link>À propos</a>
+  <a href="#/contact" data-link>Contact</a>
+  <a href="#/devis" class="btn btn-primary btn-block" data-link>Demander un devis</a>
+  <a href="tel:+33784769536" class="btn btn-secondary btn-block">📞 07 84 76 95 36</a>
+</div>
+
+<main id="app"></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg>
+          </span>
+          Pradice Services Nettoyage
+        </div>
+        <p style="font-size:.9rem;margin-bottom:18px">Entreprise professionnelle de nettoyage et d'entretien pour particuliers et professionnels, née en 2023 à Tours. Une approche éco-responsable, un service fiable.</p>
+        <div class="social-row">
+          <a href="https://www.facebook.com/profile.php?id=61559238324968" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.instagram.com/servicespradice" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://wa.me/33784769536" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#/" data-link>Accueil</a></li>
+          <li><a href="#/services" data-link>Nos services</a></li>
+          <li><a href="#/a-propos" data-link>À propos</a></li>
+          <li><a href="#/devis" data-link>Demander un devis</a></li>
+          <li><a href="#/contact" data-link>Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul id="footer-services-list"></ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>3 rue Victor Grossein, 37000 Tours</li>
+          <li><a href="tel:+33784769536">07 84 76 95 36</a></li>
+          <li><a href="mailto:pradiceservices@gmail.com">pradiceservices@gmail.com</a></li>
+          <li>Lun–Ven 8h–18h · Sam 9h–16h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Pradice Services Nettoyage — Tous droits réservés</span>
+      <div class="legal-links">
+        <a href="#/mentions-legales" data-link>Mentions légales</a>
+        <a href="#/confidentialite" data-link>Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const ICONS = {
+  bureau:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="14" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.6"/></svg>',
+  boutique:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 9l1-5h14l1 5" stroke="currentColor" stroke-width="1.6"/><path d="M4 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.6"/><path d="M5 9v10h14V9" stroke="currentColor" stroke-width="1.6"/></svg>',
+  remise:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M3 12l9-9 9 9" stroke="currentColor" stroke-width="1.6"/><path d="M5 10v10h14V10" stroke="currentColor" stroke-width="1.6"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.6"/></svg>',
+  desinfection:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 2s5 5.5 5 10a5 5 0 0 1-10 0c0-4.5 5-10 5-10Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 21h6" stroke="currentColor" stroke-width="1.6"/></svg>',
+  commerce:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M9 20v-5h6v5" stroke="currentColor" stroke-width="1.6"/><path d="M4 10l2-6h12l2 6" stroke="currentColor" stroke-width="1.6"/></svg>',
+  chantier:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 20l8-14 8 14H4Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 20l3-6 3 6" stroke="currentColor" stroke-width="1.6"/></svg>',
+  domicile:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8" stroke="currentColor" stroke-width="1.6"/><path d="M5 10v10h14V10" stroke="currentColor" stroke-width="1.6"/></svg>',
+  airbnb:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 3c2.5 3 5 6.8 5 9.5A5 5 0 0 1 7 12.5C7 9.8 9.5 6 12 3Z" stroke="currentColor" stroke-width="1.6"/></svg>',
+  vehicule:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M3 13l2-6h14l2 6" stroke="currentColor" stroke-width="1.6"/><rect x="2" y="13" width="20" height="6" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg>',
+  vitres:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.6"/></svg>',
+  tapis:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="9" width="10" height="6" stroke="currentColor" stroke-width="1.6"/></svg>',
+  contrat:'<svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M7 3h8l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6M9 16h6M9 8h3" stroke="currentColor" stroke-width="1.6"/></svg>',
+  leaf:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 20c8 0 14-6 14-14 0 0-13 0-14 14Z" stroke="currentColor" stroke-width="1.6"/></svg>',
+  shield:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.6"/></svg>',
+  clock:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6"/></svg>',
+  pin:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>',
+  tag:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12l9-9 9 9-9 9-9-9Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="1.5" fill="currentColor"/></svg>',
+  check:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  phone:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.8"/></svg>',
+  mail:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8"/></svg>',
+};
+
+const SERVICES = [
+  {slug:'entretien-bureaux',cat:'pro',icon:'bureau',title:'Entretien de bureaux',
+   short:'Nettoyage régulier des sols, surfaces, sanitaires et espaces communs.',
+   intro:"Un espace de travail propre, c'est une équipe plus productive et une meilleure image pour vos visiteurs. Nous intervenons chez vous selon la fréquence de votre choix, en dehors ou pendant vos heures d'ouverture, avec des produits éco-responsables.",
+   details:"Notre équipe assure l'entretien complet de vos bureaux : dépoussiérage des postes de travail, nettoyage des sols (aspiration, lavage), désinfection des sanitaires, vidage des corbeilles, nettoyage des parties communes (accueil, salle de réunion, cuisine/office). Un planning d'intervention est établi ensemble pour ne jamais perturber votre activité.",
+   includes:['Dépoussiérage des surfaces et mobilier','Nettoyage et désinfection des sanitaires','Lavage des sols (bureaux, couloirs, accueil)','Vidage des corbeilles et tri sélectif','Nettoyage des espaces communs et cuisine','Réapprovisionnement consommables sur demande']},
+  {slug:'locaux-commerciaux',cat:'pro',icon:'boutique',title:'Nettoyage de locaux commerciaux',
+   short:"Nettoyage de boutiques, restaurants, agences et autres espaces accueillant du public.",
+   intro:"Vos clients jugent votre commerce dès les premières secondes. Nous adaptons notre intervention à votre secteur (boutique, restaurant, agence, cabinet) pour un espace impeccable en permanence.",
+   details:"Nettoyage des vitrines et devantures, sols, surfaces de vente, espaces d'accueil et sanitaires clients. Nos équipes interviennent tôt le matin, en soirée ou en horaires décalés pour ne jamais gêner votre activité commerciale.",
+   includes:['Nettoyage vitrines et devanture','Entretien des sols et surfaces de vente','Sanitaires clients et personnel','Espaces d’accueil et zones d’attente','Interventions en horaires décalés','Produits adaptés aux normes du secteur']},
+  {slug:'remise-en-etat',cat:'pro',icon:'remise',title:'Remise en état',
+   short:"Nettoyage approfondi après travaux, déménagement ou état des lieux de sortie.",
+   intro:"Fin de travaux, déménagement, état des lieux : nous remettons votre bien à neuf en une seule intervention, prêt à être habité ou restitué dans les meilleures conditions.",
+   details:"Dépoussiérage complet, évacuation des résidus de chantier, nettoyage des sols, vitres, sanitaires, cuisine et rangements. Un service pensé pour les particuliers comme pour les professionnels (agences, propriétaires, syndics).",
+   includes:['Dépoussiérage complet toutes surfaces','Nettoyage sols, murs et plinthes','Vitres intérieures et encadrements','Cuisine, sanitaires et rangements','Évacuation des résidus légers','Intervention rapide, disponible 6j/7']},
+  {slug:'nettoyage-approfondi',cat:'pro',icon:'desinfection',title:'Nettoyage approfondi',
+   short:"Désinfection complète, nettoyage haute pression et élimination des micro-organismes.",
+   intro:"Pour les environnements exigeants (santé, restauration, collectivités) ou simplement pour un nettoyage en profondeur ponctuel, nous appliquons un protocole de désinfection complet.",
+   details:"Nettoyage haute pression pour les surfaces extérieures et sols résistants, désinfection des points de contact, élimination des bactéries, moisissures et micro-organismes avec des produits certifiés.",
+   includes:['Désinfection des points de contact','Nettoyage haute pression (sols, extérieurs)','Traitement anti-moisissures','Produits certifiés et biodégradables','Protocole adapté à votre secteur','Rapport d’intervention sur demande']},
+  {slug:'entretien-commerces',cat:'pro',icon:'commerce',title:'Entretien des commerces',
+   short:"Entretien quotidien ou hebdomadaire adapté à l'activité du commerce.",
+   intro:"Un contrat d'entretien sur-mesure pour garder votre commerce impeccable au quotidien, avec une fréquence adaptée à votre trafic et à votre activité.",
+   details:"Nous établissons un planning récurrent (quotidien, plusieurs fois par semaine ou hebdomadaire) et une checklist de contrôle qualité pour garantir un niveau de propreté constant.",
+   includes:['Fréquence adaptée à votre activité','Checklist qualité à chaque passage','Interlocuteur dédié','Produits écoresponsables','Facturation mensuelle simplifiée','Ajustement du contrat à tout moment']},
+  {slug:'fin-de-chantier',cat:'pro',icon:'chantier',title:'Nettoyage de fin de chantier',
+   short:"Élimination des poussières, déchets de construction et résidus de matériaux.",
+   intro:"Après travaux, la poussière de chantier s'infiltre partout. Nous réalisons la mise en propreté finale pour livrer un espace impeccable, prêt à l'usage.",
+   details:"Dépoussiérage complet (sols, murs, plafonds, luminaires), retrait des résidus de peinture, plâtre, colle, nettoyage des vitres et huisseries, évacuation des petits déchets de chantier.",
+   includes:['Dépoussiérage sols, murs et plafonds','Retrait résidus peinture / plâtre / colle','Nettoyage vitres et huisseries','Aspiration et lavage haute précision','Évacuation des petits déchets','Contrôle qualité avant livraison']},
+  {slug:'nettoyage-domicile',cat:'particulier',icon:'domicile',title:'Nettoyage de domicile',
+   short:"Nettoyage de logements et domiciles pour particuliers, ponctuel ou régulier.",
+   intro:"Confiez l'entretien de votre logement à une équipe de confiance. Ménage ponctuel ou passages réguliers, nous nous adaptons à votre rythme de vie.",
+   details:"Dépoussiérage, aspiration et lavage des sols, nettoyage cuisine et salle de bain, rangement léger, nettoyage des vitres sur demande. Produits éco-responsables, respectueux de votre foyer.",
+   includes:['Dépoussiérage toutes pièces','Sols aspirés et lavés','Cuisine et salle de bain désinfectées','Rangement léger','Vitres sur demande','Formules ponctuelles ou récurrentes']},
+  {slug:'nettoyage-airbnb',cat:'particulier',icon:'airbnb',title:'Nettoyage Airbnb & locations saisonnières',
+   short:"Remise en état rapide entre deux locations, linge et literie sur demande.",
+   intro:"Un logement impeccable entre chaque voyageur, c'est la clé de bons avis. Nous intervenons rapidement entre deux réservations, même en horaires serrés.",
+   details:"Nettoyage complet du logement, changement des draps et serviettes, réassort des produits d'accueil, vérification de l'état général avant l'arrivée du prochain voyageur.",
+   includes:['Intervention rapide entre 2 locations','Changement linge et literie (sur demande)','Réassort produits d’accueil','Contrôle qualité avant check-in','Disponibilité 7j/7 sur devis','Photos de contrôle envoyées sur demande']},
+  {slug:'nettoyage-vehicules',cat:'particulier',icon:'vehicule',title:'Nettoyage de véhicules',
+   short:"Nettoyage intérieur et extérieur de véhicules particuliers et professionnels.",
+   intro:"Un véhicule propre à l'intérieur comme à l'extérieur, sur votre lieu de travail ou à domicile, sans que vous ayez à vous déplacer.",
+   details:"Aspiration complète, nettoyage des sièges et plastiques, vitres intérieures, carrosserie et jantes. Formules adaptées aux véhicules de société et flottes.",
+   includes:['Aspiration complète intérieur/coffre','Nettoyage sièges et plastiques','Vitres et rétroviseurs','Carrosserie et jantes','Formules flottes professionnelles','Intervention sur site possible']},
+  {slug:'nettoyage-vitres',cat:'particulier',icon:'vitres',title:'Nettoyage de vitres',
+   short:"Vitres, baies vitrées et vérandas sans traces, pour particuliers et professionnels.",
+   intro:"Des vitres parfaitement transparentes, sans traces ni auréoles, réalisées avec du matériel professionnel adapté à chaque hauteur et configuration.",
+   details:"Nettoyage des vitres intérieures et extérieures, baies vitrées, vérandas et encadrements. Intervention ponctuelle ou intégrée à un contrat d'entretien régulier.",
+   includes:['Vitres intérieures et extérieures','Baies vitrées et vérandas','Encadrements et rebords','Matériel professionnel sans traces','Intervention en hauteur sécurisée','Formule ponctuelle ou récurrente']},
+  {slug:'tapis-canapes',cat:'particulier',icon:'tapis',title:'Nettoyage tapis & canapés',
+   short:"Nettoyage en profondeur des textiles d'ameublement par injection-extraction.",
+   intro:"Redonnez éclat et fraîcheur à vos tapis, moquettes et canapés grâce à un nettoyage en profondeur qui élimine taches, acariens et odeurs.",
+   details:"Traitement par injection-extraction adapté à chaque type de textile, détachage ciblé, séchage rapide. Un procédé sûr pour les enfants et les animaux.",
+   includes:['Nettoyage par injection-extraction','Détachage ciblé','Élimination odeurs et acariens','Produits sans danger enfants/animaux','Séchage rapide','Devis selon surface / nombre de pièces']},
+  {slug:'contrats-entretien',cat:'particulier',icon:'contrat',title:'Contrats d’entretien réguliers',
+   short:"Un forfait sur-mesure, hebdomadaire ou mensuel, pour un intérieur toujours impeccable.",
+   intro:"Simplifiez-vous la vie avec un contrat d'entretien régulier : même équipe, mêmes horaires, tarif fixe mensuel.",
+   details:"Nous définissons ensemble la fréquence, les tâches prioritaires et les horaires. Le contrat est flexible et peut être ajusté à tout moment selon vos besoins.",
+   includes:['Fréquence sur-mesure (hebdo/mensuel)','Équipe dédiée et régulière','Tarif fixe et prévisible','Flexibilité totale du contrat','Devis personnalisé gratuit','Résiliable à tout moment']},
+];
+
+const MAIN_SLUGS = SERVICES.filter(s=>s.cat==='pro').map(s=>s.slug);
+const COMP_SLUGS = SERVICES.filter(s=>s.cat==='particulier').map(s=>s.slug);
+const bySlug = slug => SERVICES.find(s=>s.slug===slug);
+
+/* ============================================================
+   HOME VIEW
+   ============================================================ */
+function homeView(){
+  return `
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Nettoyage professionnel & éco-responsable</span>
+      <h1>Propreté garantie, <span>satisfaction assurée</span></h1>
+      <p class="lead">Pradice Services Nettoyage accompagne particuliers et professionnels de Tours et d'Indre-et-Loire avec des prestations soignées, fiables et respectueuses de l'environnement.</p>
+      <div class="hero-cta">
+        <a href="#/devis" class="btn btn-primary" data-link>Demander un devis gratuit</a>
+        <a href="#/contact" class="btn btn-light" data-link>Nous contacter</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>2023</strong><span>Création à Tours</span></div>
+        <div><strong>12+</strong><span>Prestations proposées</span></div>
+        <div><strong>6j/7</strong><span>Disponibilité</span></div>
+        <div><strong>100%</strong><span>Produits éco-responsables</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="intro-visual reveal">
+        ${ICONS.leaf.replace('width="26" height="26"','width="90" height="90"')}
+        <div class="badge-float">${ICONS.shield.replace('width="26" height="26"','width="20" height="20"')} Intervention assurée</div>
+      </div>
+      <div class="intro-text reveal">
+        <span class="eyebrow">Qui sommes-nous</span>
+        <h2 class="section-title" style="text-align:left">Une entreprise de nettoyage de confiance, née à Tours</h2>
+        <p>Depuis 2023, Pradice Services Nettoyage accompagne les particuliers et les professionnels d'Indre-et-Loire dans l'entretien de leurs espaces, avec une exigence constante de qualité et une démarche éco-responsable.</p>
+        <p>Chaque intervention est réalisée par une équipe formée, ponctuelle et soigneuse, avec des produits certifiés respectueux de l'environnement.</p>
+        <ul class="intro-list">
+          <li><span class="ic">${ICONS.check}</span> Devis personnalisé gratuit sous 24h</li>
+          <li><span class="ic">${ICONS.check}</span> Produits éco-responsables certifiés</li>
+          <li><span class="ic">${ICONS.check}</span> Équipe fiable et assurée</li>
+          <li><span class="ic">${ICONS.check}</span> Disponible du lundi au samedi</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Professionnels</span>
+      <h2 class="section-title">Nos services</h2>
+      <p class="section-sub">Des prestations complètes pour l'entretien de vos bureaux, commerces et locaux professionnels.</p>
+      <div class="services-grid">
+        ${MAIN_SLUGS.map(cardHTML).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Particuliers</span>
+      <h2 class="section-title">Nous vous proposons aussi</h2>
+      <p class="section-sub">Pour votre logement, votre location saisonnière ou votre véhicule, nos prestations complémentaires s'adaptent à tous vos besoins.</p>
+      <div class="comp-grid">
+        ${COMP_SLUGS.map(compHTML).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-devis reveal">
+        <div class="cta-devis-content">
+          <h2>Votre devis en quelques minutes</h2>
+          <p>Obtenir un devis n'a jamais été aussi simple. Décrivez votre besoin grâce à notre formulaire en ligne et notre équipe vous recontactera rapidement, gratuitement et sans engagement.</p>
+        </div>
+        <div class="cta-devis-action">
+          <a href="#/devis" class="btn btn-light" data-link>Demander un devis →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Nos engagements</h2>
+      <p class="section-sub">Une philosophie simple : un travail soigné, des produits responsables, une relation de confiance.</p>
+      <div class="eng-grid">
+        <div class="eng-card reveal">
+          <div class="eng-num">Engagement 01</div>
+          <div class="eng-icon">${ICONS.leaf}</div>
+          <h3>Produits éco-responsables</h3>
+          <p>Nous utilisons des produits certifiés respectueux de l'environnement et limitons notre impact écologique à chaque intervention.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="eng-num">Engagement 02</div>
+          <div class="eng-icon">${ICONS.shield}</div>
+          <h3>Satisfaction garantie</h3>
+          <p>Chaque prestation est contrôlée pour garantir un résultat impeccable. Votre satisfaction est notre priorité.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="eng-num">Engagement 03</div>
+          <div class="eng-icon">${ICONS.clock}</div>
+          <h3>Ponctualité & fiabilité</h3>
+          <p>Nous respectons vos horaires et vos consignes, avec une équipe fiable et une communication transparente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="key-grid">
+        <div class="key-col">
+          <div class="key-icon">${ICONS.pin.replace('currentColor','#fff')}</div>
+          <h3>Zone d'intervention</h3>
+          <p>Tours et l'Indre-et-Loire (37) : Tours, Saint-Pierre-des-Corps, Joué-lès-Tours, Amboise et environs.</p>
+        </div>
+        <div class="key-col">
+          <div class="key-icon">${ICONS.clock.replace('currentColor','#fff')}</div>
+          <h3>Flexibilité</h3>
+          <p>Interventions ponctuelles ou récurrentes, en journée ou en horaires décalés, adaptées à votre emploi du temps.</p>
+        </div>
+        <div class="key-col">
+          <div class="key-icon">${ICONS.tag.replace('currentColor','#fff')}</div>
+          <h3>Tarifs</h3>
+          <p>Des tarifs compétitifs et un devis personnalisé gratuit, sans engagement, sous 24h.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="big-visual reveal">
+        <div class="big-visual-inner">
+          <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff">Notre engagement qualité</span>
+          <h2>Un travail soigné, à chaque intervention</h2>
+          <p>De la première prise de contact à la fin de la prestation, notre équipe met un point d'honneur à vous offrir un service irréprochable.</p>
+          <a href="#/devis" class="btn btn-light" data-link>Demander un devis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Nos valeurs</h2>
+      <p class="section-sub">Cinq principes qui guident chacune de nos interventions.</p>
+      <div class="values-grid">
+        <div class="value-card reveal"><div class="value-emoji">🤝</div><h4>Respect du client</h4><p>Une écoute attentive et un service adapté à vos besoins réels.</p></div>
+        <div class="value-card reveal"><div class="value-emoji">🌿</div><h4>Écologie</h4><p>Des produits certifiés et une politique de réduction des déchets.</p></div>
+        <div class="value-card reveal"><div class="value-emoji">⭐</div><h4>Qualité</h4><p>Un contrôle rigoureux à chaque intervention, sans compromis.</p></div>
+        <div class="value-card reveal"><div class="value-emoji">👔</div><h4>Professionnalisme</h4><p>Une équipe formée, ponctuelle et respectueuse de vos lieux.</p></div>
+        <div class="value-card reveal"><div class="value-emoji">✅</div><h4>Fiabilité</h4><p>Des engagements tenus et une équipe disponible 6j/7.</p></div>
+      </div>
+    </div>
+  </section>
+
+  ${contactSectionHTML()}
+  `;
+}
+
+function cardHTML(slug){
+  const s = bySlug(slug);
+  return `
+  <div class="service-card reveal">
+    <div class="service-media">
+      <span class="tag">Professionnels</span>
+      <div class="icon-wrap">${ICONS[s.icon]}</div>
+    </div>
+    <div class="service-body">
+      <h3>${s.title}</h3>
+      <p>${s.short}</p>
+      <a href="#/services/${s.slug}" class="service-link" data-link>En savoir plus →</a>
+    </div>
+  </div>`;
+}
+function compHTML(slug){
+  const s = bySlug(slug);
+  return `
+  <div class="comp-card reveal">
+    <div class="comp-icon">${ICONS[s.icon]}</div>
+    <div>
+      <h4>${s.title}</h4>
+      <p>${s.short}</p>
+      <a href="#/services/${s.slug}" class="service-link" data-link>Voir le service →</a>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   SERVICES LIST VIEW
+   ============================================================ */
+function servicesListView(){
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Services</div>
+      <h1>Toutes nos prestations</h1>
+      <p style="color:rgba(255,255,255,.85);max-width:600px;margin-top:12px">Des solutions de nettoyage complètes pour les particuliers et les professionnels de Tours et d'Indre-et-Loire.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Professionnels</span>
+      <h2 class="section-title">Services principaux</h2>
+      <div class="services-grid" style="margin-bottom:70px">${MAIN_SLUGS.map(cardHTML).join('')}</div>
+      <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Particuliers</span>
+      <h2 class="section-title">Services complémentaires</h2>
+      <div class="comp-grid">${COMP_SLUGS.map(compHTML).join('')}</div>
+    </div>
+  </section>`;
+}
+
+/* ============================================================
+   SERVICE DETAIL VIEW
+   ============================================================ */
+function serviceDetailView(slug){
+  const s = bySlug(slug);
+  if(!s){ return notFoundView(); }
+  const related = SERVICES.filter(x=>x.slug!==s.slug && x.cat===s.cat).slice(0,4);
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / <a href="#/services" data-link>Services</a> / ${s.title}</div>
+      <h1>${s.title}</h1>
+    </div>
+  </section>
+  <section class="detail-body">
+    <div class="container detail-layout">
+      <div>
+        <div class="detail-block">
+          <h2>Présentation</h2>
+          <p>${s.intro}</p>
+        </div>
+        <div class="detail-block">
+          <h2>En détail</h2>
+          <p>${s.details}</p>
+        </div>
+        <div class="detail-block">
+          <h2>Ce que comprend le service</h2>
+          <ul class="check-list">
+            ${s.includes.map(i=>`<li><span class="ic">${ICONS.check}</span>${i}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h2>Pourquoi nous choisir ?</h2>
+          <div class="why-grid">
+            <div class="why-card"><h4>🌿 Produits éco-responsables</h4><p>Certifiés, sans danger pour vos équipes, vos proches et l'environnement.</p></div>
+            <div class="why-card"><h4>⭐ Qualité contrôlée</h4><p>Un contrôle qualité systématique à chaque intervention.</p></div>
+            <div class="why-card"><h4>🤝 Devis gratuit</h4><p>Un devis personnalisé et sans engagement, sous 24h.</p></div>
+            <div class="why-card"><h4>✅ Équipe fiable</h4><p>Ponctuelle, formée et disponible 6 jours sur 7.</p></div>
+          </div>
+        </div>
+        <div class="detail-block">
+          <h2>Galerie</h2>
+          <div class="gallery-grid">
+            <div class="g-item">${ICONS[s.icon]}</div>
+            <div class="g-item">${ICONS.leaf}</div>
+            <div class="g-item">${ICONS.shield}</div>
+          </div>
+          <p style="font-size:.8rem;margin-top:10px;color:var(--text-light)"><!-- Placeholder : à remplacer par vos photos réelles avant/après --></p>
+        </div>
+      </div>
+      <aside>
+        <div class="sidebar-card">
+          <h4>Besoin de ce service ?</h4>
+          <p style="color:var(--text-light);font-size:.9rem">Obtenez un devis gratuit et personnalisé en quelques minutes.</p>
+          <a href="#/devis" class="btn btn-primary btn-block" data-link>Demander un devis</a>
+          <a href="tel:+33784769536" class="btn btn-secondary btn-block" style="margin-top:10px">📞 07 84 76 95 36</a>
+          <div class="mini-list">
+            <div class="dropdown-group-title">Autres services ${s.cat==='pro'?'professionnels':'particuliers'}</div>
+            ${related.map(r=>`<a href="#/services/${r.slug}" data-link>${r.title} →</a>`).join('')}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-devis reveal">
+        <div class="cta-devis-content">
+          <h2>Besoin de nos services ?</h2>
+          <p>Obtenez votre devis gratuitement, sans engagement.</p>
+        </div>
+        <div class="cta-devis-action"><a href="#/devis" class="btn btn-light" data-link>Demander un devis →</a></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function notFoundView(){
+  return `<section class="legal-body" style="text-align:center">
+    <h1>Page introuvable</h1>
+    <p style="margin:16px 0">Cette page n'existe pas ou a été déplacée.</p>
+    <a href="#/" class="btn btn-primary" data-link>Retour à l'accueil</a>
+  </section>`;
+}
+
+/* ============================================================
+   ABOUT VIEW
+   ============================================================ */
+function aboutView(){
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / À propos</div>
+      <h1>À propos de Pradice Services Nettoyage</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="intro-text">
+        <span class="eyebrow">Notre histoire</span>
+        <h2 class="section-title" style="text-align:left">Une entreprise tourangelle, engagée et de proximité</h2>
+        <p>Fondée en 2023 à Tours, Pradice Services Nettoyage est née d'une conviction simple : la propreté professionnelle ne doit pas se faire au détriment de l'environnement ni de la relation humaine avec le client.</p>
+        <p>Nous intervenons aujourd'hui auprès de particuliers et de professionnels sur Tours et l'ensemble de l'Indre-et-Loire, avec la même exigence de qualité, quel que soit le projet.</p>
+      </div>
+      <div class="intro-visual">${ICONS.shield.replace('width="26" height="26"','width="90" height="90"')}</div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Nos valeurs</h2>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-emoji">🤝</div><h4>Respect du client</h4><p>Une écoute attentive et un service adapté.</p></div>
+        <div class="value-card"><div class="value-emoji">🌿</div><h4>Écologie</h4><p>Produits certifiés, réduction des déchets.</p></div>
+        <div class="value-card"><div class="value-emoji">⭐</div><h4>Qualité</h4><p>Un contrôle rigoureux à chaque intervention.</p></div>
+        <div class="value-card"><div class="value-emoji">👔</div><h4>Professionnalisme</h4><p>Une équipe formée et respectueuse des lieux.</p></div>
+        <div class="value-card"><div class="value-emoji">✅</div><h4>Fiabilité</h4><p>Des engagements tenus, 6j/7.</p></div>
+      </div>
+    </div>
+  </section>
+  ${contactSectionHTML()}
+  `;
+}
+
+/* ============================================================
+   CONTACT SECTION (reused on home + about)
+   ============================================================ */
+function contactSectionHTML(){
+  return `
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Une question, un projet ? Écrivez-nous, nous vous répondons rapidement.</p>
+      <div class="contact-grid">
+        <div class="form-card">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="field"><label>Nom</label><input type="text" name="nom" required></div>
+              <div class="field"><label>E-mail</label><input type="email" name="email" required></div>
+            </div>
+            <div class="form-row">
+              <div class="field full"><label>Objet</label><input type="text" name="objet" required></div>
+            </div>
+            <div class="form-row">
+              <div class="field full"><label>Message</label><textarea name="message" required></textarea></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+            <p class="form-note">Vos informations ne sont utilisées que pour vous recontacter et ne sont jamais partagées.</p>
+            <div class="form-success" id="contactSuccess">Merci ! Votre message a bien été préparé — votre client mail va s'ouvrir pour l'envoyer.</div>
+          </form>
+        </div>
+        <div class="contact-info-card">
+          <div class="info-row"><span class="ic">${ICONS.phone}</span><div><h4>Téléphone / WhatsApp</h4><a href="tel:+33784769536">07 84 76 95 36</a></div></div>
+          <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:pradiceservices@gmail.com">pradiceservices@gmail.com</a></div></div>
+          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>3 rue Victor Grossein, 37000 Tours</p></div></div>
+          <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : 8h–18h<br>Samedi : 9h–16h<br>Dimanche : fermé</p></div></div>
+          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>Tours et l'Indre-et-Loire (37)</p></div></div>
+          <div>
+            <h4 style="font-size:.95rem;margin-bottom:10px">Suivez-nous</h4>
+            <div class="social-row">
+              <a href="https://www.facebook.com/profile.php?id=61559238324968" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg></a>
+              <a href="https://www.instagram.com/servicespradice" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+              <a href="https://wa.me/33784769536" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ============================================================
+   DEVIS (multi-step)
+   ============================================================ */
+const DEVIS_STEPS = ['Coordonnées','Votre besoin','Planning','Détails','Récapitulatif'];
+let devisStep = 1;
+let devisData = {};
+
+function devisView(){
+  devisStep = 1; devisData = {};
+  return `
+  <section class="detail-hero" style="padding:130px 0 50px">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Devis</div>
+      <h1>Demander un devis gratuit</h1>
+      <p style="color:rgba(255,255,255,.85);max-width:600px;margin-top:12px">Répondez à quelques questions, notre équipe vous recontacte sous 24h avec une proposition personnalisée.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container devis-wrap">
+      <div class="progress-track" id="progressTrack"></div>
+      <form id="devisForm">
+        <div class="devis-step active" data-step="1">
+          <h2 class="section-title" style="text-align:left;font-size:1.4rem">Vos coordonnées</h2>
+          <div class="form-row">
+            <div class="field"><label>Nom</label><input type="text" name="nom" required></div>
+            <div class="field"><label>Prénom</label><input type="text" name="prenom" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Téléphone</label><input type="tel" name="telephone" required></div>
+            <div class="field"><label>E-mail</label><input type="email" name="email" required></div>
+          </div>
+        </div>
+
+        <div class="devis-step" data-step="2">
+          <h2 class="section-title" style="text-align:left;font-size:1.4rem">Votre besoin</h2>
+          <div class="form-row">
+            <div class="field full"><label>Type de prestation</label>
+              <select name="prestation" required>
+                <option value="">Sélectionnez un service</option>
+                <optgroup label="Professionnels">${MAIN_SLUGS.map(sl=>`<option value="${bySlug(sl).title}">${bySlug(sl).title}</option>`).join('')}</optgroup>
+                <optgroup label="Particuliers">${COMP_SLUGS.map(sl=>`<option value="${bySlug(sl).title}">${bySlug(sl).title}</option>`).join('')}</optgroup>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Type de local</label>
+              <select name="local"><option>Domicile / appartement</option><option>Maison</option><option>Bureau</option><option>Commerce</option><option>Local professionnel</option><option>Autre</option></select>
+            </div>
+            <div class="field"><label>Surface approximative (m²)</label><input type="number" name="surface" min="0"></div>
+          </div>
+          <div class="form-row">
+            <div class="field full"><label>Fréquence souhaitée</label>
+              <select name="frequence"><option>Ponctuelle</option><option>Hebdomadaire</option><option>Bi-mensuelle</option><option>Mensuelle</option><option>À définir</option></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="devis-step" data-step="3">
+          <h2 class="section-title" style="text-align:left;font-size:1.4rem">Planning & adresse</h2>
+          <div class="form-row">
+            <div class="field full"><label>Adresse d'intervention</label><input type="text" name="adresse" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Date souhaitée</label><input type="date" name="date"></div>
+            <div class="field"><label>Horaires souhaités</label><input type="text" name="horaires" placeholder="ex: matin, 9h-12h..."></div>
+          </div>
+        </div>
+
+        <div class="devis-step" data-step="4">
+          <h2 class="section-title" style="text-align:left;font-size:1.4rem">Détails complémentaires</h2>
+          <div class="form-row">
+            <div class="field full"><label>Informations complémentaires</label><textarea name="details" placeholder="Précisez toute information utile à votre demande"></textarea></div>
+          </div>
+          <div class="form-row">
+            <div class="field full"><label>Photos / documents (optionnel)</label><input type="file" name="fichiers" multiple accept="image/*,.pdf"></div>
+          </div>
+        </div>
+
+        <div class="devis-step" data-step="5">
+          <h2 class="section-title" style="text-align:left;font-size:1.4rem">Récapitulatif</h2>
+          <div class="recap-box" id="recapBox"></div>
+          <p class="form-note">En cliquant sur "Envoyer ma demande", votre logiciel de messagerie s'ouvrira avec toutes les informations pré-remplies à destination de pradiceservices@gmail.com.</p>
+        </div>
+
+        <div class="devis-nav">
+          <button type="button" class="btn btn-secondary" id="devisPrev">← Précédent</button>
+          <button type="button" class="btn btn-primary" id="devisNext">Suivant →</button>
+          <button type="submit" class="btn btn-primary hidden" id="devisSubmit">Envoyer ma demande</button>
+        </div>
+      </form>
+    </div>
+  </section>`;
+}
+
+function renderProgress(){
+  const track = document.getElementById('progressTrack');
+  if(!track) return;
+  track.innerHTML = DEVIS_STEPS.map((label,i)=>{
+    const n = i+1;
+    const cls = n<devisStep?'done':(n===devisStep?'active':'');
+    return `<div class="progress-step ${cls}"><div class="progress-line"></div><div class="dot">${n<devisStep?'✓':n}</div><span>${label}</span></div>`;
+  }).join('');
+}
+
+function updateDevisView(){
+  document.querySelectorAll('.devis-step').forEach(el=>{
+    el.classList.toggle('active', Number(el.dataset.step)===devisStep);
+  });
+  document.getElementById('devisPrev').style.visibility = devisStep===1?'hidden':'visible';
+  document.getElementById('devisNext').classList.toggle('hidden', devisStep===DEVIS_STEPS.length);
+  document.getElementById('devisSubmit').classList.toggle('hidden', devisStep!==DEVIS_STEPS.length);
+  renderProgress();
+  if(devisStep===DEVIS_STEPS.length){ renderRecap(); }
+}
+
+function collectDevisData(){
+  const form = document.getElementById('devisForm');
+  if(!form) return;
+  new FormData(form).forEach((v,k)=>{ if(k!=='fichiers') devisData[k]=v; });
+}
+
+function renderRecap(){
+  collectDevisData();
+  const box = document.getElementById('recapBox');
+  const labels = {nom:'Nom',prenom:'Prénom',telephone:'Téléphone',email:'E-mail',prestation:'Prestation',local:'Type de local',surface:'Surface',frequence:'Fréquence',adresse:'Adresse',date:'Date souhaitée',horaires:'Horaires',details:'Détails'};
+  box.innerHTML = Object.entries(labels).map(([k,l])=>`<div><span>${l}</span><strong>${devisData[k]||'—'}</strong></div>`).join('');
+}
+
+/* ============================================================
+   LEGAL VIEWS
+   ============================================================ */
+function legalView(type){
+  if(type==='confidentialite'){
+    return `<section class="legal-body">
+      <h1>Politique de confidentialité</h1>
+      <p>Pradice Services Nettoyage accorde une importance particulière à la protection de vos données personnelles.</p>
+      <h2>Données collectées</h2>
+      <p>Les données transmises via nos formulaires (nom, coordonnées, adresse) sont utilisées uniquement pour traiter votre demande de devis ou de contact.</p>
+      <h2>Conservation</h2>
+      <p>Vos données sont conservées le temps nécessaire au traitement de votre demande et à la relation commerciale.</p>
+      <h2>Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous à pradiceservices@gmail.com.</p>
+    </section>`;
+  }
+  return `<section class="legal-body">
+    <h1>Mentions légales</h1>
+    <h2>Éditeur du site</h2>
+    <p>Pradice Services Nettoyage<br>3 rue Victor Grossein, 37000 Tours, France<br>Téléphone : 07 84 76 95 36<br>E-mail : pradiceservices@gmail.com</p>
+    <h2>Hébergement</h2>
+    <p>Informations d'hébergement à compléter.</p>
+    <h2>Propriété intellectuelle</h2>
+    <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété de Pradice Services Nettoyage, sauf mention contraire.</p>
+  </section>`;
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+function renderNavDropdowns(){
+  const proLinks = MAIN_SLUGS.map(sl=>`<a href="#/services/${sl}" data-link>${bySlug(sl).title}</a>`).join('');
+  const partLinks = COMP_SLUGS.map(sl=>`<a href="#/services/${sl}" data-link>${bySlug(sl).title}</a>`).join('');
+  document.getElementById('nav-dropdown').innerHTML = `
+    <div class="dropdown-group-title">Professionnels</div>${proLinks}
+    <div class="dropdown-group-title">Particuliers</div>${partLinks}
+    <div class="dropdown-group-title"></div><a href="#/services" data-link style="color:var(--blue-2)">Voir tous les services →</a>
+  `;
+  document.getElementById('mobile-services-particuliers').innerHTML = `
+    <div class="dropdown-group-title">Professionnels</div>${proLinks}
+    <div class="dropdown-group-title">Particuliers</div>${partLinks}
+  `;
+  document.getElementById('footer-services-list').innerHTML = MAIN_SLUGS.slice(0,6).map(sl=>`<li><a href="#/services/${sl}" data-link>${bySlug(sl).title}</a></li>`).join('');
+}
+
+function route(){
+  const hash = location.hash.replace(/^#/,'') || '/';
+  const parts = hash.split('/').filter(Boolean);
+  const app = document.getElementById('app');
+  let html = '';
+
+  if(parts.length===0){ html = homeView(); }
+  else if(parts[0]==='services' && parts.length===1){ html = servicesListView(); }
+  else if(parts[0]==='services' && parts.length===2){ html = serviceDetailView(parts[1]); }
+  else if(parts[0]==='a-propos'){ html = aboutView(); }
+  else if(parts[0]==='contact'){ html = `<div style="padding-top:70px">${contactSectionHTML()}</div>`; }
+  else if(parts[0]==='devis'){ html = devisView(); }
+  else if(parts[0]==='mentions-legales'){ html = legalView('mentions'); }
+  else if(parts[0]==='confidentialite'){ html = legalView('confidentialite'); }
+  else { html = notFoundView(); }
+
+  app.innerHTML = html;
+  window.scrollTo({top:0,behavior:'instant' in window ? 'instant':'auto'});
+  bindDynamicHandlers();
+  observeReveals();
+  closeMobileNav();
+}
+
+function bindDynamicHandlers(){
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const fd = new FormData(contactForm);
+      const subject = encodeURIComponent('Contact site - '+fd.get('objet'));
+      const body = encodeURIComponent(`Nom: ${fd.get('nom')}\nE-mail: ${fd.get('email')}\n\n${fd.get('message')}`);
+      window.location.href = `mailto:pradiceservices@gmail.com?subject=${subject}&body=${body}`;
+      document.getElementById('contactSuccess').classList.add('show');
+    });
+  }
+
+  const devisForm = document.getElementById('devisForm');
+  if(devisForm){
+    updateDevisView();
+    document.getElementById('devisNext').addEventListener('click', ()=>{
+      const currentStepEl = document.querySelector('.devis-step.active');
+      const inputs = currentStepEl.querySelectorAll('input[required],select[required]');
+      for(const inp of inputs){ if(!inp.reportValidity()) return; }
+      collectDevisData();
+      devisStep = Math.min(devisStep+1, DEVIS_STEPS.length);
+      updateDevisView();
+    });
+    document.getElementById('devisPrev').addEventListener('click', ()=>{
+      devisStep = Math.max(devisStep-1,1);
+      updateDevisView();
+    });
+    devisForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      collectDevisData();
+      const lines = Object.entries(devisData).map(([k,v])=>`${k}: ${v}`).join('%0D%0A');
+      window.location.href = `mailto:pradiceservices@gmail.com?subject=${encodeURIComponent('Nouvelle demande de devis')}&body=${lines}`;
+    });
+  }
+}
+
+function observeReveals(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(el=>el.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.15});
+  els.forEach(el=>io.observe(el));
+}
+
+/* ============================================================
+   HEADER / MOBILE NAV
+   ============================================================ */
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+document.getElementById('hamburger').addEventListener('click', ()=>{
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+});
+document.getElementById('mobileNav').addEventListener('click', e=>{
+  if(e.target.tagName==='A') closeMobileNav();
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+window.addEventListener('hashchange', route);
+window.addEventListener('DOMContentLoaded', ()=>{
+  renderNavDropdowns();
+  route();
+});
+renderNavDropdowns();
+route();
+</script>
+</body>
+</html>
