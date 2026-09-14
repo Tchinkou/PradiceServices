@@ -141,6 +141,8 @@ h1,h2,h3{color:var(--navy)}
       <button data-panel="services">🧹 Services</button>
       <button data-panel="gallery">🖼️ Photos avant / après</button>
       <button data-panel="values">⭐ Valeurs</button>
+      <button data-panel="jobs">💼 Offres d'emploi</button>
+      <button data-panel="promotions">🏷️ Promotions</button>
       <button data-panel="leads">📬 Demandes reçues</button>
     </nav>
     <button class="logout" id="logoutBtn">Se déconnecter</button>
@@ -166,13 +168,35 @@ h1,h2,h3{color:var(--navy)}
       </div>
 
       <div class="card">
-        <h3>Photo de mise en avant</h3>
-        <p style="font-size:.85rem;color:var(--text-light);margin-bottom:14px">Cette photo s'affiche en grand format dans la section "Nos valeurs" de la page d'accueil (format portrait recommandé).</p>
-        <div class="upload-row">
-          <div class="logo-preview" id="heroImgPreview" style="border-radius:12px;width:100px;height:130px"></div>
+        <h3>Photos de la page d'accueil</h3>
+        <p style="font-size:.85rem;color:var(--text-light);margin-bottom:14px">Ces photos s'affichent en haut de la page d'accueil (les 3 panneaux du grand visuel d'en-tête) et dans la section "Nos valeurs".</p>
+        <div class="grid-3">
           <div>
-            <input type="file" id="heroImgUpload" accept="image/*">
-            <p style="font-size:.78rem;color:var(--text-light);margin-top:6px">Format portrait, haute résolution.</p>
+            <div class="logo-preview" id="heroImg1Preview" style="border-radius:12px;width:100%;height:120px"></div>
+            <input type="file" id="heroImg1Upload" accept="image/*" style="margin-top:8px">
+            <p style="font-size:.75rem;color:var(--text-light);margin-top:4px">En-tête — panneau gauche</p>
+          </div>
+          <div>
+            <div class="logo-preview" id="heroImgPreview" style="border-radius:12px;width:100%;height:120px"></div>
+            <input type="file" id="heroImgUpload" accept="image/*" style="margin-top:8px">
+            <p style="font-size:.75rem;color:var(--text-light);margin-top:4px">En-tête — panneau central + "Nos valeurs"</p>
+          </div>
+          <div>
+            <div class="logo-preview" id="heroImg3Preview" style="border-radius:12px;width:100%;height:120px"></div>
+            <input type="file" id="heroImg3Upload" accept="image/*" style="margin-top:8px">
+            <p style="font-size:.75rem;color:var(--text-light);margin-top:4px">En-tête — panneau droit</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Photo "Nous nous engageons"</h3>
+        <p style="font-size:.85rem;color:var(--text-light);margin-bottom:14px">Photo de fond de la section d'engagements de la page d'accueil (format paysage recommandé).</p>
+        <div class="upload-row">
+          <div class="logo-preview" id="engageImgPreview" style="border-radius:12px;width:140px;height:90px"></div>
+          <div>
+            <input type="file" id="engageImgUpload" accept="image/*">
+            <p style="font-size:.78rem;color:var(--text-light);margin-top:6px">Format paysage, haute résolution.</p>
           </div>
         </div>
       </div>
@@ -183,10 +207,21 @@ h1,h2,h3{color:var(--navy)}
           <div class="grid-2">
             <div class="field"><label>Nom de la marque</label><input name="brand_name" required></div>
             <div class="field"><label>Slogan / tagline (sous le logo)</label><input name="tagline"></div>
+            <div class="field full"><label>Citation affichée dans la carte du hero</label><input name="hero_tagline" placeholder="Simplifiez-vous la tâche !"></div>
             <div class="field full"><label>Titre principal (hero) — ligne 1</label><input name="hero_title"></div>
             <div class="field full"><label>Titre principal (hero) — ligne 2 (accent coloré)</label><input name="hero_title_accent"></div>
-            <div class="field full"><label>Sous-titre du hero</label><textarea name="hero_subtitle"></textarea></div>
+            <div class="field full"><label>Texte affiché sous la citation du hero</label><textarea name="hero_subtitle"></textarea></div>
             <div class="field full"><label>Texte "Qui sommes-nous"</label><textarea name="about_text"></textarea></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Avis Google</h3>
+          <p style="font-size:.85rem;color:var(--text-light);margin-bottom:14px">Affiché dans le badge flottant en bas à gauche du site. Laisse la note vide pour afficher un simple bouton "Laissez-nous un avis" tant que tu n'as pas de note réelle à afficher.</p>
+          <div class="grid-3">
+            <div class="field"><label>Note (ex: 4.9)</label><input name="google_rating" placeholder="4.9"></div>
+            <div class="field"><label>Nombre d'avis</label><input type="number" name="google_review_count" min="0" placeholder="10"></div>
+            <div class="field"><label>Lien vers vos avis Google</label><input name="google_reviews_url" placeholder="https://..."></div>
           </div>
         </div>
 
@@ -269,6 +304,22 @@ h1,h2,h3{color:var(--navy)}
       </div>
     </section>
 
+    <!-- JOBS -->
+    <section class="panel" id="panel-jobs">
+      <h1>Offres d'emploi</h1>
+      <p class="sub">Affichées sur la page "Recrutement" du site, avec un bouton "Postuler" pré-rempli pour chaque offre.</p>
+      <button class="btn btn-primary" style="width:auto;margin-bottom:18px" id="addJobBtn">+ Ajouter une offre</button>
+      <div id="jobsList"></div>
+    </section>
+
+    <!-- PROMOTIONS -->
+    <section class="panel" id="panel-promotions">
+      <h1>Promotions</h1>
+      <p class="sub">Affichées dans une section dédiée sur la page d'accueil, tant qu'elles sont actives.</p>
+      <button class="btn btn-primary" style="width:auto;margin-bottom:18px" id="addPromoBtn">+ Ajouter une promotion</button>
+      <div id="promotionsList"></div>
+    </section>
+
     <!-- LEADS -->
     <section class="panel" id="panel-leads">
       <h1>Demandes reçues</h1>
@@ -330,6 +381,69 @@ h1,h2,h3{color:var(--navy)}
       <div class="field full"><label>Légende (optionnel)</label><input name="caption"></div>
       <div class="modal-actions">
         <button type="button" class="btn btn-secondary" id="cancelGalleryBtn">Annuler</button>
+        <button type="submit" class="btn btn-primary" style="width:auto">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ JOB MODAL ============ -->
+<div class="modal-overlay" id="jobModalOverlay">
+  <div class="modal">
+    <h3 id="jobModalTitle">Ajouter une offre</h3>
+    <form id="jobForm">
+      <input type="hidden" name="id">
+      <div class="grid-2">
+        <div class="field full"><label>Intitulé du poste</label><input name="title" required></div>
+        <div class="field"><label>Type de contrat</label>
+          <select name="contract_type">
+            <option value="CDI">CDI</option>
+            <option value="CDD">CDD</option>
+            <option value="Temps partiel">Temps partiel</option>
+            <option value="Intérim">Intérim</option>
+            <option value="Stage">Stage</option>
+          </select>
+        </div>
+        <div class="field"><label>Ordre d'affichage</label><input type="number" name="sort_order" value="0"></div>
+        <div class="field full"><label>Lieu</label><input name="location" placeholder="Tours et agglomération"></div>
+        <div class="field full"><label>Description du poste</label><textarea name="description"></textarea></div>
+      </div>
+      <div class="field full">
+        <label>Profil recherché / prérequis</label>
+        <div class="includes-list" id="jobReqList"></div>
+        <button type="button" class="btn btn-secondary btn-sm" id="addJobReqBtn">+ Ajouter une ligne</button>
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label><input type="checkbox" name="published" checked style="width:auto"> Publiée sur le site</label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelJobBtn">Annuler</button>
+        <button type="submit" class="btn btn-primary" style="width:auto">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ PROMOTION MODAL ============ -->
+<div class="modal-overlay" id="promoModalOverlay">
+  <div class="modal">
+    <h3 id="promoModalTitle">Ajouter une promotion</h3>
+    <form id="promoForm">
+      <input type="hidden" name="id">
+      <div class="grid-2">
+        <div class="field full"><label>Titre</label><input name="title" required></div>
+        <div class="field"><label>Badge (ex: "-20%", "Nouveau")</label><input name="badge_text" placeholder="Promo"></div>
+        <div class="field"><label>Ordre d'affichage</label><input type="number" name="sort_order" value="0"></div>
+        <div class="field full"><label>Description</label><textarea name="description"></textarea></div>
+        <div class="field"><label>Valable jusqu'au (optionnel)</label><input type="date" name="valid_until"></div>
+        <div class="field full"><label>Photo (URL, ou upload ci-dessous)</label><input name="image_url" placeholder="https://..."></div>
+        <div class="field full"><input type="file" id="promoImageUpload" accept="image/*"></div>
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label><input type="checkbox" name="active" checked style="width:auto"> Active sur le site</label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelPromoBtn">Annuler</button>
         <button type="submit" class="btn btn-primary" style="width:auto">Enregistrer</button>
       </div>
     </form>
@@ -479,21 +593,29 @@ function flashMessage(text, type='success'){
 let SETTINGS_ROW = null;
 let SERVICES = [];
 let GALLERY = [];
+let JOBS = [];
+let PROMOTIONS = [];
 
 async function loadAllData(){
   try{
-    const [settingsRows, serviceRows, galleryRows] = await Promise.all([
+    const [settingsRows, serviceRows, galleryRows, jobRows, promoRows] = await Promise.all([
       apiGet('settings?id=eq.1&select=*'),
       apiGet('services?select=*&order=sort_order.asc'),
       apiGet('gallery?select=*&order=sort_order.asc'),
+      apiGet('jobs?select=*&order=sort_order.asc').catch(()=>[]),
+      apiGet('promotions?select=*&order=sort_order.asc').catch(()=>[]),
     ]);
     SETTINGS_ROW = settingsRows[0] || {};
     SERVICES = serviceRows || [];
     GALLERY = galleryRows || [];
+    JOBS = jobRows || [];
+    PROMOTIONS = promoRows || [];
     fillGeneralForm();
     renderServicesList();
     renderGalleryList();
     renderValuesList();
+    renderJobsList();
+    renderPromotionsList();
     loadLeads();
   }catch(err){
     flashMessage('Erreur de chargement : '+err.message, 'error');
@@ -503,42 +625,42 @@ async function loadAllData(){
 /* ============================================================
    GENERAL PANEL
    ============================================================ */
+const IMAGE_FIELDS = [
+  {upload:'logoUpload', preview:'logoPreview', folder:'logo', db:'logo_url', alt:'Logo', empty:'🌿'},
+  {upload:'heroImg1Upload', preview:'heroImg1Preview', folder:'hero', db:'hero_image_url_1', alt:'Photo panneau gauche', empty:'🖼️'},
+  {upload:'heroImgUpload', preview:'heroImgPreview', folder:'hero', db:'hero_image_url', alt:'Photo de mise en avant', empty:'🖼️'},
+  {upload:'heroImg3Upload', preview:'heroImg3Preview', folder:'hero', db:'hero_image_url_3', alt:'Photo panneau droit', empty:'🖼️'},
+  {upload:'engageImgUpload', preview:'engageImgPreview', folder:'engage', db:'engage_image_url', alt:'Photo engagements', empty:'🖼️'},
+];
+
 function fillGeneralForm(){
   const f = document.getElementById('generalForm');
   const s = SETTINGS_ROW;
-  const fields = ['brand_name','tagline','hero_title','hero_title_accent','hero_subtitle','about_text','phone','whatsapp','email','address_line','postal_code','city','zone_text','hours_weekday','hours_saturday','hours_sunday','facebook_url','instagram_url','color_green','color_green_light','color_blue','color_blue_light','legal_mentions','legal_privacy'];
+  const fields = ['brand_name','tagline','hero_tagline','hero_title','hero_title_accent','hero_subtitle','about_text','google_rating','google_review_count','google_reviews_url','phone','whatsapp','email','address_line','postal_code','city','zone_text','hours_weekday','hours_saturday','hours_sunday','facebook_url','instagram_url','color_green','color_green_light','color_blue','color_blue_light','legal_mentions','legal_privacy'];
   fields.forEach(name=>{
     const el = f.elements[name];
     if(el && s[name] !== undefined && s[name] !== null) el.value = s[name];
   });
-  const logoPreview = document.getElementById('logoPreview');
-  logoPreview.innerHTML = s.logo_url ? `<img src="${s.logo_url}" alt="Logo">` : '🌿';
-  logoPreview.dataset.url = s.logo_url || '';
-  const heroImgPreview = document.getElementById('heroImgPreview');
-  heroImgPreview.innerHTML = s.hero_image_url ? `<img src="${s.hero_image_url}" alt="Photo de mise en avant">` : '🖼️';
-  heroImgPreview.dataset.url = s.hero_image_url || '';
+  IMAGE_FIELDS.forEach(({preview, db, alt, empty})=>{
+    const el = document.getElementById(preview);
+    const url = s[db] || '';
+    el.innerHTML = url ? `<img src="${url}" alt="${alt}">` : empty;
+    el.dataset.url = url;
+  });
 }
 
-document.getElementById('logoUpload').addEventListener('change', async e=>{
-  const file = e.target.files[0];
-  if(!file) return;
-  try{
-    const url = await uploadFile(file, 'logo');
-    document.getElementById('logoPreview').innerHTML = `<img src="${url}" alt="Logo">`;
-    document.getElementById('logoPreview').dataset.url = url;
-    flashMessage('Logo téléversé. N\'oublie pas d\'enregistrer.');
-  }catch(err){ flashMessage(err.message, 'error'); }
-});
-
-document.getElementById('heroImgUpload').addEventListener('change', async e=>{
-  const file = e.target.files[0];
-  if(!file) return;
-  try{
-    const url = await uploadFile(file, 'hero');
-    document.getElementById('heroImgPreview').innerHTML = `<img src="${url}" alt="Photo de mise en avant">`;
-    document.getElementById('heroImgPreview').dataset.url = url;
-    flashMessage('Photo téléversée. N\'oublie pas d\'enregistrer.');
-  }catch(err){ flashMessage(err.message, 'error'); }
+IMAGE_FIELDS.forEach(({upload, preview, folder, alt})=>{
+  document.getElementById(upload).addEventListener('change', async e=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    try{
+      const url = await uploadFile(file, folder);
+      const el = document.getElementById(preview);
+      el.innerHTML = `<img src="${url}" alt="${alt}">`;
+      el.dataset.url = url;
+      flashMessage('Photo téléversée. N\'oublie pas d\'enregistrer.');
+    }catch(err){ flashMessage(err.message, 'error'); }
+  });
 });
 
 document.getElementById('generalForm').addEventListener('submit', async e=>{
@@ -546,8 +668,10 @@ document.getElementById('generalForm').addEventListener('submit', async e=>{
   const fd = new FormData(e.target);
   const data = {};
   for(const [k,v] of fd.entries()) data[k] = v;
-  data.logo_url = document.getElementById('logoPreview').dataset.url || '';
-  data.hero_image_url = document.getElementById('heroImgPreview').dataset.url || '';
+  if(data.google_review_count !== undefined) data.google_review_count = Number(data.google_review_count) || 0;
+  IMAGE_FIELDS.forEach(({preview, db})=>{
+    data[db] = document.getElementById(preview).dataset.url || '';
+  });
   try{
     await apiPatch('settings', 'id=eq.1', data);
     flashMessage('Informations enregistrées avec succès.');
@@ -764,6 +888,172 @@ window.deleteGallery = async id => {
 };
 
 /* ============================================================
+   JOBS PANEL
+   ============================================================ */
+function renderJobsList(){
+  const list = document.getElementById('jobsList');
+  if(!JOBS.length){ list.innerHTML = '<p style="color:var(--text-light)">Aucune offre pour le moment.</p>'; return; }
+  list.innerHTML = JOBS.map(j=>`
+    <div class="svc-row">
+      <div class="thumb">💼</div>
+      <div class="info">
+        <h4>${j.title} ${j.published?'':'<span style="color:var(--danger);font-size:.75rem">(masquée)</span>'}</h4>
+        <span class="badge badge-pro">${j.contract_type||'CDI'}</span>
+        <span> · ${j.location||''}</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary btn-sm" onclick="editJob('${j.id}')">Modifier</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteJob('${j.id}')">Supprimer</button>
+      </div>
+    </div>`).join('');
+}
+
+const jobModal = document.getElementById('jobModalOverlay');
+const jobForm = document.getElementById('jobForm');
+
+document.getElementById('addJobBtn').addEventListener('click', ()=>openJobModal(null));
+document.getElementById('cancelJobBtn').addEventListener('click', ()=>jobModal.classList.remove('active'));
+
+function openJobModal(id){
+  const j = id ? JOBS.find(x=>x.id===id) : null;
+  document.getElementById('jobModalTitle').textContent = j ? 'Modifier l\'offre' : 'Ajouter une offre';
+  jobForm.reset();
+  jobForm.elements.id.value = j ? j.id : '';
+  jobForm.elements.title.value = j ? j.title : '';
+  jobForm.elements.contract_type.value = j ? (j.contract_type||'CDI') : 'CDI';
+  jobForm.elements.sort_order.value = j ? (j.sort_order||0) : (JOBS.length+1);
+  jobForm.elements.location.value = j ? (j.location||'') : '';
+  jobForm.elements.description.value = j ? (j.description||'') : '';
+  jobForm.elements.published.checked = j ? !!j.published : true;
+  const reqList = document.getElementById('jobReqList');
+  reqList.innerHTML = '';
+  const reqs = j && Array.isArray(j.requirements) ? j.requirements : [''];
+  reqs.forEach(text=>addJobReqRow(text));
+  jobModal.classList.add('active');
+}
+window.editJob = id => openJobModal(id);
+
+function addJobReqRow(value=''){
+  const row = document.createElement('div');
+  row.className = 'inc-row';
+  row.innerHTML = `<input value="${value.replace(/"/g,'&quot;')}" placeholder="Ex: Permis B souhaité"><button type="button" class="tag-remove" onclick="this.parentElement.remove()">✕</button>`;
+  document.getElementById('jobReqList').appendChild(row);
+}
+document.getElementById('addJobReqBtn').addEventListener('click', ()=>addJobReqRow());
+
+jobForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const fd = new FormData(jobForm);
+  const id = fd.get('id');
+  const requirements = [...document.querySelectorAll('#jobReqList input')].map(i=>i.value.trim()).filter(Boolean);
+  const data = {
+    title: fd.get('title'), contract_type: fd.get('contract_type'), sort_order: Number(fd.get('sort_order'))||0,
+    location: fd.get('location'), description: fd.get('description'),
+    requirements, published: fd.get('published')==='on',
+  };
+  try{
+    if(id){ await apiPatch('jobs', `id=eq.${id}`, data); }
+    else{ await apiInsert('jobs', data); }
+    jobModal.classList.remove('active');
+    flashMessage('Offre enregistrée.');
+    await loadAllData();
+    document.querySelector('[data-panel="jobs"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+});
+
+window.deleteJob = async id => {
+  if(!confirm('Supprimer cette offre ? Cette action est définitive.')) return;
+  try{
+    await apiDelete('jobs', `id=eq.${id}`);
+    flashMessage('Offre supprimée.');
+    await loadAllData();
+    document.querySelector('[data-panel="jobs"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+};
+
+/* ============================================================
+   PROMOTIONS PANEL
+   ============================================================ */
+function renderPromotionsList(){
+  const list = document.getElementById('promotionsList');
+  if(!PROMOTIONS.length){ list.innerHTML = '<p style="color:var(--text-light)">Aucune promotion pour le moment.</p>'; return; }
+  list.innerHTML = PROMOTIONS.map(p=>`
+    <div class="svc-row">
+      <div class="thumb">${p.image_url?`<img src="${p.image_url}" alt="">`:'🏷️'}</div>
+      <div class="info">
+        <h4>${p.title} ${p.active?'':'<span style="color:var(--danger);font-size:.75rem">(inactive)</span>'}</h4>
+        <span class="badge badge-particulier">${p.badge_text||'Promo'}</span>
+        <span> ${p.valid_until?` · jusqu'au ${p.valid_until}`:''}</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary btn-sm" onclick="editPromo('${p.id}')">Modifier</button>
+        <button class="btn btn-danger btn-sm" onclick="deletePromo('${p.id}')">Supprimer</button>
+      </div>
+    </div>`).join('');
+}
+
+const promoModal = document.getElementById('promoModalOverlay');
+const promoForm = document.getElementById('promoForm');
+
+document.getElementById('addPromoBtn').addEventListener('click', ()=>openPromoModal(null));
+document.getElementById('cancelPromoBtn').addEventListener('click', ()=>promoModal.classList.remove('active'));
+
+function openPromoModal(id){
+  const p = id ? PROMOTIONS.find(x=>x.id===id) : null;
+  document.getElementById('promoModalTitle').textContent = p ? 'Modifier la promotion' : 'Ajouter une promotion';
+  promoForm.reset();
+  promoForm.elements.id.value = p ? p.id : '';
+  promoForm.elements.title.value = p ? p.title : '';
+  promoForm.elements.badge_text.value = p ? (p.badge_text||'') : 'Promo';
+  promoForm.elements.sort_order.value = p ? (p.sort_order||0) : (PROMOTIONS.length+1);
+  promoForm.elements.description.value = p ? (p.description||'') : '';
+  promoForm.elements.valid_until.value = p ? (p.valid_until||'') : '';
+  promoForm.elements.image_url.value = p ? (p.image_url||'') : '';
+  promoForm.elements.active.checked = p ? !!p.active : true;
+  promoModal.classList.add('active');
+}
+window.editPromo = id => openPromoModal(id);
+
+document.getElementById('promoImageUpload').addEventListener('change', async e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  try{
+    const url = await uploadFile(file, 'promotions');
+    promoForm.elements.image_url.value = url;
+    flashMessage('Photo téléversée.');
+  }catch(err){ flashMessage(err.message, 'error'); }
+});
+
+promoForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const fd = new FormData(promoForm);
+  const id = fd.get('id');
+  const data = {
+    title: fd.get('title'), badge_text: fd.get('badge_text'), sort_order: Number(fd.get('sort_order'))||0,
+    description: fd.get('description'), valid_until: fd.get('valid_until') || null,
+    image_url: fd.get('image_url'), active: fd.get('active')==='on',
+  };
+  try{
+    if(id){ await apiPatch('promotions', `id=eq.${id}`, data); }
+    else{ await apiInsert('promotions', data); }
+    promoModal.classList.remove('active');
+    flashMessage('Promotion enregistrée.');
+    await loadAllData();
+    document.querySelector('[data-panel="promotions"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+});
+
+window.deletePromo = async id => {
+  if(!confirm('Supprimer cette promotion ?')) return;
+  try{
+    await apiDelete('promotions', `id=eq.${id}`);
+    flashMessage('Promotion supprimée.');
+    await loadAllData();
+    document.querySelector('[data-panel="promotions"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+};
+
+/* ============================================================
    LEADS PANEL
    ============================================================ */
 async function loadLeads(){
@@ -774,7 +1064,7 @@ async function loadLeads(){
     body.innerHTML = leads.map(l=>`
       <tr>
         <td>${new Date(l.created_at).toLocaleString('fr-FR')}</td>
-        <td>${l.type==='devis'?'Devis':'Contact'}</td>
+        <td>${l.type==='devis'?'Devis':l.type==='recrutement'?'Candidature':'Contact'}</td>
         <td class="lead-payload">${Object.entries(l.payload||{}).map(([k,v])=>`<strong>${k}:</strong> ${v}`).join('<br>')}</td>
         <td><span class="status-pill status-${l.status}">${l.status}</span></td>
         <td>

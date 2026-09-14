@@ -16,8 +16,15 @@ create table if not exists settings (
   logo_url text,
   hero_title text default 'Propreté garantie,',
   hero_title_accent text default 'satisfaction assurée',
-  hero_subtitle text default 'Pradice Services Nettoyage accompagne particuliers et professionnels de Tours et d''Indre-et-Loire avec des prestations soignées, fiables et respectueuses de l''environnement.',
+  hero_tagline text default 'Simplifiez-vous la tâche !',
+  hero_subtitle text default 'La société multi-services prête à répondre à tous vos besoins !',
   hero_image_url text,
+  hero_image_url_1 text,
+  hero_image_url_3 text,
+  engage_image_url text,
+  google_rating text default '',
+  google_review_count int default 0,
+  google_reviews_url text default '',
   about_text text default 'Depuis 2023, Pradice Services Nettoyage accompagne les particuliers et les professionnels d''Indre-et-Loire dans l''entretien de leurs espaces, avec une exigence constante de qualité et une démarche éco-responsable.',
   phone text default '07 84 76 95 36',
   whatsapp text default '33784769536',
@@ -49,6 +56,17 @@ create table if not exists settings (
 );
 
 insert into settings (id) values (1) on conflict (id) do nothing;
+
+-- Si la table `settings` existait déjà avant l'ajout de ces colonnes
+-- (site créé avec une version antérieure de ce script), on les ajoute
+-- sans rien casser — sans effet si elles existent déjà.
+alter table settings add column if not exists hero_tagline text default 'Simplifiez-vous la tâche !';
+alter table settings add column if not exists hero_image_url_1 text;
+alter table settings add column if not exists hero_image_url_3 text;
+alter table settings add column if not exists engage_image_url text;
+alter table settings add column if not exists google_rating text default '';
+alter table settings add column if not exists google_review_count int default 0;
+alter table settings add column if not exists google_reviews_url text default '';
 
 -- ============================================================
 -- 2. SERVICES — chaque prestation, avec sa propre page
@@ -83,33 +101,74 @@ create table if not exists gallery (
 );
 
 -- ============================================================
--- 4. LEADS — soumissions des formulaires contact & devis
+-- 4. LEADS — soumissions des formulaires contact, devis & recrutement
 -- ============================================================
 create table if not exists leads (
   id uuid primary key default gen_random_uuid(),
-  type text not null check (type in ('contact','devis')),
+  type text not null check (type in ('contact','devis','recrutement')),
   payload jsonb not null,
   status text default 'nouveau' check (status in ('nouveau','traité','archivé')),
+  created_at timestamptz default now()
+);
+
+-- Si la table existait déjà avec l'ancienne contrainte (sans 'recrutement'),
+-- on la remplace — sans effet si elle est déjà à jour.
+alter table leads drop constraint if exists leads_type_check;
+alter table leads add constraint leads_type_check check (type in ('contact','devis','recrutement'));
+
+-- ============================================================
+-- 5. JOBS — offres d'emploi affichées sur la page Recrutement
+-- ============================================================
+create table if not exists jobs (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  contract_type text default 'CDI',
+  location text default '',
+  description text default '',
+  requirements jsonb default '[]'::jsonb,
+  published boolean default true,
+  sort_order int default 0,
+  created_at timestamptz default now()
+);
+
+-- ============================================================
+-- 6. PROMOTIONS — offres promotionnelles affichées sur l'accueil
+-- ============================================================
+create table if not exists promotions (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  description text default '',
+  badge_text text default 'Promo',
+  image_url text,
+  valid_until date,
+  active boolean default true,
+  sort_order int default 0,
   created_at timestamptz default now()
 );
 
 -- ============================================================
 -- ROW LEVEL SECURITY
 -- ============================================================
-alter table settings enable row level security;
-alter table services enable row level security;
-alter table gallery  enable row level security;
-alter table leads    enable row level security;
+alter table settings   enable row level security;
+alter table services   enable row level security;
+alter table gallery    enable row level security;
+alter table leads      enable row level security;
+alter table jobs       enable row level security;
+alter table promotions enable row level security;
 
 -- Lecture publique (le site vitrine doit pouvoir tout afficher)
 create policy "public read settings" on settings for select using (true);
 create policy "public read published services" on services for select using (published = true);
 create policy "public read gallery" on gallery for select using (true);
+create policy "public read published jobs" on jobs for select using (published = true);
+create policy "public read active promotions" on promotions for select using (active = true);
 
 -- Écriture réservée aux utilisateurs connectés (= toi, l'admin)
 create policy "admin write settings" on settings for update using (auth.role() = 'authenticated');
 create policy "admin all services" on services for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "admin all gallery" on gallery for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "admin all jobs" on jobs for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "admin all promotions" on promotions for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 
 -- Formulaires publics : n'importe qui peut créer un lead, seul l'admin peut le lire/modifier
 create policy "public insert leads" on leads for insert with check (true);
@@ -172,7 +231,16 @@ insert into services (slug, category, title, short_desc, intro, details, include
 on conflict (slug) do nothing;
 
 -- ============================================================
--- 6. STORAGE — bucket public pour logo / photos (à créer aussi via l'interface, voir instructions)
+-- 7. SEED — une offre d'emploi de départ (modifiable/supprimable dans l'admin)
+-- ============================================================
+insert into jobs (title, contract_type, location, description, requirements, sort_order)
+select 'Agent(e) d''entretien polyvalent(e)', 'CDI', 'Tours et agglomération',
+ 'Nous recherchons une personne sérieuse et autonome pour intervenir chez nos clients particuliers et professionnels.',
+ '["Expérience appréciée mais non obligatoire","Permis B souhaité","Ponctualité et discrétion"]', 1
+where not exists (select 1 from jobs);
+
+-- ============================================================
+-- 8. STORAGE — bucket public pour logo / photos (à créer aussi via l'interface, voir instructions)
 -- ============================================================
 insert into storage.buckets (id, name, public)
 values ('media', 'media', true)

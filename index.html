@@ -168,6 +168,31 @@ nav.main-nav a.nav-link.active{color:var(--mint-dark)}
 .svc-arrow.prev{left:-10px}
 .svc-arrow.next{right:-10px}
 
+/* ============ JOBS ============ */
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.job-card{background:var(--bg-alt);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:10px}
+.job-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.job-card h3{font-size:1.1rem}
+.job-tag{background:var(--green-3);color:var(--green-1);font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:999px;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.job-loc{color:var(--text-light);font-size:.85rem;display:flex;align-items:center;gap:6px}
+.job-card p{color:var(--text-light);font-size:.9rem}
+.job-card .check-list{gap:8px;margin:4px 0}
+.job-card .check-list li{font-size:.85rem}
+.job-card .btn{margin-top:auto;align-self:flex-start}
+
+/* ============ PROMOTIONS ============ */
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.promo-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--grad-brand);color:#fff;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:26px;box-shadow:var(--shadow-sm);transition:transform .3s ease}
+.promo-card:hover{transform:translateY(-6px)}
+.promo-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.promo-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,37,69,.1) 20%,rgba(11,37,69,.88));z-index:0}
+.promo-card>*{position:relative;z-index:1}
+.promo-badge{background:var(--mint);color:var(--navy);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+.promo-card h3{color:#fff;font-size:1.2rem;margin-bottom:8px}
+.promo-card p{color:rgba(255,255,255,.85);font-size:.9rem;margin-bottom:8px}
+.promo-card .promo-until{font-size:.78rem;color:rgba(255,255,255,.65);margin-bottom:16px}
+.promo-card .btn{padding:10px 22px;font-size:.82rem}
+
 /* ============ CTA PLAIN ============ */
 .cta-plain{text-align:center;max-width:700px;margin:0 auto}
 .cta-plain p{color:var(--text-light);font-size:1.05rem;line-height:1.85;margin-bottom:30px}
@@ -684,6 +709,22 @@ function mapServiceRow(row){
   };
 }
 
+function mapJobRow(row){
+  return {
+    id: row.id, title: row.title, contract_type: row.contract_type || 'CDI',
+    location: row.location || '', description: row.description || '',
+    requirements: Array.isArray(row.requirements) ? row.requirements : [],
+  };
+}
+
+function mapPromotionRow(row){
+  return {
+    id: row.id, title: row.title, description: row.description || '',
+    badge_text: row.badge_text || 'Promo', image_url: row.image_url || '',
+    valid_until: row.valid_until || '',
+  };
+}
+
 function applySettings(){
   const root = document.documentElement.style;
   root.setProperty('--green-1', SETTINGS.color_green);
@@ -872,6 +913,8 @@ function homeView(){
     </button>
   </section>
 
+  ${promotionsSectionHTML()}
+
   <section class="section" id="homeServices">
     <div class="container">
       <h2 class="section-title">Nos services</h2>
@@ -990,6 +1033,15 @@ function mediaHTML(s, size){
 }
 
 let GALLERY = [];
+
+let JOBS = [
+  {id:'seed-1', title:"Agent(e) d'entretien polyvalent(e)", contract_type:'CDI', location:'Tours et agglomération',
+   description:"Nous recherchons une personne sérieuse et autonome pour intervenir chez nos clients particuliers et professionnels.",
+   requirements:['Expérience appréciée mais non obligatoire','Permis B souhaité','Ponctualité et discrétion']},
+];
+
+let PROMOTIONS = [];
+
 function galleryHTML(s){
   const items = GALLERY.filter(g=>g.service_id===s.id);
   if(!items.length){
@@ -1029,6 +1081,65 @@ function compHTML(slug){
       <a href="#/services/${s.slug}" class="btn btn-dark" data-link>Voir le service</a>
     </div>
   </div>`;
+}
+
+function jobCardHTML(j){
+  return `
+  <div class="job-card reveal">
+    <div class="job-card-top">
+      <h3>${j.title}</h3>
+      <span class="job-tag">${j.contract_type}</span>
+    </div>
+    ${j.location ? `<p class="job-loc">${ICONS.pin.replace('width="26" height="26"','width="16" height="16"')} ${j.location}</p>` : ''}
+    ${j.description ? `<p>${j.description}</p>` : ''}
+    ${j.requirements.length ? `<ul class="check-list">${j.requirements.map(r=>`<li><span class="ic">${ICONS.check}</span>${r}</li>`).join('')}</ul>` : ''}
+    <button type="button" class="btn btn-dark job-apply-btn" data-job="${String(j.title).replace(/"/g,'&quot;')}">Postuler pour ce poste</button>
+  </div>`;
+}
+
+function jobsSectionHTML(){
+  if(!JOBS.length){
+    return `
+    <section class="section">
+      <div class="container" style="max-width:700px;text-align:center">
+        <p style="color:var(--text-light)">Aucun poste ouvert pour le moment, mais nous étudions volontiers les candidatures spontanées ci-dessous.</p>
+      </div>
+    </section>`;
+  }
+  return `
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Postes ouverts</h2>
+      <p class="section-sub">Découvrez nos offres actuelles et postulez en quelques clics.</p>
+      <div class="jobs-grid">${JOBS.map(jobCardHTML).join('')}</div>
+    </div>
+  </section>`;
+}
+
+function promoHTML(p){
+  const media = p.image_url ? `<img src="${p.image_url}" alt="${p.title}">` : '';
+  const until = p.valid_until ? `<div class="promo-until">Valable jusqu'au ${new Date(p.valid_until+'T00:00:00').toLocaleDateString('fr-FR')}</div>` : '';
+  return `
+  <div class="promo-card reveal">
+    ${media}
+    <span class="promo-badge">${p.badge_text||'Promo'}</span>
+    <h3>${p.title}</h3>
+    ${p.description ? `<p>${p.description}</p>` : ''}
+    ${until}
+    <a href="#/devis" class="btn btn-light" data-link>En profiter</a>
+  </div>`;
+}
+
+function promotionsSectionHTML(){
+  if(!PROMOTIONS.length) return '';
+  return `
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Nos promotions en cours</h2>
+      <p class="section-sub">Profitez de nos offres limitées dans le temps.</p>
+      <div class="promo-grid">${PROMOTIONS.map(promoHTML).join('')}</div>
+    </div>
+  </section>`;
 }
 
 /* ============================================================
@@ -1138,6 +1249,9 @@ function recrutementView(){
       <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Nous recrutons régulièrement des personnes sérieuses, ponctuelles et soigneuses pour renforcer nos équipes de nettoyage.</p>
     </div>
   </section>
+
+  ${jobsSectionHTML()}
+
   <section class="section">
     <div class="container intro-grid">
       <div class="intro-text">
@@ -1168,7 +1282,7 @@ function recrutementView(){
               <div class="field full"><label>E-mail</label><input type="email" name="email" placeholder="Saisissez votre e-mail" required></div>
             </div>
             <div class="form-row">
-              <div class="field full"><label>Message</label><textarea name="message" placeholder="Votre disponibilité, votre expérience..."></textarea></div>
+              <div class="field full"><label>Message</label><textarea name="message" id="recruitMessage" placeholder="Votre disponibilité, votre expérience..."></textarea></div>
             </div>
             <button type="submit" class="btn btn-mint btn-block">Envoyer ma candidature</button>
             <p class="form-note">Vos informations ne sont utilisées que pour étudier votre candidature.</p>
@@ -1618,6 +1732,15 @@ function bindDynamicHandlers(){
     });
   }
 
+  document.querySelectorAll('.job-apply-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const msg = document.getElementById('recruitMessage');
+      if(msg && !msg.value.includes('Poste souhaité')) msg.value = `Poste souhaité : ${btn.dataset.job}\n\n` + msg.value;
+      document.getElementById('recruitForm')?.scrollIntoView({behavior:'smooth', block:'center'});
+      document.querySelector('#recruitForm input[name="nom"]')?.focus();
+    });
+  });
+
   const recruitForm = document.getElementById('recruitForm');
   if(recruitForm){
     recruitForm.addEventListener('submit', async e=>{
@@ -1719,14 +1842,18 @@ document.getElementById('year').textContent = new Date().getFullYear();
 async function loadFromSupabase(){
   if(!SUPA_CONFIGURED) return;
   try{
-    const [settingsRows, serviceRows, galleryRows] = await Promise.all([
+    const [settingsRows, serviceRows, galleryRows, jobRows, promoRows] = await Promise.all([
       supaGet('settings?id=eq.1&select=*'),
       supaGet('services?published=eq.true&select=*&order=sort_order.asc'),
       supaGet('gallery?select=*&order=sort_order.asc'),
+      supaGet('jobs?published=eq.true&select=*&order=sort_order.asc').catch(()=>null),
+      supaGet('promotions?active=eq.true&select=*&order=sort_order.asc').catch(()=>null),
     ]);
     if(settingsRows && settingsRows[0]) Object.assign(SETTINGS, mapSettingsRow(settingsRows[0]));
     if(serviceRows && serviceRows.length) SERVICES = serviceRows.map(mapServiceRow);
     if(galleryRows) GALLERY = galleryRows;
+    if(jobRows) JOBS = jobRows.map(mapJobRow);
+    if(promoRows) PROMOTIONS = promoRows.map(mapPromotionRow);
   }catch(err){
     console.warn('Supabase indisponible, contenu par défaut conservé.', err);
     return;
