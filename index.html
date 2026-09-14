@@ -17,6 +17,7 @@
   --blue-3:#eaf5fc;
   --navy:#0b2545;
   --mint:#6fe7c4;
+  --mint-dark:#1fae7a;
   --mint-dim:rgba(111,231,196,.15);
   --lightblue-bg:#dfeeff;
   --text:#233142;
@@ -70,6 +71,8 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.2;font-weight:800}
 .btn-secondary:hover{border-color:var(--green-2);transform:translateY(-3px)}
 .btn-light{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.6);backdrop-filter:blur(4px)}
 .btn-light:hover{background:#fff;color:var(--navy)}
+.btn-dark{background:var(--navy);color:#fff;border:2px solid var(--navy)}
+.btn-dark:hover{background:var(--blue-2);border-color:var(--blue-2);transform:translateY(-3px)}
 .btn-block{width:100%}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
@@ -85,18 +88,10 @@ h1,h2,h3,h4{color:var(--navy);line-height:1.2;font-weight:800}
 .brand small{display:block;font-size:.62rem;font-weight:700;letter-spacing:.08em;color:var(--green-1);text-transform:uppercase}
 nav.main-nav{display:flex;align-items:center;gap:6px}
 nav.main-nav>ul{display:flex;align-items:center;gap:2px}
-nav.main-nav a.nav-link{padding:10px 14px;border-radius:8px;font-weight:600;color:var(--text);font-size:.95rem;transition:.2s}
-nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
-.has-dropdown{position:relative}
-.dropdown{
-  position:absolute;top:calc(100% + 10px);left:0;background:#fff;border-radius:var(--radius-sm);
-  box-shadow:var(--shadow);border:1px solid var(--border);min-width:260px;padding:10px;
-  opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s;
-}
-.has-dropdown:hover .dropdown,.has-dropdown:focus-within .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+nav.main-nav a.nav-link{padding:10px 14px;border-radius:8px;font-weight:700;color:var(--navy);font-size:.82rem;letter-spacing:.03em;text-transform:uppercase;transition:.2s}
+nav.main-nav a.nav-link:hover{color:var(--mint-dark)}
+nav.main-nav a.nav-link.active{color:var(--mint-dark)}
 .dropdown-group-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-light);padding:8px 12px 4px}
-.dropdown a{display:block;padding:9px 12px;border-radius:8px;font-size:.9rem;font-weight:600}
-.dropdown a:hover{background:var(--green-3);color:var(--green-1)}
 .header-actions{display:flex;align-items:center;gap:10px}
 .call-chip{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--navy);font-size:.9rem}
 .call-chip .ic{width:34px;height:34px;border-radius:50%;background:var(--green-3);display:flex;align-items:center;justify-content:center;color:var(--green-1)}
@@ -130,6 +125,87 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 .hero-stats div strong{display:block;font-size:1.7rem;color:#fff}
 .hero-stats div span{font-size:.85rem;color:rgba(255,255,255,.75)}
 
+/* ============ HERO TRIPTYCH ============ */
+.hero-triptych{position:relative;display:grid;grid-template-columns:1fr 1.3fr 1fr;min-height:640px;overflow:hidden}
+.htp-panel{position:relative;overflow:hidden;background:var(--grad-brand)}
+.htp-panel img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.htp-panel .icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55)}
+.hero-card{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;background:rgba(11,37,69,.85);backdrop-filter:blur(6px);color:#fff;padding:44px 48px;border-radius:var(--radius);text-align:center;max-width:520px;width:calc(100% - 32px);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.hero-card .logo-mark{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#fff}
+.hero-card .brand-line{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem;margin-bottom:18px}
+.hero-card h1{color:#fff;font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:10px}
+.hero-card p{color:rgba(255,255,255,.85);font-size:.92rem;margin-bottom:24px}
+.hero-card-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hero-card-actions .btn{padding:12px 20px;font-size:.82rem}
+.hero-scroll-btn{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--navy);display:flex;align-items:center;justify-content:center;z-index:3;animation:htp-bounce 2s infinite}
+@keyframes htp-bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+/* ============ GOOGLE REVIEW BADGE ============ */
+.google-badge{position:fixed;bottom:24px;left:24px;background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:12px 18px;display:flex;align-items:center;gap:12px;z-index:240;transition:transform .2s ease}
+.google-badge:hover{transform:translateY(-3px)}
+.google-badge .g-icon{flex-shrink:0}
+.google-badge .g-text{line-height:1.25}
+.google-badge .g-rating-row{display:flex;align-items:center;gap:6px}
+.google-badge .g-rating{font-weight:800;color:var(--navy);font-size:.95rem}
+.google-badge .g-stars{color:#f5a623;font-size:.72rem;letter-spacing:1px}
+.google-badge .g-count{font-size:.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.03em}
+
+/* ============ SERVICES CAROUSEL / CARDS ============ */
+.svc-carousel{position:relative}
+.svc-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 4px 10px}
+.svc-track::-webkit-scrollbar{display:none}
+.svc-card{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s ease}
+.svc-card:hover{transform:translateY(-6px)}
+.svc-card img,.svc-card .icon-wrap{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.svc-card .icon-wrap{display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6)}
+.svc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,37,69,0) 38%,rgba(11,37,69,.88));z-index:1}
+.svc-card-body{position:absolute;left:22px;right:22px;bottom:22px;z-index:2;color:#fff}
+.svc-card-body h3{color:#fff;font-size:1.2rem;margin-bottom:16px;line-height:1.25}
+.svc-card-body .btn{padding:10px 20px;font-size:.8rem}
+.svc-track .svc-card{flex:0 0 calc(33.333% - 16px);scroll-snap-align:start;min-width:250px}
+.svc-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;z-index:5;box-shadow:var(--shadow-sm);transition:.2s}
+.svc-arrow:hover{background:var(--green-1)}
+.svc-arrow.prev{left:-10px}
+.svc-arrow.next{right:-10px}
+
+/* ============ CTA PLAIN ============ */
+.cta-plain{text-align:center;max-width:700px;margin:0 auto}
+.cta-plain p{color:var(--text-light);font-size:1.05rem;line-height:1.85;margin-bottom:30px}
+.cta-plain .btn{margin:0 auto}
+
+/* ============ VALUES V2 ============ */
+.values-v2{background:var(--navy);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:.85fr 1.6fr}
+.values-v2-media{position:relative;min-height:360px}
+.values-v2-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.values-v2-media .icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--grad-brand)}
+.values-v2-panel{padding:56px 44px}
+.values-v2-panel .section-title{color:#fff}
+.values-v2-panel .section-title .accent{color:var(--mint)}
+.values-v2-panel .section-sub{color:rgba(255,255,255,.62);margin-bottom:48px}
+.values-v2-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.values-v2-col{text-align:center;position:relative;padding-top:16px}
+.values-v2-col::before{content:"";position:absolute;top:0;left:-16px;right:-16px;height:1px;background:rgba(255,255,255,.18)}
+.values-v2-icon{width:60px;height:60px;border-radius:50%;background:var(--mint-dim);color:var(--mint);display:flex;align-items:center;justify-content:center;margin:-46px auto 16px;border:4px solid var(--navy)}
+.values-v2-col h4{color:#fff;font-size:.92rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px}
+.values-v2-col ul{text-align:left;display:grid;gap:8px}
+.values-v2-col li{color:rgba(255,255,255,.72);font-size:.85rem;display:flex;gap:8px}
+.values-v2-col li::before{content:"•";color:var(--mint);flex-shrink:0}
+
+/* ============ ENGAGE V2 (photo bg) ============ */
+.engage-v2{position:relative;border-radius:28px;overflow:hidden;min-height:520px;display:flex;align-items:center;color:#fff}
+.engage-v2-bg{position:absolute;inset:0}
+.engage-v2-bg img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.engage-v2-bg .icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);background:var(--grad-brand)}
+.engage-v2-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,37,69,.88),rgba(11,37,69,.4))}
+.engage-v2-content{position:relative;z-index:2;padding:64px 56px;max-width:560px}
+.engage-v2-content h2{color:#fff;margin-bottom:36px;font-size:clamp(1.6rem,3vw,2.1rem)}
+.engage-item-v2{display:flex;gap:16px;margin-bottom:30px}
+.engage-item-v2:last-child{margin-bottom:0}
+.engage-item-v2 .ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.engage-item-v2 h3{color:#fff;font-size:.95rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.engage-item-v2 p{color:rgba(255,255,255,.78);font-size:.88rem;margin-bottom:6px}
+.engage-item-v2 a.read-more{color:#fff;font-weight:700;font-size:.84rem;text-decoration:underline;text-underline-offset:2px}
+
 /* ============ INTRO ============ */
 .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .intro-visual{
@@ -148,25 +224,10 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 
 /* ============ SERVICE CARDS ============ */
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.service-card{
-  background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
-  box-shadow:var(--shadow-sm);transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column;
-}
-.service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
-.service-media{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--grad-brand)}
-.service-media .icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;transition:transform .4s ease}
-.service-card:hover .service-media .icon-wrap{transform:scale(1.12)}
-.service-media .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);color:var(--navy);font-size:.72rem;font-weight:800;padding:5px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
-.service-body{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
-.service-body h3{font-size:1.15rem}
-.service-body p{color:var(--text-light);font-size:.92rem;flex:1}
-.service-link{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--blue-2);margin-top:6px;transition:gap .2s}
-.service-card:hover .service-link{gap:10px}
-
 /* ============ COMPLEMENTARY (split image/texte) ============ */
 .comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .comp-card{
-  display:grid;grid-template-columns:1fr 1fr;background:var(--bg-alt);border-radius:var(--radius);overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;background:#eef0f2;border-radius:var(--radius);overflow:hidden;
   transition:.3s;box-shadow:var(--shadow-sm);
 }
 .comp-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
@@ -190,20 +251,6 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 .cta-devis p{color:rgba(255,255,255,.88);max-width:480px}
 .cta-devis-content{position:relative;z-index:1;max-width:600px}
 .cta-devis-action{position:relative;z-index:1}
-
-/* ============ ENGAGEMENTS (bandeau plein, façon "s'engage") ============ */
-.eng-section{
-  border-radius:28px;overflow:hidden;position:relative;padding:64px 56px;color:#fff;
-  background:linear-gradient(120deg,rgba(11,37,69,.92),rgba(31,107,52,.82)),
-             radial-gradient(circle at 85% 15%,rgba(111,231,196,.35),transparent 60%),
-             linear-gradient(135deg,var(--blue-1),var(--green-1));
-}
-.eng-section h2{color:#fff;max-width:520px;margin-bottom:36px}
-.eng-list{display:flex;flex-direction:column;gap:28px;max-width:560px}
-.eng-item{display:flex;gap:18px;align-items:flex-start}
-.eng-icon{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.eng-item h3{color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
-.eng-item p{color:rgba(255,255,255,.8);font-size:.9rem}
 
 /* ============ KEY INFO (zone/flex/tarifs) — bandeau clair épuré ============ */
 .section-lightblue{background:var(--lightblue-bg)}
@@ -239,14 +286,18 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}
 .field{display:flex;flex-direction:column;gap:6px}
 .field.full{grid-column:1/-1}
-.field label{font-weight:700;font-size:.78rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.04em}
+.field label{font-weight:700;font-size:.78rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em}
 .field input,.field textarea,.field select{
-  padding:9px 2px;border:none;border-bottom:1.5px solid rgba(255,255,255,.3);border-radius:0;
-  transition:.2s;background:transparent;color:#fff;
+  padding:9px 2px;border:none;border-bottom:1.5px solid var(--border);border-radius:0;
+  transition:.2s;background:transparent;color:var(--text);
 }
-.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.4)}
-.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-bottom-color:var(--mint)}
+.field input::placeholder,.field textarea::placeholder{color:#9aa7b4}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-bottom-color:var(--green-2)}
 .field textarea{resize:vertical;min-height:90px}
+.contact-navy .field label{color:rgba(255,255,255,.55)}
+.contact-navy .field input,.contact-navy .field textarea,.contact-navy .field select{border-bottom-color:rgba(255,255,255,.3);color:#fff}
+.contact-navy .field input::placeholder,.contact-navy .field textarea::placeholder{color:rgba(255,255,255,.4)}
+.contact-navy .field input:focus,.contact-navy .field textarea:focus,.contact-navy .field select:focus{border-bottom-color:var(--mint)}
 .form-note{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:14px;text-align:center}
 .form-success{display:none;background:rgba(111,231,196,.15);color:var(--mint);padding:16px;border-radius:12px;font-weight:700;text-align:center;margin-top:16px}
 .form-success.show{display:block}
@@ -352,16 +403,23 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
   .values-layout{grid-template-columns:1fr}
   .values-float-media{margin-top:0;aspect-ratio:16/9}
   .values-content{padding-top:48px}
-  .eng-section{padding:48px 28px}
   .footer-grid{grid-template-columns:1fr 1fr}
   .form-row{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .sidebar-card{position:static}
+  .hero-triptych{grid-template-columns:1fr;min-height:560px}
+  .htp-panel:nth-child(1),.htp-panel:nth-child(3){display:none}
+  .values-v2{grid-template-columns:1fr}
+  .values-v2-media{min-height:220px}
+  .engage-v2-content{max-width:100%;padding:48px 28px}
+  .svc-track .svc-card{flex:0 0 calc(50% - 12px)}
 }
 @media (max-width:480px){
   .header-actions .btn-primary{display:none}
   .brand span:not(.logo-mark){font-size:1.05rem}
+  .google-badge .g-count{display:none}
+  .google-badge{padding:10px 14px;gap:8px}
 }
 @media (max-width:600px){
   .services-grid{grid-template-columns:1fr}
@@ -373,6 +431,13 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
   .section{padding:64px 0}
   .gallery-grid{grid-template-columns:1fr}
   .progress-step span{display:none}
+  .hero-card{padding:32px 24px}
+  .hero-card-actions{flex-direction:column;width:100%}
+  .hero-card-actions .btn{width:100%}
+  .svc-track .svc-card{flex:0 0 82%}
+  .svc-arrow{width:36px;height:36px}
+  .values-v2-panel{padding:40px 24px}
+  .values-v2-cols{grid-template-columns:1fr;gap:40px}
 }
 
 /* Mobile nav panel */
@@ -400,14 +465,14 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
     </a>
 
     <nav class="main-nav" aria-label="Navigation principale">
-      <ul>
-        <li><a href="#/" class="nav-link" data-link>Accueil</a></li>
-        <li class="has-dropdown">
-          <a href="#/services" class="nav-link" data-link>Services</a>
-          <div class="dropdown" id="nav-dropdown"></div>
-        </li>
-        <li><a href="#/a-propos" class="nav-link" data-link>À propos</a></li>
-        <li><a href="#/contact" class="nav-link" data-link>Contact</a></li>
+      <ul id="mainNavList">
+        <li><a href="#/" class="nav-link" data-route="/" data-link>Accueil</a></li>
+        <li><a href="#/devis" class="nav-link" data-route="/devis" data-link>Devis</a></li>
+        <li><a href="#/particuliers" class="nav-link" data-route="/particuliers" data-link>Particuliers</a></li>
+        <li><a href="#/professionnels" class="nav-link" data-route="/professionnels" data-link>Professionnels</a></li>
+        <li><a href="#/avance-immediate" class="nav-link" data-route="/avance-immediate" data-link>Avance immédiate</a></li>
+        <li><a href="#/recrutement" class="nav-link" data-route="/recrutement" data-link>Recrutement</a></li>
+        <li><a href="#/contact" class="nav-link" data-route="/contact" data-link>Contact</a></li>
       </ul>
     </nav>
 
@@ -416,7 +481,6 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
         <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/></svg></span>
         <span id="headerPhoneText">07 84 76 95 36</span>
       </a>
-      <a href="#/devis" class="btn btn-primary" data-link>Demander un devis</a>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -424,8 +488,11 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 
 <div class="mobile-nav" id="mobileNav">
   <a href="#/" data-link>Accueil</a>
-  <a href="#/services" data-link>Tous nos services</a>
-  <div class="mn-group" id="mobile-services-particuliers"></div>
+  <a href="#/devis" data-link>Devis</a>
+  <a href="#/particuliers" data-link>Particuliers</a>
+  <a href="#/professionnels" data-link>Professionnels</a>
+  <a href="#/avance-immediate" data-link>Avance immédiate</a>
+  <a href="#/recrutement" data-link>Recrutement</a>
   <a href="#/a-propos" data-link>À propos</a>
   <a href="#/contact" data-link>Contact</a>
   <a href="#/devis" class="btn btn-primary btn-block" data-link>Demander un devis</a>
@@ -433,6 +500,14 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 </div>
 
 <main id="app"></main>
+
+<a href="#" target="_blank" rel="noopener" class="google-badge" id="googleBadge" aria-label="Avis Google">
+  <svg class="g-icon" width="28" height="28" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34 5.1 29.3 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.4-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34 5.1 29.3 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.6 2.4-7.2 2.4-5.3 0-9.7-3.4-11.3-8l-6.5 5C9.6 40.6 16.3 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4.1 5.6l6.2 5.2C41.3 35.8 45 30.4 45 24c0-1.4-.1-2.4-.4-3.5z"/></svg>
+  <span class="g-text">
+    <span class="g-rating-row"><span class="g-rating" id="googleRating">5.0</span><span class="g-stars">★★★★★</span></span>
+    <span class="g-count" id="googleCount">Avis Google</span>
+  </span>
+</a>
 
 <a href="https://wa.me/33784769536" target="_blank" rel="noopener" class="chat-bubble" id="chatBubble" aria-label="Discuter sur WhatsApp">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg>
@@ -466,7 +541,10 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
         <h5>Navigation</h5>
         <ul>
           <li><a href="#/" data-link>Accueil</a></li>
-          <li><a href="#/services" data-link>Nos services</a></li>
+          <li><a href="#/particuliers" data-link>Particuliers</a></li>
+          <li><a href="#/professionnels" data-link>Professionnels</a></li>
+          <li><a href="#/avance-immediate" data-link>Avance immédiate</a></li>
+          <li><a href="#/recrutement" data-link>Recrutement</a></li>
           <li><a href="#/a-propos" data-link>À propos</a></li>
           <li><a href="#/devis" data-link>Demander un devis</a></li>
           <li><a href="#/contact" data-link>Contact</a></li>
@@ -535,10 +613,17 @@ const SETTINGS = {
   tagline:'Services Nettoyage',
   logo_url:'',
   hero_image_url:'',
+  hero_image_url_1:'',
+  hero_image_url_3:'',
+  engage_image_url:'',
   hero_title:'Propreté garantie,',
   hero_title_accent:'satisfaction assurée',
-  hero_subtitle:"Pradice Services Nettoyage accompagne particuliers et professionnels de Tours et d'Indre-et-Loire avec des prestations soignées, fiables et respectueuses de l'environnement.",
+  hero_tagline:'Simplifiez-vous la tâche !',
+  hero_subtitle:"La société multi-services prête à répondre à tous vos besoins !",
   about_text:"Depuis 2023, Pradice Services Nettoyage accompagne les particuliers et les professionnels d'Indre-et-Loire dans l'entretien de leurs espaces, avec une exigence constante de qualité et une démarche éco-responsable.",
+  google_rating:'',
+  google_review_count:0,
+  google_reviews_url:'',
   phone:'07 84 76 95 36',
   phone_href:'+33784769536',
   whatsapp:'33784769536',
@@ -572,8 +657,13 @@ function mapSettingsRow(row){
   return {
     brand_name: row.brand_name, brand_short: (row.brand_name||'').split(' ')[0] || row.brand_name,
     tagline: row.tagline, logo_url: row.logo_url || '', hero_image_url: row.hero_image_url || '',
+    hero_image_url_1: row.hero_image_url_1 || '', hero_image_url_3: row.hero_image_url_3 || '',
+    engage_image_url: row.engage_image_url || '',
     hero_title: row.hero_title, hero_title_accent: row.hero_title_accent,
+    hero_tagline: row.hero_tagline || SETTINGS.hero_tagline,
     hero_subtitle: row.hero_subtitle, about_text: row.about_text,
+    google_rating: row.google_rating || '', google_review_count: row.google_review_count || 0,
+    google_reviews_url: row.google_reviews_url || '',
     phone: row.phone, phone_href: '+'+String(row.whatsapp||'').replace(/\D/g,''),
     whatsapp: row.whatsapp, email: row.email,
     address_line: row.address_line, postal_code: row.postal_code, city: row.city, country: row.country,
@@ -627,6 +717,25 @@ function applySettings(){
     if(links[2]) links[2].href = 'https://wa.me/'+SETTINGS.whatsapp;
   }
   if(els('chatBubble')) els('chatBubble').href = 'https://wa.me/'+SETTINGS.whatsapp;
+  applyGoogleBadge();
+}
+
+function applyGoogleBadge(){
+  const badge = document.getElementById('googleBadge');
+  if(!badge) return;
+  const starsEl = badge.querySelector('.g-stars');
+  const ratingEl = document.getElementById('googleRating');
+  const countEl = document.getElementById('googleCount');
+  if(SETTINGS.google_rating){
+    ratingEl.textContent = SETTINGS.google_rating;
+    starsEl.classList.remove('hidden');
+    countEl.textContent = Number(SETTINGS.google_review_count) > 0 ? `${SETTINGS.google_review_count} avis Google` : 'Avis Google';
+  } else {
+    ratingEl.textContent = 'Avis Google';
+    starsEl.classList.add('hidden');
+    countEl.textContent = 'Laissez-nous un avis';
+  }
+  badge.href = SETTINGS.google_reviews_url || ('https://www.google.com/search?q=' + encodeURIComponent(SETTINGS.brand_name + ' ' + SETTINGS.city + ' avis'));
 }
 
 /* ============================================================
@@ -731,52 +840,65 @@ function recomputeSlugs(){
    ============================================================ */
 function homeView(){
   return `
-  <section class="hero">
-    <div class="hero-inner">
-      <span class="eyebrow">Nettoyage professionnel & éco-responsable</span>
-      <h1>${SETTINGS.hero_title} <span>${SETTINGS.hero_title_accent}</span></h1>
-      <p class="lead">${SETTINGS.hero_subtitle}</p>
-      <div class="hero-cta">
-        <a href="#/devis" class="btn btn-primary" data-link>Demander un devis gratuit</a>
-        <a href="#/contact" class="btn btn-light" data-link>Nous contacter</a>
-      </div>
-      <div class="hero-stats">
-        <div><strong>2023</strong><span>Création à ${SETTINGS.city}</span></div>
-        <div><strong>12+</strong><span>Prestations proposées</span></div>
-        <div><strong>6j/7</strong><span>Disponibilité</span></div>
-        <div><strong>100%</strong><span>Produits éco-responsables</span></div>
+  <section class="hero-triptych">
+    <div class="htp-panel">
+      ${SETTINGS.hero_image_url_1
+        ? `<img src="${SETTINGS.hero_image_url_1}" alt="${SETTINGS.brand_name}">`
+        : `<div class="icon-wrap">${ICONS.bureau.replace('width="40" height="40"','width="70" height="70"')}</div>`}
+    </div>
+    <div class="htp-panel">
+      ${SETTINGS.hero_image_url
+        ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}">`
+        : `<div class="icon-wrap">${ICONS.domicile.replace('width="40" height="40"','width="70" height="70"')}</div>`}
+    </div>
+    <div class="htp-panel">
+      ${SETTINGS.hero_image_url_3
+        ? `<img src="${SETTINGS.hero_image_url_3}" alt="${SETTINGS.brand_name}">`
+        : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="70" height="70"')}</div>`}
+    </div>
+    <div class="hero-card">
+      <div class="logo-mark">${ICONS.leaf.replace('width="26" height="26"','width="24" height="24"')}</div>
+      <div class="brand-line">${SETTINGS.brand_name}</div>
+      <h1>« ${SETTINGS.hero_tagline} »</h1>
+      <p>${SETTINGS.hero_subtitle}</p>
+      <div class="hero-card-actions">
+        <a href="tel:${SETTINGS.phone_href}" class="btn btn-light">Appelez-nous</a>
+        <a href="#/devis" class="btn btn-light" data-link>Demande de devis</a>
+        <a href="#/recrutement" class="btn btn-light" data-link>Rejoignez-nous !</a>
       </div>
     </div>
+    <button type="button" class="hero-scroll-btn" id="heroScrollBtn" aria-label="Défiler vers le bas">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
   </section>
 
-  <section class="section">
-    <div class="container intro-grid">
-      <div class="intro-visual reveal">
-        ${ICONS.leaf.replace('width="26" height="26"','width="90" height="90"')}
-        <div class="badge-float">${ICONS.shield.replace('width="26" height="26"','width="20" height="20"')} Intervention assurée</div>
-      </div>
-      <div class="intro-text reveal">
-        <span class="eyebrow">Qui sommes-nous</span>
-        <h2 class="section-title" style="text-align:left">Une entreprise de nettoyage de confiance, née à ${SETTINGS.city}</h2>
-        <p>${SETTINGS.about_text}</p>
-        <p>Chaque intervention est réalisée par une équipe formée, ponctuelle et soigneuse, avec des produits certifiés respectueux de l'environnement.</p>
-        <ul class="intro-list">
-          <li><span class="ic">${ICONS.check}</span> Devis personnalisé gratuit sous 24h</li>
-          <li><span class="ic">${ICONS.check}</span> Produits éco-responsables certifiés</li>
-          <li><span class="ic">${ICONS.check}</span> Équipe fiable et assurée</li>
-          <li><span class="ic">${ICONS.check}</span> Disponible du lundi au samedi</li>
-        </ul>
+  <section class="section" id="homeServices">
+    <div class="container">
+      <h2 class="section-title">Nos services</h2>
+      <p class="section-sub">Des prestations complètes pour l'entretien de vos bureaux, commerces et locaux professionnels.</p>
+      <div class="svc-carousel">
+        <button type="button" class="svc-arrow prev" id="svcPrev" aria-label="Précédent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="svc-track" id="svcTrack">${MAIN_SLUGS.map(cardHTML).join('')}</div>
+        <button type="button" class="svc-arrow next" id="svcNext" aria-label="Suivant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
   </section>
 
   <section class="section section-alt">
     <div class="container">
-      <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Professionnels</span>
-      <h2 class="section-title">Nos services</h2>
-      <p class="section-sub">Des prestations complètes pour l'entretien de vos bureaux, commerces et locaux professionnels.</p>
-      <div class="services-grid">
-        ${MAIN_SLUGS.map(cardHTML).join('')}
+      <h2 class="section-title">Nous vous proposons aussi</h2>
+      <p class="section-sub">Pour votre logement, votre location saisonnière ou votre véhicule, nos prestations complémentaires s'adaptent à tous vos besoins.</p>
+      <div class="comp-grid">
+        ${COMP_SLUGS.slice(0,2).map(compHTML).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-plain reveal">
+        <p>Obtenir un devis n'a jamais été aussi simple ! Pour bénéficier de services 100% adaptés à vos besoins, du simple nettoyage occasionnel à l'entretien intégral et régulier de vos locaux, rendez-vous sur la page devis et remplissez notre formulaire. Nos équipes vous contacteront dans les plus brefs délais !</p>
+        <a href="#/devis" class="btn btn-primary" data-link>Demande de devis</a>
       </div>
     </div>
   </section>
@@ -786,18 +908,18 @@ function homeView(){
       <div class="key-grid">
         <div class="key-col reveal">
           <div class="key-icon">${ICONS.pin}</div>
-          <h3>Zone d'intervention</h3>
-          <p>${SETTINGS.zone_text}</p>
+          <h3>Zone d'activité</h3>
+          <p>Nous agissons dans toute ${SETTINGS.zone_text} pour les particuliers ainsi que les entreprises.</p>
         </div>
         <div class="key-col reveal">
           <div class="key-icon">${ICONS.clock}</div>
           <h3>Flexibilité</h3>
-          <p>Interventions ponctuelles ou récurrentes, en journée ou en horaires décalés, adaptées à votre emploi du temps.</p>
+          <p>${SETTINGS.brand_short} est disponible et s'adapte totalement aux besoins de ses clients, sur le contenu de la prestation ainsi que les horaires d'intervention.</p>
         </div>
         <div class="key-col reveal">
           <div class="key-icon">${ICONS.tag}</div>
-          <h3>Tarifs</h3>
-          <p>Des tarifs compétitifs et un devis personnalisé gratuit, sans engagement, sous 24h.</p>
+          <h3>Tarifs compétitifs</h3>
+          <p>Nous sommes fiers de proposer à nos clients les meilleurs tarifs, ainsi qu'un devis 100% gratuit et sans engagement.</p>
         </div>
       </div>
     </div>
@@ -805,73 +927,54 @@ function homeView(){
 
   <section class="section">
     <div class="container">
-      <div class="values-section reveal">
-        <div class="values-layout">
-          <div class="values-float-media">
-            ${SETTINGS.hero_image_url
-              ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}">`
-              : `<div class="placeholder-ic">${ICONS.leaf.replace('width="26" height="26"','width="80" height="80"')}</div>`}
+      <div class="values-v2 reveal">
+        <div class="values-v2-media">
+          ${SETTINGS.hero_image_url
+            ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}">`
+            : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="80" height="80"')}</div>`}
+        </div>
+        <div class="values-v2-panel">
+          <h2 class="section-title">NOS <span class="accent">VALEURS</span></h2>
+          <p class="section-sub">Les principes qui guident chacune de nos interventions.</p>
+          <div class="values-v2-cols">
+            ${SETTINGS.values.slice(0,3).map(v=>`
+              <div class="values-v2-col">
+                <div class="values-v2-icon">${v.emoji}</div>
+                <h4>${v.title}</h4>
+                <ul><li>${v.text}</li></ul>
+              </div>`).join('')}
           </div>
-          <div class="values-content">
-            <h2 class="section-title">Nos <span class="accent">valeurs</span></h2>
-            <p class="section-sub">Les principes qui guident chacune de nos interventions.</p>
-            <div class="values-cols">
-              ${SETTINGS.values.map(v=>`
-                <div class="values-col">
-                  <div class="vicon">${v.emoji}</div>
-                  <h4>${v.title}</h4>
-                  <p>${v.text}</p>
-                </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="engage-v2 reveal">
+        <div class="engage-v2-bg">
+          ${SETTINGS.engage_image_url
+            ? `<img src="${SETTINGS.engage_image_url}" alt="${SETTINGS.brand_name} s'engage">`
+            : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="140" height="140"')}</div>`}
+        </div>
+        <div class="engage-v2-content">
+          <h2>${SETTINGS.brand_short} s'engage</h2>
+          <div class="engage-item-v2">
+            <div class="ic">${ICONS.leaf}</div>
+            <div>
+              <h3>Utilisation de produits éco-responsables</h3>
+              <p>Pourquoi nous utilisons des produits éco-responsables ?</p>
+              <a href="#/a-propos" class="read-more" data-link>Lire plus</a>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="eng-section reveal">
-        <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Nos engagements</span>
-        <h2>${SETTINGS.brand_short} s'engage</h2>
-        <div class="eng-list">
-          <div class="eng-item">
-            <div class="eng-icon">${ICONS.leaf}</div>
-            <div><h3>Produits éco-responsables</h3><p>Des produits certifiés respectueux de l'environnement, à chaque intervention.</p></div>
+          <div class="engage-item-v2">
+            <div class="ic">${ICONS.shield}</div>
+            <div>
+              <h3>Limitation des déchets</h3>
+              <p>Pourquoi nous réutilisons au maximum notre matériel ?</p>
+              <a href="#/a-propos" class="read-more" data-link>Lire plus</a>
+            </div>
           </div>
-          <div class="eng-item">
-            <div class="eng-icon">${ICONS.shield}</div>
-            <div><h3>Satisfaction garantie</h3><p>Chaque prestation est contrôlée pour garantir un résultat impeccable.</p></div>
-          </div>
-          <div class="eng-item">
-            <div class="eng-icon">${ICONS.clock}</div>
-            <div><h3>Ponctualité & fiabilité</h3><p>Une équipe fiable, disponible 6j/7, qui respecte vos consignes.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Particuliers</span>
-      <h2 class="section-title">Nous vous proposons aussi</h2>
-      <p class="section-sub">Pour votre logement, votre location saisonnière ou votre véhicule, nos prestations complémentaires s'adaptent à tous vos besoins.</p>
-      <div class="comp-grid">
-        ${COMP_SLUGS.map(compHTML).join('')}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="cta-devis reveal">
-        <div class="cta-devis-content">
-          <h2>Votre devis en quelques minutes</h2>
-          <p>Obtenir un devis n'a jamais été aussi simple. Décrivez votre besoin grâce à notre formulaire en ligne et notre équipe vous recontactera rapidement, gratuitement et sans engagement.</p>
-        </div>
-        <div class="cta-devis-action">
-          <a href="#/devis" class="btn btn-light" data-link>Demander un devis →</a>
         </div>
       </div>
     </div>
@@ -904,15 +1007,11 @@ function galleryHTML(s){
 function cardHTML(slug){
   const s = bySlug(slug);
   return `
-  <div class="service-card reveal">
-    <div class="service-media">
-      <span class="tag">Professionnels</span>
-      ${mediaHTML(s)}
-    </div>
-    <div class="service-body">
+  <div class="svc-card reveal">
+    ${mediaHTML(s)}
+    <div class="svc-card-body">
       <h3>${s.title}</h3>
-      <p>${s.short}</p>
-      <a href="#/services/${s.slug}" class="service-link" data-link>En savoir plus →</a>
+      <a href="#/services/${s.slug}" class="btn btn-light" data-link>En savoir plus</a>
     </div>
   </div>`;
 }
@@ -927,9 +1026,158 @@ function compHTML(slug){
     <div class="comp-body">
       <h4>${s.title}</h4>
       <p>${s.short}</p>
-      <a href="#/services/${s.slug}" class="btn btn-secondary" data-link>Voir le service</a>
+      <a href="#/services/${s.slug}" class="btn btn-dark" data-link>Voir le service</a>
     </div>
   </div>`;
+}
+
+/* ============================================================
+   PARTICULIERS / PROFESSIONNELS VIEWS
+   ============================================================ */
+function particuliersView(){
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Particuliers</div>
+      <h1>Nos services pour les particuliers</h1>
+      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Un intérieur, un véhicule ou une location toujours impeccables, sans effort. Découvrez nos prestations pensées pour les particuliers de ${SETTINGS.zone_text}.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="services-grid">${COMP_SLUGS.map(cardHTML).join('')}</div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-devis reveal">
+        <div class="cta-devis-content">
+          <h2>Besoin d'un coup de main chez vous ?</h2>
+          <p>Obtenez un devis gratuit et personnalisé en quelques minutes, sans engagement.</p>
+        </div>
+        <div class="cta-devis-action"><a href="#/devis" class="btn btn-light" data-link>Demander un devis →</a></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function professionnelsView(){
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Professionnels</div>
+      <h1>Nos services pour les professionnels</h1>
+      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Des bureaux aux commerces en passant par les chantiers, ${SETTINGS.brand_short} entretient vos locaux professionnels avec rigueur et discrétion.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="services-grid">${MAIN_SLUGS.map(cardHTML).join('')}</div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-devis reveal">
+        <div class="cta-devis-content">
+          <h2>Un contrat d'entretien sur-mesure pour votre entreprise ?</h2>
+          <p>Décrivez vos besoins, nous vous proposons une offre adaptée sous 24h.</p>
+        </div>
+        <div class="cta-devis-action"><a href="#/devis" class="btn btn-light" data-link>Demander un devis →</a></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ============================================================
+   AVANCE IMMÉDIATE VIEW
+   ============================================================ */
+function avanceImmediateView(){
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Avance immédiate</div>
+      <h1>L'avance immédiate</h1>
+      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Simplifiez le financement de votre ménage à domicile.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container" style="max-width:820px">
+      <div class="detail-block">
+        <h2>Qu'est-ce que l'avance immédiate ?</h2>
+        <p>L'avance immédiate est un dispositif national, porté par l'URSSAF, qui permet aux particuliers de bénéficier immédiatement du crédit d'impôt de 50% sur leurs dépenses de services à la personne (dont le ménage à domicile). Concrètement, vous ne payez que la moitié du montant de la prestation au moment du règlement : le reste est directement pris en charge par l'avance du crédit d'impôt, sans attendre l'année suivante.</p>
+      </div>
+      <div class="detail-block">
+        <h2>Est-ce applicable à vos prestations avec ${SETTINGS.brand_short} ?</h2>
+        <p>Ce dispositif concerne les prestations de ménage et d'entretien réalisées au domicile de particuliers. Son application dépend de votre situation et des modalités d'adhésion en vigueur : contactez notre équipe pour vérifier ensemble votre éligibilité et la mise en place, prestation par prestation.</p>
+      </div>
+      <div class="detail-block">
+        <h2>Comment en profiter ?</h2>
+        <ul class="check-list">
+          <li><span class="ic">${ICONS.check}</span>Contactez-nous pour évaluer votre besoin et votre éligibilité</li>
+          <li><span class="ic">${ICONS.check}</span>Nous vous accompagnons dans les démarches nécessaires</li>
+          <li><span class="ic">${ICONS.check}</span>Vous ne réglez que la part restant à votre charge à chaque intervention</li>
+        </ul>
+      </div>
+      <div class="detail-block" style="text-align:center;margin-top:40px">
+        <a href="#/devis" class="btn btn-primary" data-link>Demander un devis</a>
+        <a href="tel:${SETTINGS.phone_href}" class="btn btn-secondary" style="margin-left:12px">📞 ${SETTINGS.phone}</a>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ============================================================
+   RECRUTEMENT VIEW
+   ============================================================ */
+function recrutementView(){
+  return `
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Recrutement</div>
+      <h1>Rejoignez l'équipe ${SETTINGS.brand_short}</h1>
+      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Nous recrutons régulièrement des personnes sérieuses, ponctuelles et soigneuses pour renforcer nos équipes de nettoyage.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="intro-text">
+        <span class="eyebrow">Pourquoi nous rejoindre</span>
+        <h2 class="section-title" style="text-align:left">Une équipe à taille humaine, des missions variées</h2>
+        <ul class="intro-list">
+          <li><span class="ic">${ICONS.check}</span> Missions chez des particuliers et des professionnels</li>
+          <li><span class="ic">${ICONS.check}</span> Horaires adaptés, disponibilité 6j/7</li>
+          <li><span class="ic">${ICONS.check}</span> Formation aux produits éco-responsables</li>
+          <li><span class="ic">${ICONS.check}</span> Équipe encadrée et à votre écoute</li>
+        </ul>
+      </div>
+      <div class="intro-visual">${ICONS.shield.replace('width="26" height="26"','width="90" height="90"')}</div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="contact-navy reveal">
+        <h2 class="section-title">Postuler</h2>
+        <p class="section-sub">Envoyez-nous vos coordonnées et un mot sur votre profil, nous vous recontactons rapidement.</p>
+        <div class="contact-grid" style="grid-template-columns:1fr;max-width:640px;margin:0 auto">
+          <form id="recruitForm">
+            <div class="form-row">
+              <div class="field"><label>Nom</label><input type="text" name="nom" placeholder="Saisissez votre nom" required></div>
+              <div class="field"><label>Téléphone</label><input type="tel" name="telephone" placeholder="Votre numéro" required></div>
+            </div>
+            <div class="form-row">
+              <div class="field full"><label>E-mail</label><input type="email" name="email" placeholder="Saisissez votre e-mail" required></div>
+            </div>
+            <div class="form-row">
+              <div class="field full"><label>Message</label><textarea name="message" placeholder="Votre disponibilité, votre expérience..."></textarea></div>
+            </div>
+            <button type="submit" class="btn btn-mint btn-block">Envoyer ma candidature</button>
+            <p class="form-note">Vos informations ne sont utilisées que pour étudier votre candidature.</p>
+            <div class="form-success" id="recruitSuccess">Merci ! Votre candidature a bien été transmise.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>`;
 }
 
 /* ============================================================
@@ -1296,18 +1544,14 @@ function legalView(type){
    ROUTER
    ============================================================ */
 function renderNavDropdowns(){
-  const proLinks = MAIN_SLUGS.map(sl=>`<a href="#/services/${sl}" data-link>${bySlug(sl).title}</a>`).join('');
-  const partLinks = COMP_SLUGS.map(sl=>`<a href="#/services/${sl}" data-link>${bySlug(sl).title}</a>`).join('');
-  document.getElementById('nav-dropdown').innerHTML = `
-    <div class="dropdown-group-title">Professionnels</div>${proLinks}
-    <div class="dropdown-group-title">Particuliers</div>${partLinks}
-    <div class="dropdown-group-title"></div><a href="#/services" data-link style="color:var(--blue-2)">Voir tous les services →</a>
-  `;
-  document.getElementById('mobile-services-particuliers').innerHTML = `
-    <div class="dropdown-group-title">Professionnels</div>${proLinks}
-    <div class="dropdown-group-title">Particuliers</div>${partLinks}
-  `;
   document.getElementById('footer-services-list').innerHTML = MAIN_SLUGS.slice(0,6).map(sl=>`<li><a href="#/services/${sl}" data-link>${bySlug(sl).title}</a></li>`).join('');
+}
+
+function updateActiveNav(parts){
+  const activePath = parts.length ? '/'+parts[0] : '/';
+  document.querySelectorAll('#mainNavList a[data-route]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.route===activePath);
+  });
 }
 
 function route(){
@@ -1319,6 +1563,10 @@ function route(){
   if(parts.length===0){ html = homeView(); }
   else if(parts[0]==='services' && parts.length===1){ html = servicesListView(); }
   else if(parts[0]==='services' && parts.length===2){ html = serviceDetailView(parts[1]); }
+  else if(parts[0]==='particuliers'){ html = particuliersView(); }
+  else if(parts[0]==='professionnels'){ html = professionnelsView(); }
+  else if(parts[0]==='avance-immediate'){ html = avanceImmediateView(); }
+  else if(parts[0]==='recrutement'){ html = recrutementView(); }
   else if(parts[0]==='a-propos'){ html = aboutView(); }
   else if(parts[0]==='contact'){ html = `<div style="padding-top:70px">${contactSectionHTML()}</div>`; }
   else if(parts[0]==='devis'){ html = devisView(); }
@@ -1328,6 +1576,7 @@ function route(){
 
   app.innerHTML = html;
   window.scrollTo({top:0,behavior:'instant' in window ? 'instant':'auto'});
+  updateActiveNav(parts);
   bindDynamicHandlers();
   observeReveals();
   closeMobileNav();
@@ -1367,6 +1616,40 @@ function bindDynamicHandlers(){
       document.getElementById('contactSuccess').classList.add('show');
       contactForm.reset();
     });
+  }
+
+  const recruitForm = document.getElementById('recruitForm');
+  if(recruitForm){
+    recruitForm.addEventListener('submit', async e=>{
+      e.preventDefault();
+      const fd = new FormData(recruitForm);
+      const payload = {nom:fd.get('nom'), telephone:fd.get('telephone'), email:fd.get('email'), message:fd.get('message')};
+      const submitBtn = recruitForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      const sent = await submitLead('recrutement', payload);
+      submitBtn.disabled = false;
+      if(!sent){
+        mailtoFallback('Candidature spontanée - '+SETTINGS.brand_name, `Nom: ${payload.nom}\nTéléphone: ${payload.telephone}\nE-mail: ${payload.email}\n\n${payload.message||''}`);
+      }
+      document.getElementById('recruitSuccess').classList.add('show');
+      recruitForm.reset();
+    });
+  }
+
+  document.getElementById('heroScrollBtn')?.addEventListener('click', ()=>{
+    document.getElementById('homeServices')?.scrollIntoView({behavior:'smooth'});
+  });
+
+  const svcTrack = document.getElementById('svcTrack');
+  if(svcTrack){
+    const scrollByCard = dir=>{
+      const card = svcTrack.querySelector('.svc-card');
+      const gap = 24;
+      const amount = card ? (card.getBoundingClientRect().width + gap) : 300;
+      svcTrack.scrollBy({left: dir*amount, behavior:'smooth'});
+    };
+    document.getElementById('svcPrev')?.addEventListener('click', ()=>scrollByCard(-1));
+    document.getElementById('svcNext')?.addEventListener('click', ()=>scrollByCard(1));
   }
 
   const devisForm = document.getElementById('devisForm');
