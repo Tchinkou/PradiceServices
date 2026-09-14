@@ -16,6 +16,9 @@
   --blue-2:#1a6fb5;
   --blue-3:#eaf5fc;
   --navy:#0b2545;
+  --mint:#6fe7c4;
+  --mint-dim:rgba(111,231,196,.15);
+  --lightblue-bg:#dfeeff;
   --text:#233142;
   --text-light:#5b6b7c;
   --bg:#ffffff;
@@ -160,17 +163,21 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 .service-link{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--blue-2);margin-top:6px;transition:gap .2s}
 .service-card:hover .service-link{gap:10px}
 
-/* ============ COMPLEMENTARY ============ */
+/* ============ COMPLEMENTARY (split image/texte) ============ */
 .comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .comp-card{
-  display:flex;gap:20px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
-  padding:20px;align-items:center;transition:.3s;box-shadow:var(--shadow-sm);
+  display:grid;grid-template-columns:1fr 1fr;background:var(--bg-alt);border-radius:var(--radius);overflow:hidden;
+  transition:.3s;box-shadow:var(--shadow-sm);
 }
 .comp-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.comp-card .comp-icon{width:76px;height:76px;border-radius:var(--radius-sm);background:var(--blue-3);color:var(--blue-2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.comp-card h4{font-size:1.05rem;margin-bottom:4px}
-.comp-card p{color:var(--text-light);font-size:.88rem;margin-bottom:8px}
-.comp-card .service-link{font-size:.85rem}
+.comp-media{position:relative;min-height:220px;background:var(--grad-brand);overflow:hidden}
+.comp-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .4s ease}
+.comp-card:hover .comp-media img{transform:scale(1.06)}
+.comp-media .icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff}
+.comp-body{padding:28px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.comp-body h4{font-size:1.1rem}
+.comp-body p{color:var(--text-light);font-size:.88rem}
+.comp-body .btn{width:fit-content;margin-top:8px;padding:11px 22px;font-size:.85rem}
 
 /* ============ CTA DEVIS ============ */
 .cta-devis{
@@ -184,65 +191,86 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 .cta-devis-content{position:relative;z-index:1;max-width:600px}
 .cta-devis-action{position:relative;z-index:1}
 
-/* ============ ENGAGEMENTS ============ */
-.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.eng-card{text-align:center;padding:8px}
-.eng-num{font-size:.8rem;font-weight:800;color:var(--green-1);letter-spacing:.1em;margin-bottom:14px}
-.eng-icon{width:72px;height:72px;border-radius:50%;background:var(--green-3);color:var(--green-1);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-.eng-card h3{font-size:1.15rem;margin-bottom:10px}
-.eng-card p{color:var(--text-light);font-size:.93rem}
+/* ============ ENGAGEMENTS (bandeau plein, façon "s'engage") ============ */
+.eng-section{
+  border-radius:28px;overflow:hidden;position:relative;padding:64px 56px;color:#fff;
+  background:linear-gradient(120deg,rgba(11,37,69,.92),rgba(31,107,52,.82)),
+             radial-gradient(circle at 85% 15%,rgba(111,231,196,.35),transparent 60%),
+             linear-gradient(135deg,var(--blue-1),var(--green-1));
+}
+.eng-section h2{color:#fff;max-width:520px;margin-bottom:36px}
+.eng-list{display:flex;flex-direction:column;gap:28px;max-width:560px}
+.eng-item{display:flex;gap:18px;align-items:flex-start}
+.eng-icon{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.eng-item h3{color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.eng-item p{color:rgba(255,255,255,.8);font-size:.9rem}
 
-/* ============ KEY INFO (zone/flex/tarifs) ============ */
-.key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
-.key-col{background:#fff;padding:40px 32px;text-align:center;border-right:1px solid var(--border)}
-.key-col:last-child{border-right:none}
-.key-icon{width:64px;height:64px;border-radius:16px;background:var(--grad-brand);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-.key-col h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+/* ============ KEY INFO (zone/flex/tarifs) — bandeau clair épuré ============ */
+.section-lightblue{background:var(--lightblue-bg)}
+.key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.key-col{text-align:center}
+.key-icon{width:60px;height:60px;border-radius:50%;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:var(--shadow-sm)}
+.key-col h3{font-size:1rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
 .key-col p{color:var(--text-light);font-size:.92rem}
 
-/* ============ BIG VISUAL ============ */
-.big-visual{
-  border-radius:28px;overflow:hidden;position:relative;min-height:420px;display:flex;align-items:center;
-  background:linear-gradient(120deg,rgba(11,37,69,.85),rgba(63,161,90,.55)),
-             repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 2px,transparent 2px 26px);
-  color:#fff;
+/* ============ VALUES — section marine + image flottante ============ */
+.values-section{background:var(--navy);border-radius:28px;overflow:visible;padding:0 40px 64px;position:relative}
+.values-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.values-float-media{
+  margin-top:-64px;border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 50px -16px rgba(0,0,0,.5);
+  aspect-ratio:3/4;position:relative;z-index:2;background:var(--grad-brand);
 }
-.big-visual-inner{position:relative;z-index:2;padding:60px;max-width:560px}
-.big-visual h2{color:#fff;margin-bottom:16px}
-.big-visual p{color:rgba(255,255,255,.88);margin-bottom:28px}
+.values-float-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.values-float-media .placeholder-ic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff}
+.values-content{padding-top:64px}
+.values-content .section-title{color:#fff;text-align:left}
+.values-content .accent{color:var(--mint)}
+.values-content .section-sub{text-align:left;margin:0 0 32px;color:rgba(255,255,255,.65)}
+.values-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:28px}
+.values-col .vicon{width:56px;height:56px;border-radius:50%;background:var(--mint-dim);color:var(--mint);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.values-col h4{color:#fff;font-size:.92rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.03em}
+.values-col p{font-size:.85rem;color:rgba(255,255,255,.68)}
 
-/* ============ VALUES ============ */
-.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
-.value-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;box-shadow:var(--shadow-sm);transition:.3s}
-.value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.value-emoji{font-size:2.2rem;margin-bottom:14px}
-.value-card h4{font-size:1rem;margin-bottom:8px}
-.value-card p{font-size:.85rem;color:var(--text-light)}
-
-/* ============ CONTACT ============ */
-.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-.form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-sm)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+/* ============ CONTACT — fond marine, champs soulignés ============ */
+.contact-navy{background:var(--navy);border-radius:28px;padding:64px 48px;color:#fff}
+.contact-navy .section-title{color:#fff}
+.contact-navy .section-sub{color:rgba(255,255,255,.65)}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}
 .field{display:flex;flex-direction:column;gap:6px}
 .field.full{grid-column:1/-1}
-.field label{font-weight:700;font-size:.85rem;color:var(--navy)}
+.field label{font-weight:700;font-size:.78rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.04em}
 .field input,.field textarea,.field select{
-  padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;transition:.2s;background:#fbfdfc;
+  padding:9px 2px;border:none;border-bottom:1.5px solid rgba(255,255,255,.3);border-radius:0;
+  transition:.2s;background:transparent;color:#fff;
 }
-.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--green-2);background:#fff;box-shadow:0 0 0 4px var(--green-3)}
-.field textarea{resize:vertical;min-height:120px}
-.form-note{font-size:.8rem;color:var(--text-light);margin-top:14px;text-align:center}
-.form-success{display:none;background:var(--green-3);color:var(--green-1);padding:16px;border-radius:12px;font-weight:700;text-align:center;margin-top:16px}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.4)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-bottom-color:var(--mint)}
+.field textarea{resize:vertical;min-height:90px}
+.form-note{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:14px;text-align:center}
+.form-success{display:none;background:rgba(111,231,196,.15);color:var(--mint);padding:16px;border-radius:12px;font-weight:700;text-align:center;margin-top:16px}
 .form-success.show{display:block}
-.contact-info-card{background:var(--bg-alt);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:22px}
+.btn-mint{background:linear-gradient(135deg,#bcd4ff,#8fb3f5);color:var(--navy)}
+.btn-mint:hover{filter:brightness(1.05);transform:translateY(-3px)}
+.contact-info-card{display:flex;flex-direction:column;gap:22px}
 .info-row{display:flex;gap:16px;align-items:flex-start}
-.info-row .ic{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--green-1);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm)}
-.info-row h4{font-size:.95rem;margin-bottom:2px}
-.info-row p,.info-row a{color:var(--text-light);font-size:.92rem}
-.info-row a:hover{color:var(--blue-2)}
+.info-row .ic{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);color:var(--mint);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-row h4{color:#fff;font-size:.95rem;margin-bottom:2px}
+.info-row p,.info-row a{color:rgba(255,255,255,.65);font-size:.92rem}
+.info-row a:hover{color:var(--mint)}
 .social-row{display:flex;gap:12px;margin-top:6px}
-.social-row a{width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--navy);box-shadow:var(--shadow-sm);transition:.2s}
-.social-row a:hover{background:var(--grad-brand);color:#fff;transform:translateY(-3px)}
+.social-row a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s}
+.social-row a:hover{background:var(--mint);color:var(--navy);transform:translateY(-3px)}
+.map-embed{border-radius:var(--radius);overflow:hidden;margin-top:56px;box-shadow:var(--shadow-sm);filter:grayscale(.2)}
+.map-embed iframe{width:100%;height:340px;border:0;display:block}
+
+/* ============ FLOATING CHAT BUBBLE ============ */
+.chat-bubble{
+  position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;
+  background:var(--grad-brand);color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow);z-index:250;transition:transform .2s ease;
+}
+.chat-bubble:hover{transform:scale(1.08)}
 
 /* ============ FOOTER ============ */
 footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70px 0 0}
@@ -318,11 +346,13 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
   .intro-grid,.contact-grid,.detail-layout{grid-template-columns:1fr}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .comp-grid{grid-template-columns:1fr}
-  .eng-grid{grid-template-columns:1fr}
-  .key-grid{grid-template-columns:1fr}
-  .key-col{border-right:none;border-bottom:1px solid var(--border)}
-  .key-col:last-child{border-bottom:none}
-  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .comp-card{grid-template-columns:1fr}
+  .key-grid{grid-template-columns:1fr;gap:32px}
+  .values-section{padding:0 24px 48px;border-radius:20px}
+  .values-layout{grid-template-columns:1fr}
+  .values-float-media{margin-top:0;aspect-ratio:16/9}
+  .values-content{padding-top:48px}
+  .eng-section{padding:48px 28px}
   .footer-grid{grid-template-columns:1fr 1fr}
   .form-row{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
@@ -335,9 +365,9 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 }
 @media (max-width:600px){
   .services-grid{grid-template-columns:1fr}
-  .values-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .cta-devis{flex-direction:column;text-align:center;padding:48px 28px}
+  .contact-navy{padding:48px 24px}
   .hero-inner{padding:110px 20px 60px}
   .hero-stats{gap:24px}
   .section{padding:64px 0}
@@ -403,6 +433,10 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 </div>
 
 <main id="app"></main>
+
+<a href="https://wa.me/33784769536" target="_blank" rel="noopener" class="chat-bubble" id="chatBubble" aria-label="Discuter sur WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg>
+</a>
 
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
@@ -500,6 +534,7 @@ const SETTINGS = {
   brand_short:'Pradice',
   tagline:'Services Nettoyage',
   logo_url:'',
+  hero_image_url:'',
   hero_title:'Propreté garantie,',
   hero_title_accent:'satisfaction assurée',
   hero_subtitle:"Pradice Services Nettoyage accompagne particuliers et professionnels de Tours et d'Indre-et-Loire avec des prestations soignées, fiables et respectueuses de l'environnement.",
@@ -536,7 +571,7 @@ const SETTINGS = {
 function mapSettingsRow(row){
   return {
     brand_name: row.brand_name, brand_short: (row.brand_name||'').split(' ')[0] || row.brand_name,
-    tagline: row.tagline, logo_url: row.logo_url || '',
+    tagline: row.tagline, logo_url: row.logo_url || '', hero_image_url: row.hero_image_url || '',
     hero_title: row.hero_title, hero_title_accent: row.hero_title_accent,
     hero_subtitle: row.hero_subtitle, about_text: row.about_text,
     phone: row.phone, phone_href: '+'+String(row.whatsapp||'').replace(/\D/g,''),
@@ -591,6 +626,7 @@ function applySettings(){
     if(links[1]) links[1].href = SETTINGS.instagram_url;
     if(links[2]) links[2].href = 'https://wa.me/'+SETTINGS.whatsapp;
   }
+  if(els('chatBubble')) els('chatBubble').href = 'https://wa.me/'+SETTINGS.whatsapp;
 }
 
 /* ============================================================
@@ -745,7 +781,78 @@ function homeView(){
     </div>
   </section>
 
+  <section class="section section-lightblue">
+    <div class="container">
+      <div class="key-grid">
+        <div class="key-col reveal">
+          <div class="key-icon">${ICONS.pin}</div>
+          <h3>Zone d'intervention</h3>
+          <p>${SETTINGS.zone_text}</p>
+        </div>
+        <div class="key-col reveal">
+          <div class="key-icon">${ICONS.clock}</div>
+          <h3>Flexibilité</h3>
+          <p>Interventions ponctuelles ou récurrentes, en journée ou en horaires décalés, adaptées à votre emploi du temps.</p>
+        </div>
+        <div class="key-col reveal">
+          <div class="key-icon">${ICONS.tag}</div>
+          <h3>Tarifs</h3>
+          <p>Des tarifs compétitifs et un devis personnalisé gratuit, sans engagement, sous 24h.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
+    <div class="container">
+      <div class="values-section reveal">
+        <div class="values-layout">
+          <div class="values-float-media">
+            ${SETTINGS.hero_image_url
+              ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}">`
+              : `<div class="placeholder-ic">${ICONS.leaf.replace('width="26" height="26"','width="80" height="80"')}</div>`}
+          </div>
+          <div class="values-content">
+            <h2 class="section-title">Nos <span class="accent">valeurs</span></h2>
+            <p class="section-sub">Les principes qui guident chacune de nos interventions.</p>
+            <div class="values-cols">
+              ${SETTINGS.values.map(v=>`
+                <div class="values-col">
+                  <div class="vicon">${v.emoji}</div>
+                  <h4>${v.title}</h4>
+                  <p>${v.text}</p>
+                </div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eng-section reveal">
+        <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Nos engagements</span>
+        <h2>${SETTINGS.brand_short} s'engage</h2>
+        <div class="eng-list">
+          <div class="eng-item">
+            <div class="eng-icon">${ICONS.leaf}</div>
+            <div><h3>Produits éco-responsables</h3><p>Des produits certifiés respectueux de l'environnement, à chaque intervention.</p></div>
+          </div>
+          <div class="eng-item">
+            <div class="eng-icon">${ICONS.shield}</div>
+            <div><h3>Satisfaction garantie</h3><p>Chaque prestation est contrôlée pour garantir un résultat impeccable.</p></div>
+          </div>
+          <div class="eng-item">
+            <div class="eng-icon">${ICONS.clock}</div>
+            <div><h3>Ponctualité & fiabilité</h3><p>Une équipe fiable, disponible 6j/7, qui respecte vos consignes.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
     <div class="container">
       <span class="eyebrow" style="display:block;text-align:center;width:fit-content;margin:0 auto 16px">Particuliers</span>
       <h2 class="section-title">Nous vous proposons aussi</h2>
@@ -756,7 +863,7 @@ function homeView(){
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
       <div class="cta-devis reveal">
         <div class="cta-devis-content">
@@ -766,78 +873,6 @@ function homeView(){
         <div class="cta-devis-action">
           <a href="#/devis" class="btn btn-light" data-link>Demander un devis →</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Nos engagements</h2>
-      <p class="section-sub">Une philosophie simple : un travail soigné, des produits responsables, une relation de confiance.</p>
-      <div class="eng-grid">
-        <div class="eng-card reveal">
-          <div class="eng-num">Engagement 01</div>
-          <div class="eng-icon">${ICONS.leaf}</div>
-          <h3>Produits éco-responsables</h3>
-          <p>Nous utilisons des produits certifiés respectueux de l'environnement et limitons notre impact écologique à chaque intervention.</p>
-        </div>
-        <div class="eng-card reveal">
-          <div class="eng-num">Engagement 02</div>
-          <div class="eng-icon">${ICONS.shield}</div>
-          <h3>Satisfaction garantie</h3>
-          <p>Chaque prestation est contrôlée pour garantir un résultat impeccable. Votre satisfaction est notre priorité.</p>
-        </div>
-        <div class="eng-card reveal">
-          <div class="eng-num">Engagement 03</div>
-          <div class="eng-icon">${ICONS.clock}</div>
-          <h3>Ponctualité & fiabilité</h3>
-          <p>Nous respectons vos horaires et vos consignes, avec une équipe fiable et une communication transparente.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="key-grid">
-        <div class="key-col">
-          <div class="key-icon">${ICONS.pin.replace('currentColor','#fff')}</div>
-          <h3>Zone d'intervention</h3>
-          <p>${SETTINGS.zone_text}</p>
-        </div>
-        <div class="key-col">
-          <div class="key-icon">${ICONS.clock.replace('currentColor','#fff')}</div>
-          <h3>Flexibilité</h3>
-          <p>Interventions ponctuelles ou récurrentes, en journée ou en horaires décalés, adaptées à votre emploi du temps.</p>
-        </div>
-        <div class="key-col">
-          <div class="key-icon">${ICONS.tag.replace('currentColor','#fff')}</div>
-          <h3>Tarifs</h3>
-          <p>Des tarifs compétitifs et un devis personnalisé gratuit, sans engagement, sous 24h.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="big-visual reveal">
-        <div class="big-visual-inner">
-          <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff">Notre engagement qualité</span>
-          <h2>Un travail soigné, à chaque intervention</h2>
-          <p>De la première prise de contact à la fin de la prestation, notre équipe met un point d'honneur à vous offrir un service irréprochable.</p>
-          <a href="#/devis" class="btn btn-light" data-link>Demander un devis</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Nos valeurs</h2>
-      <p class="section-sub">Les principes qui guident chacune de nos interventions.</p>
-      <div class="values-grid">
-        ${SETTINGS.values.map(v=>`<div class="value-card reveal"><div class="value-emoji">${v.emoji}</div><h4>${v.title}</h4><p>${v.text}</p></div>`).join('')}
       </div>
     </div>
   </section>
@@ -883,16 +918,16 @@ function cardHTML(slug){
 }
 function compHTML(slug){
   const s = bySlug(slug);
-  const iconBlock = s.image_url
-    ? `<img src="${s.image_url}" alt="${s.title}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)">`
-    : ICONS[s.icon]||ICONS.bureau;
+  const mediaBlock = s.image_url
+    ? `<img src="${s.image_url}" alt="${s.title}">`
+    : `<div class="icon-wrap">${(ICONS[s.icon]||ICONS.bureau).replace('width="40" height="40"','width="52" height="52"')}</div>`;
   return `
   <div class="comp-card reveal">
-    <div class="comp-icon">${iconBlock}</div>
-    <div>
+    <div class="comp-media">${mediaBlock}</div>
+    <div class="comp-body">
       <h4>${s.title}</h4>
       <p>${s.short}</p>
-      <a href="#/services/${s.slug}" class="service-link" data-link>Voir le service →</a>
+      <a href="#/services/${s.slug}" class="btn btn-secondary" data-link>Voir le service</a>
     </div>
   </div>`;
 }
@@ -1023,11 +1058,27 @@ function aboutView(){
       <div class="intro-visual">${ICONS.shield.replace('width="26" height="26"','width="90" height="90"')}</div>
     </div>
   </section>
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Nos valeurs</h2>
-      <div class="values-grid">
-        ${SETTINGS.values.map(v=>`<div class="value-card"><div class="value-emoji">${v.emoji}</div><h4>${v.title}</h4><p>${v.text}</p></div>`).join('')}
+      <div class="values-section">
+        <div class="values-layout">
+          <div class="values-float-media">
+            ${SETTINGS.hero_image_url
+              ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}">`
+              : `<div class="placeholder-ic">${ICONS.leaf.replace('width="26" height="26"','width="80" height="80"')}</div>`}
+          </div>
+          <div class="values-content">
+            <h2 class="section-title">Nos <span class="accent">valeurs</span></h2>
+            <div class="values-cols">
+              ${SETTINGS.values.map(v=>`
+                <div class="values-col">
+                  <div class="vicon">${v.emoji}</div>
+                  <h4>${v.title}</h4>
+                  <p>${v.text}</p>
+                </div>`).join('')}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1039,43 +1090,47 @@ function aboutView(){
    CONTACT SECTION (reused on home + about)
    ============================================================ */
 function contactSectionHTML(){
+  const mapQuery = encodeURIComponent(`${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}, ${SETTINGS.country||'France'}`);
   return `
   <section class="section" id="contact">
     <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-sub">Une question, un projet ? Écrivez-nous, nous vous répondons rapidement.</p>
-      <div class="contact-grid">
-        <div class="form-card">
+      <div class="contact-navy reveal">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-sub">Une question, un projet ? Écrivez-nous, nous vous répondons rapidement.</p>
+        <div class="contact-grid">
           <form id="contactForm">
             <div class="form-row">
-              <div class="field"><label>Nom</label><input type="text" name="nom" required></div>
-              <div class="field"><label>E-mail</label><input type="email" name="email" required></div>
+              <div class="field"><label>Nom</label><input type="text" name="nom" placeholder="Saisissez votre nom" required></div>
+              <div class="field"><label>E-mail</label><input type="email" name="email" placeholder="Saisissez votre e-mail" required></div>
             </div>
             <div class="form-row">
-              <div class="field full"><label>Objet</label><input type="text" name="objet" required></div>
+              <div class="field full"><label>Objet</label><input type="text" name="objet" placeholder="Saisissez l'objet" required></div>
             </div>
             <div class="form-row">
-              <div class="field full"><label>Message</label><textarea name="message" required></textarea></div>
+              <div class="field full"><label>Message</label><textarea name="message" placeholder="Rédigez votre message ici..." required></textarea></div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+            <button type="submit" class="btn btn-mint btn-block">Envoyer</button>
             <p class="form-note">Vos informations ne sont utilisées que pour vous recontacter et ne sont jamais partagées.</p>
             <div class="form-success" id="contactSuccess">Merci ! Votre message a bien été préparé — votre client mail va s'ouvrir pour l'envoyer.</div>
           </form>
-        </div>
-        <div class="contact-info-card">
-          <div class="info-row"><span class="ic">${ICONS.phone}</span><div><h4>Téléphone / WhatsApp</h4><a href="tel:${SETTINGS.phone_href}">${SETTINGS.phone}</a></div></div>
-          <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:${SETTINGS.email}">${SETTINGS.email}</a></div></div>
-          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}</p></div></div>
-          <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : ${SETTINGS.hours_weekday}<br>Samedi : ${SETTINGS.hours_saturday}<br>Dimanche : ${SETTINGS.hours_sunday}</p></div></div>
-          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>${SETTINGS.zone_text}</p></div></div>
-          <div>
-            <h4 style="font-size:.95rem;margin-bottom:10px">Suivez-nous</h4>
-            <div class="social-row">
-              <a href="${SETTINGS.facebook_url}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg></a>
-              <a href="${SETTINGS.instagram_url}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-              <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg></a>
+          <div class="contact-info-card">
+            <div class="info-row"><span class="ic">${ICONS.phone}</span><div><h4>Téléphone / WhatsApp</h4><a href="tel:${SETTINGS.phone_href}">${SETTINGS.phone}</a></div></div>
+            <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:${SETTINGS.email}">${SETTINGS.email}</a></div></div>
+            <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}</p></div></div>
+            <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : ${SETTINGS.hours_weekday}<br>Samedi : ${SETTINGS.hours_saturday}<br>Dimanche : ${SETTINGS.hours_sunday}</p></div></div>
+            <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>${SETTINGS.zone_text}</p></div></div>
+            <div>
+              <h4 style="font-size:.95rem;margin-bottom:10px;color:#fff">Suivez-nous</h4>
+              <div class="social-row">
+                <a href="${SETTINGS.facebook_url}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg></a>
+                <a href="${SETTINGS.instagram_url}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+                <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg></a>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=${mapQuery}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation ${SETTINGS.brand_name}"></iframe>
         </div>
       </div>
     </div>
