@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Administration — Pradice Services Nettoyage</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-1:#1f6b34; --green-2:#3fa15a; --green-3:#e9f7ef;
+  --blue-1:#0d3b66; --blue-2:#1a6fb5; --blue-3:#eaf5fc;
+  --navy:#0b2545; --text:#233142; --text-light:#5b6b7c;
+  --bg:#f5faf8; --border:#e3ecea; --danger:#c0392b; --danger-bg:#fdecea;
+  --shadow:0 10px 30px -12px rgba(11,37,69,.18); --shadow-sm:0 4px 14px -6px rgba(11,37,69,.12);
+  --radius:14px; --radius-sm:9px;
+  --grad-brand:linear-gradient(135deg,var(--green-2),var(--blue-2));
+  --ff:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+}
+body{font-family:var(--ff);color:var(--text);background:var(--bg);line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+input,textarea,select{font-family:inherit;font-size:.95rem}
+h1,h2,h3{color:var(--navy)}
+.hidden{display:none!important}
+
+/* LOGIN */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:40px;max-width:400px;width:100%}
+.login-card h1{font-size:1.4rem;margin-bottom:6px;text-align:center}
+.login-card p.sub{text-align:center;color:var(--text-light);font-size:.9rem;margin-bottom:28px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-weight:700;font-size:.85rem;color:var(--navy)}
+.field input,.field textarea,.field select{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:#fbfdfc}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--green-2);box-shadow:0 0 0 4px var(--green-3)}
+.field textarea{resize:vertical;min-height:90px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:.95rem;transition:.2s;width:100%}
+.btn-primary{background:var(--grad-brand);color:#fff}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-secondary{background:#fff;color:var(--navy);border:2px solid var(--border);width:auto}
+.btn-danger{background:var(--danger-bg);color:var(--danger);width:auto}
+.btn-sm{padding:8px 16px;font-size:.85rem;width:auto}
+.error-msg{background:var(--danger-bg);color:var(--danger);padding:12px 16px;border-radius:10px;font-size:.85rem;margin-bottom:16px}
+.success-msg{background:var(--green-3);color:var(--green-1);padding:12px 16px;border-radius:10px;font-size:.85rem;margin-bottom:16px}
+.config-warning{background:#fff6e0;color:#8a6100;padding:16px;border-radius:10px;font-size:.85rem;margin-bottom:20px;border:1px solid #f0d98c}
+
+/* SHELL */
+.shell{display:none;min-height:100vh}
+.shell.active{display:flex}
+.sidebar{width:240px;flex-shrink:0;background:var(--navy);color:#fff;padding:24px 16px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar h2{color:#fff;font-size:1.05rem;margin-bottom:24px;padding:0 8px}
+.sidebar nav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:12px 12px;border-radius:10px;color:rgba(255,255,255,.75);font-weight:600;font-size:.9rem;margin-bottom:4px;background:none}
+.sidebar nav button:hover{background:rgba(255,255,255,.08);color:#fff}
+.sidebar nav button.active{background:var(--grad-brand);color:#fff}
+.sidebar .logout{margin-top:24px;width:100%;padding:10px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:.85rem}
+.main{flex:1;padding:32px 40px;max-width:960px}
+.main h1{font-size:1.6rem;margin-bottom:4px}
+.main p.sub{color:var(--text-light);margin-bottom:28px}
+.panel{display:none}
+.panel.active{display:block}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px;box-shadow:var(--shadow-sm)}
+.card h3{font-size:1.05rem;margin-bottom:18px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.full{grid-column:1/-1}
+.logo-preview{width:80px;height:80px;border-radius:50%;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden;margin-bottom:12px}
+.logo-preview img{width:100%;height:100%;object-fit:cover}
+.upload-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.value-row{display:grid;grid-template-columns:70px 1fr 2fr auto;gap:10px;align-items:center;margin-bottom:10px}
+.value-row input{width:100%}
+
+/* SERVICES LIST */
+.svc-row{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:#fff}
+.svc-row .thumb{width:56px;height:56px;border-radius:10px;background:var(--grad-brand);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+.svc-row .thumb img{width:100%;height:100%;object-fit:cover}
+.svc-row .info{flex:1;min-width:0}
+.svc-row .info h4{font-size:.95rem;color:var(--navy)}
+.svc-row .info span{font-size:.78rem;color:var(--text-light)}
+.svc-row .actions{display:flex;gap:8px}
+.badge{font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:999px;text-transform:uppercase}
+.badge-pro{background:var(--blue-3);color:var(--blue-2)}
+.badge-particulier{background:var(--green-3);color:var(--green-1)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(11,37,69,.5);display:none;align-items:center;justify-content:center;z-index:300;padding:20px}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:var(--radius);padding:32px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto}
+.modal h3{margin-bottom:18px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.includes-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.includes-list .inc-row{display:flex;gap:8px}
+.includes-list .inc-row input{flex:1}
+.tag-remove{color:var(--danger);font-weight:800;padding:0 10px}
+
+/* LEADS TABLE */
+.leads-table{width:100%;border-collapse:collapse}
+.leads-table th,.leads-table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--border);font-size:.87rem;vertical-align:top}
+.leads-table th{color:var(--text-light);font-size:.78rem;text-transform:uppercase}
+.status-pill{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px}
+.status-nouveau{background:#fdecea;color:var(--danger)}
+.status-traité{background:var(--green-3);color:var(--green-1)}
+.status-archivé{background:#eee;color:#777}
+.lead-payload{font-size:.78rem;color:var(--text-light);max-width:340px}
+
+@media (max-width:900px){
+  .shell.active{flex-direction:column}
+  .sidebar{width:100%;height:auto;position:static;display:flex;align-items:center;gap:8px;overflow-x:auto;padding:14px}
+  .sidebar h2{display:none}
+  .sidebar nav{display:flex;gap:6px}
+  .sidebar .logout{width:auto;margin-top:0}
+  .main{padding:24px 16px;max-width:100%}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <h1>Administration</h1>
+    <p class="sub">Pradice Services Nettoyage</p>
+    <div id="configWarning" class="config-warning hidden">
+      ⚠️ Supabase n'est pas encore configuré dans ce fichier (variables SUPA_URL / SUPA_ANON_KEY en haut du script). Renseigne-les d'abord, dans <code>admin.html</code> ET <code>index.html</code>.
+    </div>
+    <div id="loginError" class="error-msg hidden"></div>
+    <form id="loginForm">
+      <div class="field"><label>E-mail</label><input type="email" name="email" required autocomplete="username"></div>
+      <div class="field"><label>Mot de passe</label><input type="password" name="password" required autocomplete="current-password"></div>
+      <button type="submit" class="btn btn-primary" id="loginBtn">Se connecter</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ SHELL ============ -->
+<div class="shell" id="shell">
+  <aside class="sidebar">
+    <h2>⚙️ Administration</h2>
+    <nav>
+      <button data-panel="general" class="active">🏢 Informations générales</button>
+      <button data-panel="services">🧹 Services</button>
+      <button data-panel="gallery">🖼️ Photos avant / après</button>
+      <button data-panel="values">⭐ Valeurs</button>
+      <button data-panel="leads">📬 Demandes reçues</button>
+    </nav>
+    <button class="logout" id="logoutBtn">Se déconnecter</button>
+  </aside>
+
+  <main class="main">
+    <div id="saveMsg"></div>
+
+    <!-- GENERAL -->
+    <section class="panel active" id="panel-general">
+      <h1>Informations générales</h1>
+      <p class="sub">Nom, logo, coordonnées, adresse, horaires, couleurs, réseaux sociaux.</p>
+
+      <div class="card">
+        <h3>Logo & identité</h3>
+        <div class="upload-row">
+          <div class="logo-preview" id="logoPreview"></div>
+          <div>
+            <input type="file" id="logoUpload" accept="image/*">
+            <p style="font-size:.78rem;color:var(--text-light);margin-top:6px">PNG ou JPG, fond transparent de préférence.</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="generalForm">
+        <div class="card">
+          <h3>Marque</h3>
+          <div class="grid-2">
+            <div class="field"><label>Nom de la marque</label><input name="brand_name" required></div>
+            <div class="field"><label>Slogan / tagline (sous le logo)</label><input name="tagline"></div>
+            <div class="field full"><label>Titre principal (hero) — ligne 1</label><input name="hero_title"></div>
+            <div class="field full"><label>Titre principal (hero) — ligne 2 (accent coloré)</label><input name="hero_title_accent"></div>
+            <div class="field full"><label>Sous-titre du hero</label><textarea name="hero_subtitle"></textarea></div>
+            <div class="field full"><label>Texte "Qui sommes-nous"</label><textarea name="about_text"></textarea></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Coordonnées</h3>
+          <div class="grid-2">
+            <div class="field"><label>Téléphone (affiché)</label><input name="phone" placeholder="07 84 76 95 36"></div>
+            <div class="field"><label>WhatsApp (chiffres uniquement, indicatif inclus)</label><input name="whatsapp" placeholder="33784769536"></div>
+            <div class="field full"><label>E-mail</label><input type="email" name="email"></div>
+            <div class="field full"><label>Adresse (rue)</label><input name="address_line"></div>
+            <div class="field"><label>Code postal</label><input name="postal_code"></div>
+            <div class="field"><label>Ville</label><input name="city"></div>
+            <div class="field full"><label>Zone d'intervention (texte affiché)</label><input name="zone_text"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Horaires</h3>
+          <div class="grid-3">
+            <div class="field"><label>Lundi → Vendredi</label><input name="hours_weekday" placeholder="8h00 – 18h00"></div>
+            <div class="field"><label>Samedi</label><input name="hours_saturday" placeholder="9h00 – 16h00"></div>
+            <div class="field"><label>Dimanche</label><input name="hours_sunday" placeholder="Fermé"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Réseaux sociaux</h3>
+          <div class="grid-2">
+            <div class="field"><label>Lien Facebook</label><input name="facebook_url"></div>
+            <div class="field"><label>Lien Instagram</label><input name="instagram_url"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Couleurs du site</h3>
+          <div class="grid-2">
+            <div class="field"><label>Vert principal</label><input type="color" name="color_green"></div>
+            <div class="field"><label>Vert clair (dégradé)</label><input type="color" name="color_green_light"></div>
+            <div class="field"><label>Bleu principal</label><input type="color" name="color_blue"></div>
+            <div class="field"><label>Bleu clair (dégradé)</label><input type="color" name="color_blue_light"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Mentions légales</h3>
+          <div class="field full"><label>Bloc "Éditeur du site"</label><textarea name="legal_mentions"></textarea></div>
+          <div class="field full"><label>Politique de confidentialité (intro)</label><textarea name="legal_privacy"></textarea></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:auto;padding:14px 32px">Enregistrer les modifications</button>
+      </form>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="panel" id="panel-services">
+      <h1>Services</h1>
+      <p class="sub">Chaque service a sa propre page sur le site. Glisse-dépose l'ordre en modifiant le champ "ordre".</p>
+      <button class="btn btn-primary" style="width:auto;margin-bottom:18px" id="addServiceBtn">+ Ajouter un service</button>
+      <div id="servicesList"></div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="panel" id="panel-gallery">
+      <h1>Photos avant / après</h1>
+      <p class="sub">Associe des photos "avant" et "après" à un service — elles s'affichent dans la galerie de la page du service.</p>
+      <button class="btn btn-primary" style="width:auto;margin-bottom:18px" id="addGalleryBtn">+ Ajouter une paire de photos</button>
+      <div id="galleryList"></div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="panel" id="panel-values">
+      <h1>Valeurs de l'entreprise</h1>
+      <p class="sub">Affichées sur la page d'accueil et la page "À propos".</p>
+      <div class="card">
+        <div id="valuesList"></div>
+        <button class="btn btn-secondary btn-sm" id="addValueBtn" style="margin-top:10px">+ Ajouter une valeur</button>
+        <div style="margin-top:20px">
+          <button class="btn btn-primary" style="width:auto;padding:14px 32px" id="saveValuesBtn">Enregistrer les valeurs</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADS -->
+    <section class="panel" id="panel-leads">
+      <h1>Demandes reçues</h1>
+      <p class="sub">Messages de contact et demandes de devis envoyés depuis le site.</p>
+      <div class="card" style="padding:0;overflow-x:auto">
+        <table class="leads-table" id="leadsTable">
+          <thead><tr><th>Date</th><th>Type</th><th>Détails</th><th>Statut</th><th></th></tr></thead>
+          <tbody id="leadsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ SERVICE MODAL ============ -->
+<div class="modal-overlay" id="serviceModalOverlay">
+  <div class="modal">
+    <h3 id="serviceModalTitle">Ajouter un service</h3>
+    <form id="serviceForm">
+      <input type="hidden" name="id">
+      <div class="grid-2">
+        <div class="field full"><label>Titre</label><input name="title" required></div>
+        <div class="field"><label>Catégorie</label>
+          <select name="category"><option value="pro">Professionnels</option><option value="particulier">Particuliers</option></select>
+        </div>
+        <div class="field"><label>Ordre d'affichage</label><input type="number" name="sort_order" value="0"></div>
+        <div class="field full"><label>Photo du service (URL, ou upload ci-dessous)</label><input name="image_url" placeholder="https://..."></div>
+        <div class="field full"><input type="file" id="serviceImageUpload" accept="image/*"></div>
+        <div class="field full"><label>Description courte (carte)</label><textarea name="short_desc" required></textarea></div>
+        <div class="field full"><label>Introduction (page détail)</label><textarea name="intro"></textarea></div>
+        <div class="field full"><label>Description détaillée</label><textarea name="details"></textarea></div>
+      </div>
+      <div class="field full">
+        <label>Ce que comprend le service</label>
+        <div class="includes-list" id="includesList"></div>
+        <button type="button" class="btn btn-secondary btn-sm" id="addIncludeBtn">+ Ajouter une ligne</button>
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label><input type="checkbox" name="published" checked style="width:auto"> Publié sur le site</label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelServiceBtn">Annuler</button>
+        <button type="submit" class="btn btn-primary" style="width:auto">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ GALLERY MODAL ============ -->
+<div class="modal-overlay" id="galleryModalOverlay">
+  <div class="modal">
+    <h3>Ajouter des photos avant / après</h3>
+    <form id="galleryForm">
+      <div class="field"><label>Service concerné</label><select name="service_id" id="gallerySelectService"></select></div>
+      <div class="grid-2">
+        <div class="field"><label>Photo "avant"</label><input type="file" id="beforeUpload" accept="image/*"></div>
+        <div class="field"><label>Photo "après"</label><input type="file" id="afterUpload" accept="image/*"></div>
+      </div>
+      <div class="field full"><label>Légende (optionnel)</label><input name="caption"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelGalleryBtn">Annuler</button>
+        <button type="submit" class="btn btn-primary" style="width:auto">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — mêmes valeurs que dans index.html
+   ============================================================ */
+const SUPA_URL = 'https://VOTRE-PROJET.supabase.co';
+const SUPA_ANON_KEY = 'VOTRE_CLE_ANON_PUBLIC';
+const SUPA_CONFIGURED = SUPA_URL.startsWith('https://') && !SUPA_URL.includes('VOTRE-PROJET');
+
+let accessToken = null;
+
+/* ============================================================
+   API HELPERS (fetch direct vers l'API REST/Auth/Storage Supabase)
+   ============================================================ */
+async function authLogin(email, password){
+  const res = await fetch(`${SUPA_URL}/auth/v1/token?grant_type=password`, {
+    method:'POST',
+    headers:{ apikey: SUPA_ANON_KEY, 'Content-Type':'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+  const data = await res.json();
+  if(!res.ok) throw new Error(data.error_description || data.msg || 'Identifiants incorrects');
+  return data;
+}
+
+function authHeaders(){
+  return { apikey: SUPA_ANON_KEY, Authorization:`Bearer ${accessToken}`, 'Content-Type':'application/json' };
+}
+
+async function apiGet(pathWithQuery){
+  const res = await fetch(`${SUPA_URL}/rest/v1/${pathWithQuery}`, { headers: authHeaders() });
+  if(!res.ok) throw new Error('GET '+pathWithQuery+' → '+res.status);
+  return res.json();
+}
+async function apiPatch(table, filterQuery, data){
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}?${filterQuery}`, {
+    method:'PATCH', headers:{...authHeaders(), Prefer:'return=representation'}, body: JSON.stringify(data)
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+async function apiInsert(table, data){
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+    method:'POST', headers:{...authHeaders(), Prefer:'return=representation'}, body: JSON.stringify(data)
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+async function apiDelete(table, filterQuery){
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}?${filterQuery}`, { method:'DELETE', headers: authHeaders() });
+  if(!res.ok) throw new Error(await res.text());
+}
+async function uploadFile(file, folder){
+  const path = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g,'_')}`;
+  const res = await fetch(`${SUPA_URL}/storage/v1/object/media/${path}`, {
+    method:'POST',
+    headers:{ apikey: SUPA_ANON_KEY, Authorization:`Bearer ${accessToken}`, 'Content-Type': file.type || 'application/octet-stream' },
+    body: file
+  });
+  if(!res.ok) throw new Error('Échec upload : '+await res.text());
+  return `${SUPA_URL}/storage/v1/object/public/media/${path}`;
+}
+
+/* ============================================================
+   LOGIN FLOW
+   ============================================================ */
+const loginScreen = document.getElementById('loginScreen');
+const shell = document.getElementById('shell');
+const loginError = document.getElementById('loginError');
+
+if(!SUPA_CONFIGURED){
+  document.getElementById('configWarning').classList.remove('hidden');
+}
+
+const SESSION_KEY = 'pradice_admin_session';
+function saveSession(session){ try{ sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); }catch(e){} }
+function loadSession(){ try{ return JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null'); }catch(e){ return null; } }
+function clearSession(){ try{ sessionStorage.removeItem(SESSION_KEY); }catch(e){} }
+
+document.getElementById('loginForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  loginError.classList.add('hidden');
+  if(!SUPA_CONFIGURED){ loginError.textContent = 'Configure d\'abord SUPA_URL et SUPA_ANON_KEY en haut du fichier admin.html.'; loginError.classList.remove('hidden'); return; }
+  const fd = new FormData(e.target);
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'Connexion...';
+  try{
+    const data = await authLogin(fd.get('email'), fd.get('password'));
+    accessToken = data.access_token;
+    saveSession({ access_token: data.access_token, refresh_token: data.refresh_token, expires_at: Date.now() + (data.expires_in||3600)*1000 });
+    enterShell();
+  }catch(err){
+    loginError.textContent = err.message;
+    loginError.classList.remove('hidden');
+  }
+  btn.disabled = false; btn.textContent = 'Se connecter';
+});
+
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+  clearSession();
+  accessToken = null;
+  shell.classList.remove('active');
+  loginScreen.classList.remove('hidden');
+  loginScreen.style.display = 'flex';
+});
+
+function enterShell(){
+  loginScreen.style.display = 'none';
+  shell.classList.add('active');
+  loadAllData();
+}
+
+(function tryResumeSession(){
+  const s = loadSession();
+  if(s && s.access_token && s.expires_at > Date.now()){
+    accessToken = s.access_token;
+    enterShell();
+  }
+})();
+
+/* ============================================================
+   NAV TABS
+   ============================================================ */
+document.querySelectorAll('.sidebar nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.sidebar nav button').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+  });
+});
+
+function flashMessage(text, type='success'){
+  const el = document.getElementById('saveMsg');
+  el.innerHTML = `<div class="${type==='success'?'success-msg':'error-msg'}">${text}</div>`;
+  setTimeout(()=>{ el.innerHTML=''; }, 4000);
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let SETTINGS_ROW = null;
+let SERVICES = [];
+let GALLERY = [];
+
+async function loadAllData(){
+  try{
+    const [settingsRows, serviceRows, galleryRows] = await Promise.all([
+      apiGet('settings?id=eq.1&select=*'),
+      apiGet('services?select=*&order=sort_order.asc'),
+      apiGet('gallery?select=*&order=sort_order.asc'),
+    ]);
+    SETTINGS_ROW = settingsRows[0] || {};
+    SERVICES = serviceRows || [];
+    GALLERY = galleryRows || [];
+    fillGeneralForm();
+    renderServicesList();
+    renderGalleryList();
+    renderValuesList();
+    loadLeads();
+  }catch(err){
+    flashMessage('Erreur de chargement : '+err.message, 'error');
+  }
+}
+
+/* ============================================================
+   GENERAL PANEL
+   ============================================================ */
+function fillGeneralForm(){
+  const f = document.getElementById('generalForm');
+  const s = SETTINGS_ROW;
+  const fields = ['brand_name','tagline','hero_title','hero_title_accent','hero_subtitle','about_text','phone','whatsapp','email','address_line','postal_code','city','zone_text','hours_weekday','hours_saturday','hours_sunday','facebook_url','instagram_url','color_green','color_green_light','color_blue','color_blue_light','legal_mentions','legal_privacy'];
+  fields.forEach(name=>{
+    const el = f.elements[name];
+    if(el && s[name] !== undefined && s[name] !== null) el.value = s[name];
+  });
+  const logoPreview = document.getElementById('logoPreview');
+  logoPreview.innerHTML = s.logo_url ? `<img src="${s.logo_url}" alt="Logo">` : '🌿';
+  logoPreview.dataset.url = s.logo_url || '';
+}
+
+document.getElementById('logoUpload').addEventListener('change', async e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  try{
+    const url = await uploadFile(file, 'logo');
+    document.getElementById('logoPreview').innerHTML = `<img src="${url}" alt="Logo">`;
+    document.getElementById('logoPreview').dataset.url = url;
+    flashMessage('Logo téléversé. N\'oublie pas d\'enregistrer.');
+  }catch(err){ flashMessage(err.message, 'error'); }
+});
+
+document.getElementById('generalForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = {};
+  for(const [k,v] of fd.entries()) data[k] = v;
+  data.logo_url = document.getElementById('logoPreview').dataset.url || '';
+  try{
+    await apiPatch('settings', 'id=eq.1', data);
+    flashMessage('Informations enregistrées avec succès.');
+    SETTINGS_ROW = {...SETTINGS_ROW, ...data};
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+});
+
+/* ============================================================
+   VALUES PANEL
+   ============================================================ */
+function renderValuesList(){
+  const values = SETTINGS_ROW.values || [];
+  const list = document.getElementById('valuesList');
+  list.innerHTML = values.map((v,i)=>`
+    <div class="value-row" data-idx="${i}">
+      <input value="${v.emoji||''}" placeholder="🤝" class="v-emoji">
+      <input value="${v.title||''}" placeholder="Titre" class="v-title">
+      <input value="${v.text||''}" placeholder="Description" class="v-text">
+      <button type="button" class="tag-remove" onclick="this.closest('.value-row').remove()">✕</button>
+    </div>`).join('');
+}
+document.getElementById('addValueBtn').addEventListener('click', ()=>{
+  const list = document.getElementById('valuesList');
+  const div = document.createElement('div');
+  div.className = 'value-row';
+  div.innerHTML = `<input placeholder="🤝" class="v-emoji"><input placeholder="Titre" class="v-title"><input placeholder="Description" class="v-text"><button type="button" class="tag-remove" onclick="this.closest('.value-row').remove()">✕</button>`;
+  list.appendChild(div);
+});
+document.getElementById('saveValuesBtn').addEventListener('click', async ()=>{
+  const rows = [...document.querySelectorAll('#valuesList .value-row')].map(row=>({
+    emoji: row.querySelector('.v-emoji').value,
+    title: row.querySelector('.v-title').value,
+    text: row.querySelector('.v-text').value,
+  })).filter(v=>v.title);
+  try{
+    await apiPatch('settings', 'id=eq.1', { values: rows });
+    SETTINGS_ROW.values = rows;
+    flashMessage('Valeurs enregistrées.');
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+});
+
+/* ============================================================
+   SERVICES PANEL
+   ============================================================ */
+function renderServicesList(){
+  const list = document.getElementById('servicesList');
+  if(!SERVICES.length){ list.innerHTML = '<p style="color:var(--text-light)">Aucun service pour le moment.</p>'; return; }
+  list.innerHTML = SERVICES.map(s=>`
+    <div class="svc-row">
+      <div class="thumb">${s.image_url?`<img src="${s.image_url}" alt="">`:'🧹'}</div>
+      <div class="info">
+        <h4>${s.title} ${s.published?'':'<span style="color:var(--danger);font-size:.75rem">(masqué)</span>'}</h4>
+        <span class="badge ${s.category==='pro'?'badge-pro':'badge-particulier'}">${s.category==='pro'?'Professionnels':'Particuliers'}</span>
+        <span> · ${s.short_desc||''}</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary btn-sm" onclick="editService('${s.id}')">Modifier</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteService('${s.id}')">Supprimer</button>
+      </div>
+    </div>`).join('');
+}
+
+const serviceModal = document.getElementById('serviceModalOverlay');
+const serviceForm = document.getElementById('serviceForm');
+
+document.getElementById('addServiceBtn').addEventListener('click', ()=>openServiceModal(null));
+document.getElementById('cancelServiceBtn').addEventListener('click', ()=>serviceModal.classList.remove('active'));
+
+function openServiceModal(id){
+  const s = id ? SERVICES.find(x=>x.id===id) : null;
+  document.getElementById('serviceModalTitle').textContent = s ? 'Modifier le service' : 'Ajouter un service';
+  serviceForm.reset();
+  serviceForm.elements.id.value = s ? s.id : '';
+  serviceForm.elements.title.value = s ? s.title : '';
+  serviceForm.elements.category.value = s ? s.category : 'pro';
+  serviceForm.elements.sort_order.value = s ? (s.sort_order||0) : (SERVICES.length+1);
+  serviceForm.elements.image_url.value = s ? (s.image_url||'') : '';
+  serviceForm.elements.short_desc.value = s ? (s.short_desc||'') : '';
+  serviceForm.elements.intro.value = s ? (s.intro||'') : '';
+  serviceForm.elements.details.value = s ? (s.details||'') : '';
+  serviceForm.elements.published.checked = s ? !!s.published : true;
+  const includesList = document.getElementById('includesList');
+  includesList.innerHTML = '';
+  const includes = s && Array.isArray(s.includes) ? s.includes : [''];
+  includes.forEach(text=>addIncludeRow(text));
+  serviceModal.classList.add('active');
+}
+window.editService = id => openServiceModal(id);
+
+function addIncludeRow(value=''){
+  const row = document.createElement('div');
+  row.className = 'inc-row';
+  row.innerHTML = `<input value="${value.replace(/"/g,'&quot;')}" placeholder="Ex: Dépoussiérage complet"><button type="button" class="tag-remove" onclick="this.parentElement.remove()">✕</button>`;
+  document.getElementById('includesList').appendChild(row);
+}
+document.getElementById('addIncludeBtn').addEventListener('click', ()=>addIncludeRow());
+
+document.getElementById('serviceImageUpload').addEventListener('change', async e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  try{
+    const url = await uploadFile(file, 'services');
+    serviceForm.elements.image_url.value = url;
+    flashMessage('Photo téléversée.');
+  }catch(err){ flashMessage(err.message, 'error'); }
+});
+
+serviceForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const fd = new FormData(serviceForm);
+  const id = fd.get('id');
+  const includes = [...document.querySelectorAll('#includesList input')].map(i=>i.value.trim()).filter(Boolean);
+  const title = fd.get('title');
+  const slugBase = title.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+  const data = {
+    title, category: fd.get('category'), sort_order: Number(fd.get('sort_order'))||0,
+    image_url: fd.get('image_url'), short_desc: fd.get('short_desc'), intro: fd.get('intro'),
+    details: fd.get('details'), includes, published: fd.get('published')==='on',
+  };
+  try{
+    if(id){
+      await apiPatch('services', `id=eq.${id}`, data);
+    }else{
+      data.slug = slugBase + '-' + Date.now().toString(36);
+      await apiInsert('services', data);
+    }
+    serviceModal.classList.remove('active');
+    flashMessage('Service enregistré.');
+    await loadAllData();
+    document.querySelector('[data-panel="services"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+});
+
+window.deleteService = async id => {
+  if(!confirm('Supprimer ce service ? Cette action est définitive.')) return;
+  try{
+    await apiDelete('services', `id=eq.${id}`);
+    flashMessage('Service supprimé.');
+    await loadAllData();
+    document.querySelector('[data-panel="services"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+};
+
+/* ============================================================
+   GALLERY PANEL
+   ============================================================ */
+function renderGalleryList(){
+  const list = document.getElementById('galleryList');
+  if(!GALLERY.length){ list.innerHTML = '<p style="color:var(--text-light)">Aucune photo pour le moment.</p>'; return; }
+  list.innerHTML = GALLERY.map(g=>{
+    const svc = SERVICES.find(s=>s.id===g.service_id);
+    return `
+    <div class="svc-row">
+      <div class="thumb">${g.after_url?`<img src="${g.after_url}" alt="">`:'📷'}</div>
+      <div class="info">
+        <h4>${svc?svc.title:'Service supprimé'}</h4>
+        <span>${g.caption||''}</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-danger btn-sm" onclick="deleteGallery('${g.id}')">Supprimer</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+const galleryModal = document.getElementById('galleryModalOverlay');
+const galleryForm = document.getElementById('galleryForm');
+let pendingBeforeUrl = '', pendingAfterUrl = '';
+
+document.getElementById('addGalleryBtn').addEventListener('click', ()=>{
+  galleryForm.reset();
+  pendingBeforeUrl = ''; pendingAfterUrl = '';
+  const sel = document.getElementById('gallerySelectService');
+  sel.innerHTML = SERVICES.map(s=>`<option value="${s.id}">${s.title}</option>`).join('');
+  galleryModal.classList.add('active');
+});
+document.getElementById('cancelGalleryBtn').addEventListener('click', ()=>galleryModal.classList.remove('active'));
+
+document.getElementById('beforeUpload').addEventListener('change', async e=>{
+  const file = e.target.files[0]; if(!file) return;
+  try{ pendingBeforeUrl = await uploadFile(file, 'gallery'); flashMessage('Photo "avant" téléversée.'); }
+  catch(err){ flashMessage(err.message, 'error'); }
+});
+document.getElementById('afterUpload').addEventListener('change', async e=>{
+  const file = e.target.files[0]; if(!file) return;
+  try{ pendingAfterUrl = await uploadFile(file, 'gallery'); flashMessage('Photo "après" téléversée.'); }
+  catch(err){ flashMessage(err.message, 'error'); }
+});
+
+galleryForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const fd = new FormData(galleryForm);
+  try{
+    await apiInsert('gallery', {
+      service_id: fd.get('service_id'),
+      before_url: pendingBeforeUrl, after_url: pendingAfterUrl,
+      caption: fd.get('caption'), sort_order: GALLERY.length,
+    });
+    galleryModal.classList.remove('active');
+    flashMessage('Photos ajoutées.');
+    await loadAllData();
+    document.querySelector('[data-panel="gallery"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+});
+
+window.deleteGallery = async id => {
+  if(!confirm('Supprimer ces photos ?')) return;
+  try{
+    await apiDelete('gallery', `id=eq.${id}`);
+    flashMessage('Photos supprimées.');
+    await loadAllData();
+    document.querySelector('[data-panel="gallery"]').click();
+  }catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+};
+
+/* ============================================================
+   LEADS PANEL
+   ============================================================ */
+async function loadLeads(){
+  try{
+    const leads = await apiGet('leads?select=*&order=created_at.desc');
+    const body = document.getElementById('leadsBody');
+    if(!leads.length){ body.innerHTML = '<tr><td colspan="5" style="color:var(--text-light)">Aucune demande reçue pour le moment.</td></tr>'; return; }
+    body.innerHTML = leads.map(l=>`
+      <tr>
+        <td>${new Date(l.created_at).toLocaleString('fr-FR')}</td>
+        <td>${l.type==='devis'?'Devis':'Contact'}</td>
+        <td class="lead-payload">${Object.entries(l.payload||{}).map(([k,v])=>`<strong>${k}:</strong> ${v}`).join('<br>')}</td>
+        <td><span class="status-pill status-${l.status}">${l.status}</span></td>
+        <td>
+          <select onchange="updateLeadStatus('${l.id}', this.value)" style="font-size:.78rem;padding:4px 6px">
+            <option value="nouveau" ${l.status==='nouveau'?'selected':''}>Nouveau</option>
+            <option value="traité" ${l.status==='traité'?'selected':''}>Traité</option>
+            <option value="archivé" ${l.status==='archivé'?'selected':''}>Archivé</option>
+          </select>
+        </td>
+      </tr>`).join('');
+  }catch(err){ flashMessage('Erreur chargement des demandes : '+err.message, 'error'); }
+}
+window.updateLeadStatus = async (id, status) => {
+  try{ await apiPatch('leads', `id=eq.${id}`, { status }); }
+  catch(err){ flashMessage('Erreur : '+err.message, 'error'); }
+};
+</script>
+</body>
+</html>

@@ -212,7 +212,7 @@ nav.main-nav a.nav-link:hover{color:var(--blue-2);background:var(--blue-3)}
 .big-visual p{color:rgba(255,255,255,.88);margin-bottom:28px}
 
 /* ============ VALUES ============ */
-.values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
 .value-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;box-shadow:var(--shadow-sm);transition:.3s}
 .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .value-emoji{font-size:2.2rem;margin-bottom:14px}
@@ -363,10 +363,10 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 <header class="site-header">
   <div class="header-inner">
     <a href="#/" class="brand" data-link>
-      <span class="logo-mark">
+      <span class="logo-mark" id="headerLogoMark">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg>
       </span>
-      <span>Pradice<small>Services Nettoyage</small></span>
+      <span id="headerBrandName">Pradice<small id="headerTagline">Services Nettoyage</small></span>
     </a>
 
     <nav class="main-nav" aria-label="Navigation principale">
@@ -382,9 +382,9 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
     </nav>
 
     <div class="header-actions">
-      <a href="tel:+33784769536" class="call-chip">
+      <a href="tel:+33784769536" class="call-chip" id="headerCallChip">
         <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/></svg></span>
-        07 84 76 95 36
+        <span id="headerPhoneText">07 84 76 95 36</span>
       </a>
       <a href="#/devis" class="btn btn-primary" data-link>Demander un devis</a>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -399,7 +399,7 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
   <a href="#/a-propos" data-link>À propos</a>
   <a href="#/contact" data-link>Contact</a>
   <a href="#/devis" class="btn btn-primary btn-block" data-link>Demander un devis</a>
-  <a href="tel:+33784769536" class="btn btn-secondary btn-block">📞 07 84 76 95 36</a>
+  <a href="tel:+33784769536" class="btn btn-secondary btn-block" id="mobileCallBtn">📞 07 84 76 95 36</a>
 </div>
 
 <main id="app"></main>
@@ -410,13 +410,13 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-brand">
-          <span class="logo-mark">
+          <span class="logo-mark" id="footerLogoMark">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg>
           </span>
-          Pradice Services Nettoyage
+          <span id="footerBrandName">Pradice Services Nettoyage</span>
         </div>
-        <p style="font-size:.9rem;margin-bottom:18px">Entreprise professionnelle de nettoyage et d'entretien pour particuliers et professionnels, née en 2023 à Tours. Une approche éco-responsable, un service fiable.</p>
-        <div class="social-row">
+        <p style="font-size:.9rem;margin-bottom:18px" id="footerAbout">Entreprise professionnelle de nettoyage et d'entretien pour particuliers et professionnels, née en 2023 à Tours. Une approche éco-responsable, un service fiable.</p>
+        <div class="social-row" id="footerSocialRow">
           <a href="https://www.facebook.com/profile.php?id=61559238324968" target="_blank" rel="noopener" aria-label="Facebook">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
           </a>
@@ -444,16 +444,16 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
-        <ul>
-          <li>3 rue Victor Grossein, 37000 Tours</li>
-          <li><a href="tel:+33784769536">07 84 76 95 36</a></li>
-          <li><a href="mailto:pradiceservices@gmail.com">pradiceservices@gmail.com</a></li>
-          <li>Lun–Ven 8h–18h · Sam 9h–16h</li>
+        <ul id="footerContactList">
+          <li id="footerAddress">3 rue Victor Grossein, 37000 Tours</li>
+          <li><a href="tel:+33784769536" id="footerPhoneLink">07 84 76 95 36</a></li>
+          <li><a href="mailto:pradiceservices@gmail.com" id="footerEmailLink">pradiceservices@gmail.com</a></li>
+          <li id="footerHours">Lun–Ven 8h–18h · Sam 9h–16h</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span id="year"></span> Pradice Services Nettoyage — Tous droits réservés</span>
+      <span>© <span id="year"></span> <span id="footerCopyrightName">Pradice Services Nettoyage</span> — Tous droits réservés</span>
       <div class="legal-links">
         <a href="#/mentions-legales" data-link>Mentions légales</a>
         <a href="#/confidentialite" data-link>Politique de confidentialité</a>
@@ -463,6 +463,136 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 </footer>
 
 <script>
+/* ============================================================
+   CONFIG — colle ici l'URL et la clé "anon public" de ton projet
+   Supabase (Project Settings > API). Sans ça, le site fonctionne
+   quand même avec le contenu par défaut ci-dessous.
+   Aucune librairie externe requise : on parle directement à l'API
+   REST de Supabase avec fetch(), le fichier reste 100% autonome.
+   ============================================================ */
+const SUPA_URL = 'https://VOTRE-PROJET.supabase.co';
+const SUPA_ANON_KEY = 'VOTRE_CLE_ANON_PUBLIC';
+const SUPA_CONFIGURED = SUPA_URL.startsWith('https://') && !SUPA_URL.includes('VOTRE-PROJET');
+
+async function supaGet(pathWithQuery){
+  const res = await fetch(`${SUPA_URL}/rest/v1/${pathWithQuery}`, {
+    headers:{ apikey: SUPA_ANON_KEY, Authorization:`Bearer ${SUPA_ANON_KEY}` }
+  });
+  if(!res.ok) throw new Error('Supabase GET '+pathWithQuery+' → '+res.status);
+  return res.json();
+}
+
+async function supaInsert(table, row){
+  const res = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+    method:'POST',
+    headers:{ apikey: SUPA_ANON_KEY, Authorization:`Bearer ${SUPA_ANON_KEY}`, 'Content-Type':'application/json', Prefer:'return=minimal' },
+    body: JSON.stringify(row)
+  });
+  return res.ok;
+}
+
+/* ============================================================
+   SETTINGS — contenu par défaut (repris si Supabase n'est pas
+   encore configuré, ou en attendant le chargement)
+   ============================================================ */
+const SETTINGS = {
+  brand_name:'Pradice Services Nettoyage',
+  brand_short:'Pradice',
+  tagline:'Services Nettoyage',
+  logo_url:'',
+  hero_title:'Propreté garantie,',
+  hero_title_accent:'satisfaction assurée',
+  hero_subtitle:"Pradice Services Nettoyage accompagne particuliers et professionnels de Tours et d'Indre-et-Loire avec des prestations soignées, fiables et respectueuses de l'environnement.",
+  about_text:"Depuis 2023, Pradice Services Nettoyage accompagne les particuliers et les professionnels d'Indre-et-Loire dans l'entretien de leurs espaces, avec une exigence constante de qualité et une démarche éco-responsable.",
+  phone:'07 84 76 95 36',
+  phone_href:'+33784769536',
+  whatsapp:'33784769536',
+  email:'pradiceservices@gmail.com',
+  address_line:'3 rue Victor Grossein',
+  postal_code:'37000',
+  city:'Tours',
+  country:'France',
+  hours_weekday:'8h00 – 18h00',
+  hours_saturday:'9h00 – 16h00',
+  hours_sunday:'Fermé',
+  zone_text:"Tours et l'Indre-et-Loire (37)",
+  facebook_url:'https://www.facebook.com/profile.php?id=61559238324968',
+  instagram_url:'https://www.instagram.com/servicespradice',
+  color_green:'#1f6b34',
+  color_green_light:'#3fa15a',
+  color_blue:'#0d3b66',
+  color_blue_light:'#1a6fb5',
+  values:[
+    {emoji:'🤝',title:'Respect du client',text:'Une écoute attentive et un service adapté à vos besoins réels.'},
+    {emoji:'🌿',title:'Écologie',text:'Des produits certifiés et une politique de réduction des déchets.'},
+    {emoji:'⭐',title:'Qualité',text:'Un contrôle rigoureux à chaque intervention, sans compromis.'},
+    {emoji:'👔',title:'Professionnalisme',text:'Une équipe formée, ponctuelle et respectueuse de vos lieux.'},
+    {emoji:'✅',title:'Fiabilité',text:'Des engagements tenus et une équipe disponible 6j/7.'}
+  ],
+  legal_mentions:'Pradice Services Nettoyage — 3 rue Victor Grossein, 37000 Tours, France.',
+  legal_privacy:'Vos données ne sont utilisées que pour traiter votre demande et ne sont jamais partagées.',
+};
+
+function mapSettingsRow(row){
+  return {
+    brand_name: row.brand_name, brand_short: (row.brand_name||'').split(' ')[0] || row.brand_name,
+    tagline: row.tagline, logo_url: row.logo_url || '',
+    hero_title: row.hero_title, hero_title_accent: row.hero_title_accent,
+    hero_subtitle: row.hero_subtitle, about_text: row.about_text,
+    phone: row.phone, phone_href: '+'+String(row.whatsapp||'').replace(/\D/g,''),
+    whatsapp: row.whatsapp, email: row.email,
+    address_line: row.address_line, postal_code: row.postal_code, city: row.city, country: row.country,
+    hours_weekday: row.hours_weekday, hours_saturday: row.hours_saturday, hours_sunday: row.hours_sunday,
+    zone_text: row.zone_text, facebook_url: row.facebook_url, instagram_url: row.instagram_url,
+    color_green: row.color_green, color_green_light: row.color_green_light,
+    color_blue: row.color_blue, color_blue_light: row.color_blue_light,
+    values: row.values || SETTINGS.values,
+    legal_mentions: row.legal_mentions, legal_privacy: row.legal_privacy,
+  };
+}
+
+function mapServiceRow(row){
+  return {
+    slug: row.slug, cat: row.category, icon: row.icon || 'bureau', image_url: row.image_url || '',
+    title: row.title, short: row.short_desc, intro: row.intro, details: row.details,
+    includes: Array.isArray(row.includes) ? row.includes : [],
+  };
+}
+
+function applySettings(){
+  const root = document.documentElement.style;
+  root.setProperty('--green-1', SETTINGS.color_green);
+  root.setProperty('--green-2', SETTINGS.color_green_light);
+  root.setProperty('--blue-1', SETTINGS.color_blue);
+  root.setProperty('--blue-2', SETTINGS.color_blue_light);
+
+  document.title = `${SETTINGS.brand_name} | Nettoyage professionnel & éco-responsable à ${SETTINGS.city}`;
+
+  const logoHTML = SETTINGS.logo_url
+    ? `<img src="${SETTINGS.logo_url}" alt="${SETTINGS.brand_name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
+    : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg>`;
+  const els = id => document.getElementById(id);
+  if(els('headerLogoMark')) els('headerLogoMark').innerHTML = logoHTML;
+  if(els('footerLogoMark')) els('footerLogoMark').innerHTML = SETTINGS.logo_url ? logoHTML.replace('width:100%;height:100%','width:100%;height:100%') : logoHTML;
+  if(els('headerBrandName')) els('headerBrandName').innerHTML = `${SETTINGS.brand_short}<small id="headerTagline">${SETTINGS.tagline}</small>`;
+  if(els('footerBrandName')) els('footerBrandName').textContent = SETTINGS.brand_name;
+  if(els('footerCopyrightName')) els('footerCopyrightName').textContent = SETTINGS.brand_name;
+  if(els('footerAbout')) els('footerAbout').textContent = `Entreprise professionnelle de nettoyage et d'entretien pour particuliers et professionnels. Une approche éco-responsable, un service fiable à ${SETTINGS.city}.`;
+  if(els('headerPhoneText')) els('headerPhoneText').textContent = SETTINGS.phone;
+  if(els('headerCallChip')) els('headerCallChip').href = 'tel:'+SETTINGS.phone_href;
+  if(els('mobileCallBtn')){ els('mobileCallBtn').href = 'tel:'+SETTINGS.phone_href; els('mobileCallBtn').innerHTML = '📞 '+SETTINGS.phone; }
+  if(els('footerAddress')) els('footerAddress').textContent = `${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}`;
+  if(els('footerPhoneLink')){ els('footerPhoneLink').href = 'tel:'+SETTINGS.phone_href; els('footerPhoneLink').textContent = SETTINGS.phone; }
+  if(els('footerEmailLink')){ els('footerEmailLink').href = 'mailto:'+SETTINGS.email; els('footerEmailLink').textContent = SETTINGS.email; }
+  if(els('footerHours')) els('footerHours').textContent = `Lun–Ven ${SETTINGS.hours_weekday} · Sam ${SETTINGS.hours_saturday}`;
+  if(els('footerSocialRow')){
+    const links = els('footerSocialRow').querySelectorAll('a');
+    if(links[0]) links[0].href = SETTINGS.facebook_url;
+    if(links[1]) links[1].href = SETTINGS.instagram_url;
+    if(links[2]) links[2].href = 'https://wa.me/'+SETTINGS.whatsapp;
+  }
+}
+
 /* ============================================================
    DATA
    ============================================================ */
@@ -489,7 +619,7 @@ const ICONS = {
   mail:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8"/></svg>',
 };
 
-const SERVICES = [
+let SERVICES = [
   {slug:'entretien-bureaux',cat:'pro',icon:'bureau',title:'Entretien de bureaux',
    short:'Nettoyage régulier des sols, surfaces, sanitaires et espaces communs.',
    intro:"Un espace de travail propre, c'est une équipe plus productive et une meilleure image pour vos visiteurs. Nous intervenons chez vous selon la fréquence de votre choix, en dehors ou pendant vos heures d'ouverture, avec des produits éco-responsables.",
@@ -552,9 +682,13 @@ const SERVICES = [
    includes:['Fréquence sur-mesure (hebdo/mensuel)','Équipe dédiée et régulière','Tarif fixe et prévisible','Flexibilité totale du contrat','Devis personnalisé gratuit','Résiliable à tout moment']},
 ];
 
-const MAIN_SLUGS = SERVICES.filter(s=>s.cat==='pro').map(s=>s.slug);
-const COMP_SLUGS = SERVICES.filter(s=>s.cat==='particulier').map(s=>s.slug);
+let MAIN_SLUGS = SERVICES.filter(s=>s.cat==='pro').map(s=>s.slug);
+let COMP_SLUGS = SERVICES.filter(s=>s.cat==='particulier').map(s=>s.slug);
 const bySlug = slug => SERVICES.find(s=>s.slug===slug);
+function recomputeSlugs(){
+  MAIN_SLUGS = SERVICES.filter(s=>s.cat==='pro').map(s=>s.slug);
+  COMP_SLUGS = SERVICES.filter(s=>s.cat==='particulier').map(s=>s.slug);
+}
 
 /* ============================================================
    HOME VIEW
@@ -564,14 +698,14 @@ function homeView(){
   <section class="hero">
     <div class="hero-inner">
       <span class="eyebrow">Nettoyage professionnel & éco-responsable</span>
-      <h1>Propreté garantie, <span>satisfaction assurée</span></h1>
-      <p class="lead">Pradice Services Nettoyage accompagne particuliers et professionnels de Tours et d'Indre-et-Loire avec des prestations soignées, fiables et respectueuses de l'environnement.</p>
+      <h1>${SETTINGS.hero_title} <span>${SETTINGS.hero_title_accent}</span></h1>
+      <p class="lead">${SETTINGS.hero_subtitle}</p>
       <div class="hero-cta">
         <a href="#/devis" class="btn btn-primary" data-link>Demander un devis gratuit</a>
         <a href="#/contact" class="btn btn-light" data-link>Nous contacter</a>
       </div>
       <div class="hero-stats">
-        <div><strong>2023</strong><span>Création à Tours</span></div>
+        <div><strong>2023</strong><span>Création à ${SETTINGS.city}</span></div>
         <div><strong>12+</strong><span>Prestations proposées</span></div>
         <div><strong>6j/7</strong><span>Disponibilité</span></div>
         <div><strong>100%</strong><span>Produits éco-responsables</span></div>
@@ -587,8 +721,8 @@ function homeView(){
       </div>
       <div class="intro-text reveal">
         <span class="eyebrow">Qui sommes-nous</span>
-        <h2 class="section-title" style="text-align:left">Une entreprise de nettoyage de confiance, née à Tours</h2>
-        <p>Depuis 2023, Pradice Services Nettoyage accompagne les particuliers et les professionnels d'Indre-et-Loire dans l'entretien de leurs espaces, avec une exigence constante de qualité et une démarche éco-responsable.</p>
+        <h2 class="section-title" style="text-align:left">Une entreprise de nettoyage de confiance, née à ${SETTINGS.city}</h2>
+        <p>${SETTINGS.about_text}</p>
         <p>Chaque intervention est réalisée par une équipe formée, ponctuelle et soigneuse, avec des produits certifiés respectueux de l'environnement.</p>
         <ul class="intro-list">
           <li><span class="ic">${ICONS.check}</span> Devis personnalisé gratuit sous 24h</li>
@@ -669,7 +803,7 @@ function homeView(){
         <div class="key-col">
           <div class="key-icon">${ICONS.pin.replace('currentColor','#fff')}</div>
           <h3>Zone d'intervention</h3>
-          <p>Tours et l'Indre-et-Loire (37) : Tours, Saint-Pierre-des-Corps, Joué-lès-Tours, Amboise et environs.</p>
+          <p>${SETTINGS.zone_text}</p>
         </div>
         <div class="key-col">
           <div class="key-icon">${ICONS.clock.replace('currentColor','#fff')}</div>
@@ -701,13 +835,9 @@ function homeView(){
   <section class="section section-alt">
     <div class="container">
       <h2 class="section-title">Nos valeurs</h2>
-      <p class="section-sub">Cinq principes qui guident chacune de nos interventions.</p>
+      <p class="section-sub">Les principes qui guident chacune de nos interventions.</p>
       <div class="values-grid">
-        <div class="value-card reveal"><div class="value-emoji">🤝</div><h4>Respect du client</h4><p>Une écoute attentive et un service adapté à vos besoins réels.</p></div>
-        <div class="value-card reveal"><div class="value-emoji">🌿</div><h4>Écologie</h4><p>Des produits certifiés et une politique de réduction des déchets.</p></div>
-        <div class="value-card reveal"><div class="value-emoji">⭐</div><h4>Qualité</h4><p>Un contrôle rigoureux à chaque intervention, sans compromis.</p></div>
-        <div class="value-card reveal"><div class="value-emoji">👔</div><h4>Professionnalisme</h4><p>Une équipe formée, ponctuelle et respectueuse de vos lieux.</p></div>
-        <div class="value-card reveal"><div class="value-emoji">✅</div><h4>Fiabilité</h4><p>Des engagements tenus et une équipe disponible 6j/7.</p></div>
+        ${SETTINGS.values.map(v=>`<div class="value-card reveal"><div class="value-emoji">${v.emoji}</div><h4>${v.title}</h4><p>${v.text}</p></div>`).join('')}
       </div>
     </div>
   </section>
@@ -716,13 +846,33 @@ function homeView(){
   `;
 }
 
+function mediaHTML(s, size){
+  if(s.image_url) return `<img src="${s.image_url}" alt="${s.title}" style="width:100%;height:100%;object-fit:cover">`;
+  return `<div class="icon-wrap">${(ICONS[s.icon]||ICONS.bureau)}</div>`;
+}
+
+let GALLERY = [];
+function galleryHTML(s){
+  const items = GALLERY.filter(g=>g.service_id===s.id);
+  if(!items.length){
+    return `<div class="g-item">${ICONS[s.icon]||ICONS.bureau}</div><div class="g-item">${ICONS.leaf}</div><div class="g-item">${ICONS.shield}</div>`;
+  }
+  return items.flatMap(g=>[
+    g.before_url ? {url:g.before_url,label:'Avant'} : null,
+    g.after_url ? {url:g.after_url,label:'Après'} : null,
+  ]).filter(Boolean).map(x=>`
+    <div class="g-item" style="position:relative">
+      <img src="${x.url}" alt="${x.label} — ${s.title}" style="width:100%;height:100%;object-fit:cover">
+      <span style="position:absolute;bottom:8px;left:8px;background:rgba(11,37,69,.75);color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px">${x.label}</span>
+    </div>`).join('');
+}
 function cardHTML(slug){
   const s = bySlug(slug);
   return `
   <div class="service-card reveal">
     <div class="service-media">
       <span class="tag">Professionnels</span>
-      <div class="icon-wrap">${ICONS[s.icon]}</div>
+      ${mediaHTML(s)}
     </div>
     <div class="service-body">
       <h3>${s.title}</h3>
@@ -733,9 +883,12 @@ function cardHTML(slug){
 }
 function compHTML(slug){
   const s = bySlug(slug);
+  const iconBlock = s.image_url
+    ? `<img src="${s.image_url}" alt="${s.title}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)">`
+    : ICONS[s.icon]||ICONS.bureau;
   return `
   <div class="comp-card reveal">
-    <div class="comp-icon">${ICONS[s.icon]}</div>
+    <div class="comp-icon">${iconBlock}</div>
     <div>
       <h4>${s.title}</h4>
       <p>${s.short}</p>
@@ -809,13 +962,8 @@ function serviceDetailView(slug){
           </div>
         </div>
         <div class="detail-block">
-          <h2>Galerie</h2>
-          <div class="gallery-grid">
-            <div class="g-item">${ICONS[s.icon]}</div>
-            <div class="g-item">${ICONS.leaf}</div>
-            <div class="g-item">${ICONS.shield}</div>
-          </div>
-          <p style="font-size:.8rem;margin-top:10px;color:var(--text-light)"><!-- Placeholder : à remplacer par vos photos réelles avant/après --></p>
+          <h2>Galerie avant / après</h2>
+          <div class="gallery-grid">${galleryHTML(s)}</div>
         </div>
       </div>
       <aside>
@@ -823,7 +971,7 @@ function serviceDetailView(slug){
           <h4>Besoin de ce service ?</h4>
           <p style="color:var(--text-light);font-size:.9rem">Obtenez un devis gratuit et personnalisé en quelques minutes.</p>
           <a href="#/devis" class="btn btn-primary btn-block" data-link>Demander un devis</a>
-          <a href="tel:+33784769536" class="btn btn-secondary btn-block" style="margin-top:10px">📞 07 84 76 95 36</a>
+          <a href="tel:${SETTINGS.phone_href}" class="btn btn-secondary btn-block" style="margin-top:10px">📞 ${SETTINGS.phone}</a>
           <div class="mini-list">
             <div class="dropdown-group-title">Autres services ${s.cat==='pro'?'professionnels':'particuliers'}</div>
             ${related.map(r=>`<a href="#/services/${r.slug}" data-link>${r.title} →</a>`).join('')}
@@ -861,16 +1009,16 @@ function aboutView(){
   <section class="detail-hero">
     <div class="container">
       <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / À propos</div>
-      <h1>À propos de Pradice Services Nettoyage</h1>
+      <h1>À propos de ${SETTINGS.brand_name}</h1>
     </div>
   </section>
   <section class="section">
     <div class="container intro-grid">
       <div class="intro-text">
         <span class="eyebrow">Notre histoire</span>
-        <h2 class="section-title" style="text-align:left">Une entreprise tourangelle, engagée et de proximité</h2>
-        <p>Fondée en 2023 à Tours, Pradice Services Nettoyage est née d'une conviction simple : la propreté professionnelle ne doit pas se faire au détriment de l'environnement ni de la relation humaine avec le client.</p>
-        <p>Nous intervenons aujourd'hui auprès de particuliers et de professionnels sur Tours et l'ensemble de l'Indre-et-Loire, avec la même exigence de qualité, quel que soit le projet.</p>
+        <h2 class="section-title" style="text-align:left">Une entreprise locale, engagée et de proximité</h2>
+        <p>${SETTINGS.about_text}</p>
+        <p>Nous intervenons aujourd'hui auprès de particuliers et de professionnels sur ${SETTINGS.zone_text}, avec la même exigence de qualité, quel que soit le projet.</p>
       </div>
       <div class="intro-visual">${ICONS.shield.replace('width="26" height="26"','width="90" height="90"')}</div>
     </div>
@@ -879,11 +1027,7 @@ function aboutView(){
     <div class="container">
       <h2 class="section-title">Nos valeurs</h2>
       <div class="values-grid">
-        <div class="value-card"><div class="value-emoji">🤝</div><h4>Respect du client</h4><p>Une écoute attentive et un service adapté.</p></div>
-        <div class="value-card"><div class="value-emoji">🌿</div><h4>Écologie</h4><p>Produits certifiés, réduction des déchets.</p></div>
-        <div class="value-card"><div class="value-emoji">⭐</div><h4>Qualité</h4><p>Un contrôle rigoureux à chaque intervention.</p></div>
-        <div class="value-card"><div class="value-emoji">👔</div><h4>Professionnalisme</h4><p>Une équipe formée et respectueuse des lieux.</p></div>
-        <div class="value-card"><div class="value-emoji">✅</div><h4>Fiabilité</h4><p>Des engagements tenus, 6j/7.</p></div>
+        ${SETTINGS.values.map(v=>`<div class="value-card"><div class="value-emoji">${v.emoji}</div><h4>${v.title}</h4><p>${v.text}</p></div>`).join('')}
       </div>
     </div>
   </section>
@@ -919,17 +1063,17 @@ function contactSectionHTML(){
           </form>
         </div>
         <div class="contact-info-card">
-          <div class="info-row"><span class="ic">${ICONS.phone}</span><div><h4>Téléphone / WhatsApp</h4><a href="tel:+33784769536">07 84 76 95 36</a></div></div>
-          <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:pradiceservices@gmail.com">pradiceservices@gmail.com</a></div></div>
-          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>3 rue Victor Grossein, 37000 Tours</p></div></div>
-          <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : 8h–18h<br>Samedi : 9h–16h<br>Dimanche : fermé</p></div></div>
-          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>Tours et l'Indre-et-Loire (37)</p></div></div>
+          <div class="info-row"><span class="ic">${ICONS.phone}</span><div><h4>Téléphone / WhatsApp</h4><a href="tel:${SETTINGS.phone_href}">${SETTINGS.phone}</a></div></div>
+          <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:${SETTINGS.email}">${SETTINGS.email}</a></div></div>
+          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}</p></div></div>
+          <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : ${SETTINGS.hours_weekday}<br>Samedi : ${SETTINGS.hours_saturday}<br>Dimanche : ${SETTINGS.hours_sunday}</p></div></div>
+          <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>${SETTINGS.zone_text}</p></div></div>
           <div>
             <h4 style="font-size:.95rem;margin-bottom:10px">Suivez-nous</h4>
             <div class="social-row">
-              <a href="https://www.facebook.com/profile.php?id=61559238324968" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg></a>
-              <a href="https://www.instagram.com/servicespradice" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-              <a href="https://wa.me/33784769536" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg></a>
+              <a href="${SETTINGS.facebook_url}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1Z" fill="currentColor"/></svg></a>
+              <a href="${SETTINGS.instagram_url}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+              <a href="https://wa.me/${SETTINGS.whatsapp}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.7-6.7L20 4l-1.1 4A7.96 7.96 0 0 1 20 12Z" stroke="currentColor" stroke-width="2"/><path d="M9 9c0 3.5 2.5 6 6 6" stroke="currentColor" stroke-width="2"/></svg></a>
             </div>
           </div>
         </div>
@@ -1019,7 +1163,7 @@ function devisView(){
         <div class="devis-step" data-step="5">
           <h2 class="section-title" style="text-align:left;font-size:1.4rem">Récapitulatif</h2>
           <div class="recap-box" id="recapBox"></div>
-          <p class="form-note">En cliquant sur "Envoyer ma demande", votre logiciel de messagerie s'ouvrira avec toutes les informations pré-remplies à destination de pradiceservices@gmail.com.</p>
+          <p class="form-note">En cliquant sur "Envoyer ma demande", votre demande nous sera transmise directement${SUPA_CONFIGURED?'':` (votre logiciel de messagerie s'ouvrira à destination de ${SETTINGS.email})`}.</p>
         </div>
 
         <div class="devis-nav">
@@ -1073,23 +1217,23 @@ function legalView(type){
   if(type==='confidentialite'){
     return `<section class="legal-body">
       <h1>Politique de confidentialité</h1>
-      <p>Pradice Services Nettoyage accorde une importance particulière à la protection de vos données personnelles.</p>
+      <p>${SETTINGS.legal_privacy}</p>
       <h2>Données collectées</h2>
       <p>Les données transmises via nos formulaires (nom, coordonnées, adresse) sont utilisées uniquement pour traiter votre demande de devis ou de contact.</p>
       <h2>Conservation</h2>
       <p>Vos données sont conservées le temps nécessaire au traitement de votre demande et à la relation commerciale.</p>
       <h2>Vos droits</h2>
-      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous à pradiceservices@gmail.com.</p>
+      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous à ${SETTINGS.email}.</p>
     </section>`;
   }
   return `<section class="legal-body">
     <h1>Mentions légales</h1>
     <h2>Éditeur du site</h2>
-    <p>Pradice Services Nettoyage<br>3 rue Victor Grossein, 37000 Tours, France<br>Téléphone : 07 84 76 95 36<br>E-mail : pradiceservices@gmail.com</p>
+    <p>${SETTINGS.legal_mentions}<br>Téléphone : ${SETTINGS.phone}<br>E-mail : ${SETTINGS.email}</p>
     <h2>Hébergement</h2>
     <p>Informations d'hébergement à compléter.</p>
     <h2>Propriété intellectuelle</h2>
-    <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété de Pradice Services Nettoyage, sauf mention contraire.</p>
+    <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété de ${SETTINGS.brand_name}, sauf mention contraire.</p>
   </section>`;
 }
 
@@ -1134,16 +1278,39 @@ function route(){
   closeMobileNav();
 }
 
+async function submitLead(type, payload){
+  if(SUPA_CONFIGURED){
+    try{
+      const ok = await supaInsert('leads', { type, payload });
+      if(ok) return true;
+    }catch(err){
+      console.warn('Échec envoi Supabase, repli sur e-mail.', err);
+    }
+  }
+  return false;
+}
+
+function mailtoFallback(subject, bodyLines){
+  const body = encodeURIComponent(bodyLines);
+  window.location.href = `mailto:${SETTINGS.email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+}
+
 function bindDynamicHandlers(){
   const contactForm = document.getElementById('contactForm');
   if(contactForm){
-    contactForm.addEventListener('submit', e=>{
+    contactForm.addEventListener('submit', async e=>{
       e.preventDefault();
       const fd = new FormData(contactForm);
-      const subject = encodeURIComponent('Contact site - '+fd.get('objet'));
-      const body = encodeURIComponent(`Nom: ${fd.get('nom')}\nE-mail: ${fd.get('email')}\n\n${fd.get('message')}`);
-      window.location.href = `mailto:pradiceservices@gmail.com?subject=${subject}&body=${body}`;
+      const payload = {nom:fd.get('nom'), email:fd.get('email'), objet:fd.get('objet'), message:fd.get('message')};
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      const sent = await submitLead('contact', payload);
+      submitBtn.disabled = false;
+      if(!sent){
+        mailtoFallback('Contact site - '+payload.objet, `Nom: ${payload.nom}\nE-mail: ${payload.email}\n\n${payload.message}`);
+      }
       document.getElementById('contactSuccess').classList.add('show');
+      contactForm.reset();
     });
   }
 
@@ -1162,11 +1329,21 @@ function bindDynamicHandlers(){
       devisStep = Math.max(devisStep-1,1);
       updateDevisView();
     });
-    devisForm.addEventListener('submit', e=>{
+    devisForm.addEventListener('submit', async e=>{
       e.preventDefault();
       collectDevisData();
-      const lines = Object.entries(devisData).map(([k,v])=>`${k}: ${v}`).join('%0D%0A');
-      window.location.href = `mailto:pradiceservices@gmail.com?subject=${encodeURIComponent('Nouvelle demande de devis')}&body=${lines}`;
+      const submitBtn = document.getElementById('devisSubmit');
+      submitBtn.disabled = true;
+      const sent = await submitLead('devis', devisData);
+      submitBtn.disabled = false;
+      if(!sent){
+        const lines = Object.entries(devisData).map(([k,v])=>`${k}: ${v}`).join('\n');
+        mailtoFallback('Nouvelle demande de devis', lines);
+      }
+      const recap = document.getElementById('recapBox');
+      const fallbackNote = sent ? ' à notre équipe' : ' (votre client mail va s\'ouvrir)';
+      recap.insertAdjacentHTML('beforebegin', `<div class="form-success show" style="margin-bottom:16px">Merci ! Votre demande de devis a bien été envoyée${fallbackNote}.</div>`);
+      submitBtn.classList.add('hidden');
     });
   }
 }
@@ -1197,13 +1374,36 @@ document.getElementById('mobileNav').addEventListener('click', e=>{
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-window.addEventListener('hashchange', route);
-window.addEventListener('DOMContentLoaded', ()=>{
+/* ============================================================
+   SUPABASE LOAD — récupère le contenu réel (si configuré) et
+   met à jour l'affichage sans bloquer l'affichage par défaut.
+   ============================================================ */
+async function loadFromSupabase(){
+  if(!SUPA_CONFIGURED) return;
+  try{
+    const [settingsRows, serviceRows, galleryRows] = await Promise.all([
+      supaGet('settings?id=eq.1&select=*'),
+      supaGet('services?published=eq.true&select=*&order=sort_order.asc'),
+      supaGet('gallery?select=*&order=sort_order.asc'),
+    ]);
+    if(settingsRows && settingsRows[0]) Object.assign(SETTINGS, mapSettingsRow(settingsRows[0]));
+    if(serviceRows && serviceRows.length) SERVICES = serviceRows.map(mapServiceRow);
+    if(galleryRows) GALLERY = galleryRows;
+  }catch(err){
+    console.warn('Supabase indisponible, contenu par défaut conservé.', err);
+    return;
+  }
+  recomputeSlugs();
+  applySettings();
   renderNavDropdowns();
   route();
-});
+}
+
+window.addEventListener('hashchange', route);
+applySettings();
 renderNavDropdowns();
 route();
+loadFromSupabase();
 </script>
 </body>
 </html>
