@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Note technique : ce site est une page unique (SPA) dont les sous-pages
+  (services, devis, contact...) utilisent des URL avec "#/" (ex: /#/devis).
+  Google ne les indexe pas comme des pages distinctes de la page d'accueil
+  (les fragments "#" ne sont pas envoyés au serveur). Le sitemap ne liste
+  donc que la page d'accueil, qui est la seule URL réellement indexable ici.
+  Pour un référencement encore plus poussé de chaque sous-page (URLs du
+  type /devis, /particuliers...), il faudrait migrer le routage vers de
+  vraies URL — une évolution possible, mais plus lourde, à envisager
+  séparément si besoin.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://pradiceservicesnettoyage.fr/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
