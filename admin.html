@@ -776,11 +776,11 @@ function renderServicesList(){
   if(!SERVICES.length){ list.innerHTML = '<p style="color:var(--text-light)">Aucun service pour le moment.</p>'; return; }
   list.innerHTML = SERVICES.map(s=>`
     <div class="svc-row">
-      <div class="thumb">${s.image_url?`<img src="${s.image_url}" alt="">`:'🧹'}</div>
+      <div class="thumb">${s.image_url?`<img src="${esc(s.image_url)}" alt="">`:'🧹'}</div>
       <div class="info">
-        <h4>${s.title} ${s.published?'':'<span style="color:var(--danger);font-size:.75rem">(masqué)</span>'}</h4>
+        <h4>${esc(s.title)} ${s.published?'':'<span style="color:var(--danger);font-size:.75rem">(masqué)</span>'}</h4>
         <span class="badge ${s.category==='pro'?'badge-pro':'badge-particulier'}">${s.category==='pro'?'Professionnels':'Particuliers'}</span>
-        <span> · ${s.short_desc||''}</span>
+        <span> · ${esc(s.short_desc||'')}</span>
       </div>
       <div class="actions">
         <button class="btn btn-secondary btn-sm" onclick="editService('${s.id}')">Modifier</button>
@@ -880,10 +880,10 @@ function renderGalleryList(){
     const svc = SERVICES.find(s=>s.id===g.service_id);
     return `
     <div class="svc-row">
-      <div class="thumb">${g.after_url?`<img src="${g.after_url}" alt="">`:'📷'}</div>
+      <div class="thumb">${g.after_url?`<img src="${esc(g.after_url)}" alt="">`:'📷'}</div>
       <div class="info">
-        <h4>${svc?svc.title:'Service supprimé'}</h4>
-        <span>${g.caption||''}</span>
+        <h4>${svc?esc(svc.title):'Service supprimé'}</h4>
+        <span>${esc(g.caption||'')}</span>
       </div>
       <div class="actions">
         <button class="btn btn-danger btn-sm" onclick="deleteGallery('${g.id}')">Supprimer</button>
@@ -900,7 +900,7 @@ document.getElementById('addGalleryBtn').addEventListener('click', ()=>{
   galleryForm.reset();
   pendingBeforeUrl = ''; pendingAfterUrl = '';
   const sel = document.getElementById('gallerySelectService');
-  sel.innerHTML = SERVICES.map(s=>`<option value="${s.id}">${s.title}</option>`).join('');
+  sel.innerHTML = SERVICES.map(s=>`<option value="${s.id}">${esc(s.title)}</option>`).join('');
   galleryModal.classList.add('active');
 });
 document.getElementById('cancelGalleryBtn').addEventListener('click', ()=>galleryModal.classList.remove('active'));
@@ -952,9 +952,9 @@ function renderJobsList(){
     <div class="svc-row">
       <div class="thumb">💼</div>
       <div class="info">
-        <h4>${j.title} ${j.published?'':'<span style="color:var(--danger);font-size:.75rem">(masquée)</span>'}</h4>
-        <span class="badge badge-pro">${j.contract_type||'CDI'}</span>
-        <span> · ${j.location||''}</span>
+        <h4>${esc(j.title)} ${j.published?'':'<span style="color:var(--danger);font-size:.75rem">(masquée)</span>'}</h4>
+        <span class="badge badge-pro">${esc(j.contract_type||'CDI')}</span>
+        <span> · ${esc(j.location||'')}</span>
       </div>
       <div class="actions">
         <button class="btn btn-secondary btn-sm" onclick="editJob('${j.id}')">Modifier</button>
@@ -1034,11 +1034,11 @@ function renderPromotionsList(){
   if(!PROMOTIONS.length){ list.innerHTML = '<p style="color:var(--text-light)">Aucune promotion pour le moment.</p>'; return; }
   list.innerHTML = PROMOTIONS.map(p=>`
     <div class="svc-row">
-      <div class="thumb">${p.image_url?`<img src="${p.image_url}" alt="">`:'🏷️'}</div>
+      <div class="thumb">${p.image_url?`<img src="${esc(p.image_url)}" alt="">`:'🏷️'}</div>
       <div class="info">
-        <h4>${p.title} ${p.active?'':'<span style="color:var(--danger);font-size:.75rem">(inactive)</span>'}</h4>
-        <span class="badge badge-particulier">${p.badge_text||'Promo'}</span>
-        <span> ${p.valid_until?` · jusqu'au ${p.valid_until}`:''}</span>
+        <h4>${esc(p.title)} ${p.active?'':'<span style="color:var(--danger);font-size:.75rem">(inactive)</span>'}</h4>
+        <span class="badge badge-particulier">${esc(p.badge_text||'Promo')}</span>
+        <span> ${p.valid_until?` · jusqu'au ${esc(p.valid_until)}`:''}</span>
       </div>
       <div class="actions">
         <button class="btn btn-secondary btn-sm" onclick="editPromo('${p.id}')">Modifier</button>

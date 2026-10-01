@@ -832,7 +832,7 @@ function applySettings(){
   applySEO();
 
   const logoHTML = SETTINGS.logo_url
-    ? `<img src="${SETTINGS.logo_url}" alt="${SETTINGS.brand_name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
+    ? `<img src="${esc(SETTINGS.logo_url)}" alt="${esc(SETTINGS.brand_name)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
     : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg>`;
   const els = id => document.getElementById(id);
   if(els('headerLogoMark')) els('headerLogoMark').innerHTML = logoHTML;
@@ -843,7 +843,7 @@ function applySettings(){
   if(els('footerAbout')) els('footerAbout').textContent = `Entreprise professionnelle de nettoyage et d'entretien pour particuliers et professionnels. Une approche éco-responsable, un service fiable à ${SETTINGS.city}.`;
   if(els('headerPhoneText')) els('headerPhoneText').textContent = SETTINGS.phone;
   if(els('headerCallChip')) els('headerCallChip').href = 'tel:'+SETTINGS.phone_href;
-  if(els('mobileCallBtn')){ els('mobileCallBtn').href = 'tel:'+SETTINGS.phone_href; els('mobileCallBtn').innerHTML = '📞 '+SETTINGS.phone; }
+  if(els('mobileCallBtn')){ els('mobileCallBtn').href = 'tel:'+SETTINGS.phone_href; els('mobileCallBtn').innerHTML = '📞 '+esc(SETTINGS.phone); }
   if(els('footerAddress')) els('footerAddress').textContent = `${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}`;
   if(els('footerPhoneLink')){ els('footerPhoneLink').href = 'tel:'+SETTINGS.phone_href; els('footerPhoneLink').textContent = SETTINGS.phone; }
   if(els('footerEmailLink')){ els('footerEmailLink').href = 'mailto:'+SETTINGS.email; els('footerEmailLink').textContent = SETTINGS.email; }
@@ -1027,24 +1027,24 @@ function homeView(){
   <section class="hero-triptych">
     <div class="htp-panel">
       ${SETTINGS.hero_image_url_1
-        ? `<img src="${SETTINGS.hero_image_url_1}" alt="${SETTINGS.brand_name}">`
+        ? `<img src="${esc(SETTINGS.hero_image_url_1)}" alt="${esc(SETTINGS.brand_name)}">`
         : `<div class="icon-wrap">${ICONS.bureau.replace('width="40" height="40"','width="70" height="70"')}</div>`}
     </div>
     <div class="htp-panel">
       ${SETTINGS.hero_image_url
-        ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}">`
+        ? `<img src="${esc(SETTINGS.hero_image_url)}" alt="${esc(SETTINGS.brand_name)}">`
         : `<div class="icon-wrap">${ICONS.domicile.replace('width="40" height="40"','width="70" height="70"')}</div>`}
     </div>
     <div class="htp-panel">
       ${SETTINGS.hero_image_url_3
-        ? `<img src="${SETTINGS.hero_image_url_3}" alt="${SETTINGS.brand_name}">`
+        ? `<img src="${esc(SETTINGS.hero_image_url_3)}" alt="${esc(SETTINGS.brand_name)}">`
         : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="70" height="70"')}</div>`}
     </div>
     <div class="hero-card">
       <div class="logo-mark">${ICONS.leaf.replace('width="26" height="26"','width="24" height="24"')}</div>
-      <div class="brand-line">${SETTINGS.brand_name}</div>
-      <h1>« ${SETTINGS.hero_tagline} »</h1>
-      <p>${SETTINGS.hero_subtitle}</p>
+      <div class="brand-line">${esc(SETTINGS.brand_name)}</div>
+      <h1>« ${esc(SETTINGS.hero_tagline)} »</h1>
+      <p>${esc(SETTINGS.hero_subtitle)}</p>
       <div class="hero-card-actions">
         <a href="tel:${SETTINGS.phone_href}" class="btn btn-light">Appelez-nous</a>
         <a href="#/devis" class="btn btn-light" data-link>Demande de devis</a>
@@ -1096,12 +1096,12 @@ function homeView(){
         <div class="key-col reveal">
           <div class="key-icon">${ICONS.pin}</div>
           <h3>Zone d'activité</h3>
-          <p>Nous agissons dans toute ${SETTINGS.zone_text} pour les particuliers ainsi que les entreprises.</p>
+          <p>Nous agissons dans toute ${esc(SETTINGS.zone_text)} pour les particuliers ainsi que les entreprises.</p>
         </div>
         <div class="key-col reveal">
           <div class="key-icon">${ICONS.clock}</div>
           <h3>Flexibilité</h3>
-          <p>${SETTINGS.brand_short} est disponible et s'adapte totalement aux besoins de ses clients, sur le contenu de la prestation ainsi que les horaires d'intervention.</p>
+          <p>${esc(SETTINGS.brand_short)} est disponible et s'adapte totalement aux besoins de ses clients, sur le contenu de la prestation ainsi que les horaires d'intervention.</p>
         </div>
         <div class="key-col reveal">
           <div class="key-icon">${ICONS.tag}</div>
@@ -1117,7 +1117,7 @@ function homeView(){
       <div class="values-v2 reveal">
         <div class="values-v2-media">
           ${SETTINGS.hero_image_url
-            ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}" loading="lazy">`
+            ? `<img src="${esc(SETTINGS.hero_image_url)}" alt="${esc(SETTINGS.brand_name)}" loading="lazy">`
             : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="80" height="80"')}</div>`}
         </div>
         <div class="values-v2-panel">
@@ -1126,9 +1126,9 @@ function homeView(){
           <div class="values-v2-cols">
             ${SETTINGS.values.slice(0,3).map(v=>`
               <div class="values-v2-col">
-                <div class="values-v2-icon">${v.emoji}</div>
-                <h4>${v.title}</h4>
-                <ul><li>${v.text}</li></ul>
+                <div class="values-v2-icon">${esc(v.emoji)}</div>
+                <h4>${esc(v.title)}</h4>
+                <ul><li>${esc(v.text)}</li></ul>
               </div>`).join('')}
           </div>
         </div>
@@ -1141,11 +1141,11 @@ function homeView(){
       <div class="engage-v2 reveal">
         <div class="engage-v2-bg">
           ${SETTINGS.engage_image_url
-            ? `<img src="${SETTINGS.engage_image_url}" alt="${SETTINGS.brand_name} s'engage" loading="lazy">`
+            ? `<img src="${esc(SETTINGS.engage_image_url)}" alt="${esc(SETTINGS.brand_name)} s'engage" loading="lazy">`
             : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="140" height="140"')}</div>`}
         </div>
         <div class="engage-v2-content">
-          <h2>${SETTINGS.brand_short} s'engage</h2>
+          <h2>${esc(SETTINGS.brand_short)} s'engage</h2>
           <div class="engage-item-v2">
             <div class="ic">${ICONS.leaf}</div>
             <div>
@@ -1172,7 +1172,7 @@ function homeView(){
 }
 
 function mediaHTML(s, size){
-  if(s.image_url) return `<img src="${s.image_url}" alt="${s.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`;
+  if(s.image_url) return `<img src="${esc(s.image_url)}" alt="${esc(s.title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`;
   return `<div class="icon-wrap">${(ICONS[s.icon]||ICONS.bureau)}</div>`;
 }
 
@@ -1196,8 +1196,8 @@ function galleryHTML(s){
     g.after_url ? {url:g.after_url,label:'Après'} : null,
   ]).filter(Boolean).map(x=>`
     <div class="g-item" style="position:relative">
-      <img src="${x.url}" alt="${x.label} — ${s.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
-      <span style="position:absolute;bottom:8px;left:8px;background:rgba(11,37,69,.75);color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px">${x.label}</span>
+      <img src="${esc(x.url)}" alt="${esc(x.label)} — ${esc(s.title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+      <span style="position:absolute;bottom:8px;left:8px;background:rgba(11,37,69,.75);color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px">${esc(x.label)}</span>
     </div>`).join('');
 }
 function cardHTML(slug){
@@ -1206,8 +1206,8 @@ function cardHTML(slug){
   <div class="svc-card reveal">
     ${mediaHTML(s)}
     <div class="svc-card-body">
-      <h3>${s.title}</h3>
-      ${s.short ? `<p>${s.short}</p>` : ''}
+      <h3>${esc(s.title)}</h3>
+      ${s.short ? `<p>${esc(s.short)}</p>` : ''}
       <a href="#/services/${s.slug}" class="btn btn-light" data-link>En savoir plus</a>
     </div>
   </div>`;
@@ -1215,14 +1215,14 @@ function cardHTML(slug){
 function compHTML(slug){
   const s = bySlug(slug);
   const mediaBlock = s.image_url
-    ? `<img src="${s.image_url}" alt="${s.title}" loading="lazy">`
+    ? `<img src="${esc(s.image_url)}" alt="${esc(s.title)}" loading="lazy">`
     : `<div class="icon-wrap">${(ICONS[s.icon]||ICONS.bureau).replace('width="40" height="40"','width="52" height="52"')}</div>`;
   return `
   <div class="comp-card reveal">
     <div class="comp-media">${mediaBlock}</div>
     <div class="comp-body">
-      <h4>${s.title}</h4>
-      <p>${s.short}</p>
+      <h4>${esc(s.title)}</h4>
+      <p>${esc(s.short)}</p>
       <a href="#/services/${s.slug}" class="btn btn-dark" data-link>Voir le service</a>
     </div>
   </div>`;
@@ -1232,13 +1232,13 @@ function jobCardHTML(j){
   return `
   <div class="job-card reveal">
     <div class="job-card-top">
-      <h3>${j.title}</h3>
-      <span class="job-tag">${j.contract_type}</span>
+      <h3>${esc(j.title)}</h3>
+      <span class="job-tag">${esc(j.contract_type)}</span>
     </div>
-    ${j.location ? `<p class="job-loc">${ICONS.pin.replace('width="26" height="26"','width="16" height="16"')} ${j.location}</p>` : ''}
-    ${j.description ? `<p>${j.description}</p>` : ''}
-    ${j.requirements.length ? `<ul class="check-list">${j.requirements.map(r=>`<li><span class="ic">${ICONS.check}</span>${r}</li>`).join('')}</ul>` : ''}
-    <button type="button" class="btn btn-dark job-apply-btn" data-job="${String(j.title).replace(/"/g,'&quot;')}">Postuler pour ce poste</button>
+    ${j.location ? `<p class="job-loc">${ICONS.pin.replace('width="26" height="26"','width="16" height="16"')} ${esc(j.location)}</p>` : ''}
+    ${j.description ? `<p>${esc(j.description)}</p>` : ''}
+    ${j.requirements.length ? `<ul class="check-list">${j.requirements.map(r=>`<li><span class="ic">${ICONS.check}</span>${esc(r)}</li>`).join('')}</ul>` : ''}
+    <button type="button" class="btn btn-dark job-apply-btn" data-job="${esc(j.title)}">Postuler pour ce poste</button>
   </div>`;
 }
 
@@ -1262,14 +1262,14 @@ function jobsSectionHTML(){
 }
 
 function promoHTML(p){
-  const media = p.image_url ? `<img src="${p.image_url}" alt="${p.title}" loading="lazy">` : '';
+  const media = p.image_url ? `<img src="${esc(p.image_url)}" alt="${esc(p.title)}" loading="lazy">` : '';
   const until = p.valid_until ? `<div class="promo-until">Valable jusqu'au ${new Date(p.valid_until+'T00:00:00').toLocaleDateString('fr-FR')}</div>` : '';
   return `
   <div class="promo-card reveal">
     ${media}
-    <span class="promo-badge">${p.badge_text||'Promo'}</span>
-    <h3>${p.title}</h3>
-    ${p.description ? `<p>${p.description}</p>` : ''}
+    <span class="promo-badge">${esc(p.badge_text||'Promo')}</span>
+    <h3>${esc(p.title)}</h3>
+    ${p.description ? `<p>${esc(p.description)}</p>` : ''}
     ${until}
     <a href="#/devis" class="btn btn-light" data-link>En profiter</a>
   </div>`;
@@ -1296,7 +1296,7 @@ function particuliersView(){
     <div class="container">
       <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Particuliers</div>
       <h1>Nos services pour les particuliers</h1>
-      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Un intérieur, un véhicule ou une location toujours impeccables, sans effort. Découvrez nos prestations pensées pour les particuliers de ${SETTINGS.zone_text}.</p>
+      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Un intérieur, un véhicule ou une location toujours impeccables, sans effort. Découvrez nos prestations pensées pour les particuliers de ${esc(SETTINGS.zone_text)}.</p>
     </div>
   </section>
   <section class="section">
@@ -1323,7 +1323,7 @@ function professionnelsView(){
     <div class="container">
       <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Professionnels</div>
       <h1>Nos services pour les professionnels</h1>
-      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Des bureaux aux commerces en passant par les chantiers, ${SETTINGS.brand_short} entretient vos locaux professionnels avec rigueur et discrétion.</p>
+      <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Des bureaux aux commerces en passant par les chantiers, ${esc(SETTINGS.brand_short)} entretient vos locaux professionnels avec rigueur et discrétion.</p>
     </div>
   </section>
   <section class="section">
@@ -1363,7 +1363,7 @@ function avanceImmediateView(){
         <p>L'avance immédiate est un dispositif national, porté par l'URSSAF, qui permet aux particuliers de bénéficier immédiatement du crédit d'impôt de 50% sur leurs dépenses de services à la personne (dont le ménage à domicile). Concrètement, vous ne payez que la moitié du montant de la prestation au moment du règlement : le reste est directement pris en charge par l'avance du crédit d'impôt, sans attendre l'année suivante.</p>
       </div>
       <div class="detail-block">
-        <h2>Est-ce applicable à vos prestations avec ${SETTINGS.brand_short} ?</h2>
+        <h2>Est-ce applicable à vos prestations avec ${esc(SETTINGS.brand_short)} ?</h2>
         <p>Ce dispositif concerne les prestations de ménage et d'entretien réalisées au domicile de particuliers. Son application dépend de votre situation et des modalités d'adhésion en vigueur : contactez notre équipe pour vérifier ensemble votre éligibilité et la mise en place, prestation par prestation.</p>
       </div>
       <div class="detail-block">
@@ -1390,7 +1390,7 @@ function recrutementView(){
   <section class="detail-hero">
     <div class="container">
       <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / Recrutement</div>
-      <h1>Rejoignez l'équipe ${SETTINGS.brand_short}</h1>
+      <h1>Rejoignez l'équipe ${esc(SETTINGS.brand_short)}</h1>
       <p style="color:rgba(255,255,255,.85);max-width:620px;margin-top:12px">Nous recrutons régulièrement des personnes sérieuses, ponctuelles et soigneuses pour renforcer nos équipes de nettoyage.</p>
     </div>
   </section>
@@ -1474,8 +1474,8 @@ function serviceDetailView(slug){
   return `
   <section class="detail-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / <a href="#/services" data-link>Services</a> / ${s.title}</div>
-      <h1>${s.title}</h1>
+      <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / <a href="#/services" data-link>Services</a> / ${esc(s.title)}</div>
+      <h1>${esc(s.title)}</h1>
     </div>
   </section>
   <section class="detail-body">
@@ -1483,16 +1483,16 @@ function serviceDetailView(slug){
       <div>
         <div class="detail-block">
           <h2>Présentation</h2>
-          <p>${s.intro}</p>
+          <p>${esc(s.intro)}</p>
         </div>
         <div class="detail-block">
           <h2>En détail</h2>
-          <p>${s.details}</p>
+          <p>${esc(s.details)}</p>
         </div>
         <div class="detail-block">
           <h2>Ce que comprend le service</h2>
           <ul class="check-list">
-            ${s.includes.map(i=>`<li><span class="ic">${ICONS.check}</span>${i}</li>`).join('')}
+            ${s.includes.map(i=>`<li><span class="ic">${ICONS.check}</span>${esc(i)}</li>`).join('')}
           </ul>
         </div>
         <div class="detail-block">
@@ -1517,7 +1517,7 @@ function serviceDetailView(slug){
           <a href="tel:${SETTINGS.phone_href}" class="btn btn-secondary btn-block" style="margin-top:10px">📞 ${SETTINGS.phone}</a>
           <div class="mini-list">
             <div class="dropdown-group-title">Autres services ${s.cat==='pro'?'professionnels':'particuliers'}</div>
-            ${related.map(r=>`<a href="#/services/${r.slug}" data-link>${r.title} →</a>`).join('')}
+            ${related.map(r=>`<a href="#/services/${r.slug}" data-link>${esc(r.title)} →</a>`).join('')}
           </div>
         </div>
       </aside>
@@ -1552,7 +1552,7 @@ function aboutView(){
   <section class="detail-hero">
     <div class="container">
       <div class="breadcrumb"><a href="#/" data-link>Accueil</a> / À propos</div>
-      <h1>À propos de ${SETTINGS.brand_name}</h1>
+      <h1>À propos de ${esc(SETTINGS.brand_name)}</h1>
     </div>
   </section>
   <section class="section">
@@ -1560,8 +1560,8 @@ function aboutView(){
       <div class="intro-text">
         <span class="eyebrow">Notre histoire</span>
         <h2 class="section-title" style="text-align:left">Une entreprise locale, engagée et de proximité</h2>
-        <p>${SETTINGS.about_text}</p>
-        <p>Nous intervenons aujourd'hui auprès de particuliers et de professionnels sur ${SETTINGS.zone_text}, avec la même exigence de qualité, quel que soit le projet.</p>
+        <p>${esc(SETTINGS.about_text)}</p>
+        <p>Nous intervenons aujourd'hui auprès de particuliers et de professionnels sur ${esc(SETTINGS.zone_text)}, avec la même exigence de qualité, quel que soit le projet.</p>
       </div>
       <div class="intro-visual">${ICONS.shield.replace('width="26" height="26"','width="90" height="90"')}</div>
     </div>
@@ -1572,7 +1572,7 @@ function aboutView(){
         <div class="values-layout">
           <div class="values-float-media">
             ${SETTINGS.hero_image_url
-              ? `<img src="${SETTINGS.hero_image_url}" alt="${SETTINGS.brand_name}" loading="lazy">`
+              ? `<img src="${esc(SETTINGS.hero_image_url)}" alt="${esc(SETTINGS.brand_name)}" loading="lazy">`
               : `<div class="placeholder-ic">${ICONS.leaf.replace('width="26" height="26"','width="80" height="80"')}</div>`}
           </div>
           <div class="values-content">
@@ -1580,9 +1580,9 @@ function aboutView(){
             <div class="values-cols">
               ${SETTINGS.values.map(v=>`
                 <div class="values-col">
-                  <div class="vicon">${v.emoji}</div>
-                  <h4>${v.title}</h4>
-                  <p>${v.text}</p>
+                  <div class="vicon">${esc(v.emoji)}</div>
+                  <h4>${esc(v.title)}</h4>
+                  <p>${esc(v.text)}</p>
                 </div>`).join('')}
             </div>
           </div>
@@ -1624,10 +1624,10 @@ function contactSectionHTML(){
           </form>
           <div class="contact-info-card">
             <div class="info-row"><span class="ic">${ICONS.phone}</span><div><h4>Téléphone / WhatsApp</h4><a href="tel:${SETTINGS.phone_href}">${SETTINGS.phone}</a></div></div>
-            <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:${SETTINGS.email}">${SETTINGS.email}</a></div></div>
-            <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>${SETTINGS.address_line}, ${SETTINGS.postal_code} ${SETTINGS.city}</p></div></div>
-            <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : ${SETTINGS.hours_weekday}<br>Samedi : ${SETTINGS.hours_saturday}<br>Dimanche : ${SETTINGS.hours_sunday}</p></div></div>
-            <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>${SETTINGS.zone_text}</p></div></div>
+            <div class="info-row"><span class="ic">${ICONS.mail}</span><div><h4>E-mail</h4><a href="mailto:${esc(SETTINGS.email)}">${esc(SETTINGS.email)}</a></div></div>
+            <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Adresse</h4><p>${esc(SETTINGS.address_line)}, ${esc(SETTINGS.postal_code)} ${esc(SETTINGS.city)}</p></div></div>
+            <div class="info-row"><span class="ic">${ICONS.clock}</span><div><h4>Horaires</h4><p>Lun–Ven : ${esc(SETTINGS.hours_weekday)}<br>Samedi : ${esc(SETTINGS.hours_saturday)}<br>Dimanche : ${esc(SETTINGS.hours_sunday)}</p></div></div>
+            <div class="info-row"><span class="ic">${ICONS.pin}</span><div><h4>Zone d'intervention</h4><p>${esc(SETTINGS.zone_text)}</p></div></div>
             <div>
               <h4 style="font-size:.95rem;margin-bottom:10px;color:#fff">Suivez-nous</h4>
               <div class="social-row">
@@ -1639,7 +1639,7 @@ function contactSectionHTML(){
           </div>
         </div>
         <div class="map-embed">
-          <iframe src="https://www.google.com/maps?q=${mapQuery}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation ${SETTINGS.brand_name}"></iframe>
+          <iframe src="https://www.google.com/maps?q=${mapQuery}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation ${esc(SETTINGS.brand_name)}"></iframe>
         </div>
       </div>
     </div>
@@ -1686,8 +1686,8 @@ function devisView(){
             <div class="field full"><label>Type de prestation</label>
               <select name="prestation" required>
                 <option value="">Sélectionnez un service</option>
-                <optgroup label="Professionnels">${MAIN_SLUGS.map(sl=>`<option value="${bySlug(sl).title}">${bySlug(sl).title}</option>`).join('')}</optgroup>
-                <optgroup label="Particuliers">${COMP_SLUGS.map(sl=>`<option value="${bySlug(sl).title}">${bySlug(sl).title}</option>`).join('')}</optgroup>
+                <optgroup label="Professionnels">${MAIN_SLUGS.map(sl=>`<option value="${esc(bySlug(sl).title)}">${esc(bySlug(sl).title)}</option>`).join('')}</optgroup>
+                <optgroup label="Particuliers">${COMP_SLUGS.map(sl=>`<option value="${esc(bySlug(sl).title)}">${esc(bySlug(sl).title)}</option>`).join('')}</optgroup>
               </select>
             </div>
           </div>
@@ -1782,7 +1782,7 @@ function legalView(type){
   if(type==='confidentialite'){
     return `<section class="legal-body">
       <h1>Politique de confidentialité</h1>
-      <p>${SETTINGS.legal_privacy}</p>
+      <p>${esc(SETTINGS.legal_privacy)}</p>
       <h2>Données collectées</h2>
       <p>Les données transmises via nos formulaires (nom, coordonnées, adresse) sont utilisées uniquement pour traiter votre demande de devis ou de contact.</p>
       <h2>Conservation</h2>
@@ -1794,11 +1794,11 @@ function legalView(type){
   return `<section class="legal-body">
     <h1>Mentions légales</h1>
     <h2>Éditeur du site</h2>
-    <p>${SETTINGS.legal_mentions}<br>Téléphone : ${SETTINGS.phone}<br>E-mail : ${SETTINGS.email}</p>
+    <p>${esc(SETTINGS.legal_mentions)}<br>Téléphone : ${esc(SETTINGS.phone)}<br>E-mail : ${esc(SETTINGS.email)}</p>
     <h2>Hébergement</h2>
     <p>Informations d'hébergement à compléter.</p>
     <h2>Propriété intellectuelle</h2>
-    <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété de ${SETTINGS.brand_name}, sauf mention contraire.</p>
+    <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété de ${esc(SETTINGS.brand_name)}, sauf mention contraire.</p>
   </section>`;
 }
 
@@ -1806,7 +1806,7 @@ function legalView(type){
    ROUTER
    ============================================================ */
 function renderNavDropdowns(){
-  document.getElementById('footer-services-list').innerHTML = MAIN_SLUGS.slice(0,6).map(sl=>`<li><a href="#/services/${sl}" data-link>${bySlug(sl).title}</a></li>`).join('');
+  document.getElementById('footer-services-list').innerHTML = MAIN_SLUGS.slice(0,6).map(sl=>`<li><a href="#/services/${sl}" data-link>${esc(bySlug(sl).title)}</a></li>`).join('');
 }
 
 function updateActiveNav(parts){
