@@ -1031,17 +1031,17 @@ function homeView(){
   <section class="hero-triptych">
     <div class="htp-panel">
       ${SETTINGS.hero_image_url_1
-        ? `<img src="${esc(SETTINGS.hero_image_url_1)}" alt="${esc(SETTINGS.brand_name)}">`
+        ? `<img src="${esc(SETTINGS.hero_image_url_1)}" alt="${esc(SETTINGS.brand_name)}" fetchpriority="high" loading="eager">`
         : `<div class="icon-wrap">${ICONS.bureau.replace('width="40" height="40"','width="70" height="70"')}</div>`}
     </div>
     <div class="htp-panel">
       ${SETTINGS.hero_image_url
-        ? `<img src="${esc(SETTINGS.hero_image_url)}" alt="${esc(SETTINGS.brand_name)}">`
+        ? `<img src="${esc(SETTINGS.hero_image_url)}" alt="${esc(SETTINGS.brand_name)}" fetchpriority="high" loading="eager">`
         : `<div class="icon-wrap">${ICONS.domicile.replace('width="40" height="40"','width="70" height="70"')}</div>`}
     </div>
     <div class="htp-panel">
       ${SETTINGS.hero_image_url_3
-        ? `<img src="${esc(SETTINGS.hero_image_url_3)}" alt="${esc(SETTINGS.brand_name)}">`
+        ? `<img src="${esc(SETTINGS.hero_image_url_3)}" alt="${esc(SETTINGS.brand_name)}" fetchpriority="high" loading="eager">`
         : `<div class="icon-wrap">${ICONS.leaf.replace('width="26" height="26"','width="70" height="70"')}</div>`}
     </div>
     <div class="hero-card">
@@ -1992,6 +1992,33 @@ document.getElementById('mobileNav').addEventListener('click', e=>{
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ============================================================
+   CACHE LOCAL — mémorise le dernier contenu reçu de Supabase pour
+   l'afficher instantanément au prochain chargement de page (évite
+   que les photos/contenus n'apparaissent qu'après l'aller-retour
+   réseau), pendant qu'une mise à jour se fait en arrière-plan.
+   ============================================================ */
+const CONTENT_CACHE_KEY = 'pradice_content_cache_v1';
+function saveContentCache(){
+  try{
+    localStorage.setItem(CONTENT_CACHE_KEY, JSON.stringify({ SETTINGS, SERVICES, GALLERY, JOBS, PROMOTIONS }));
+  }catch(e){}
+}
+function loadContentCache(){
+  try{
+    const raw = localStorage.getItem(CONTENT_CACHE_KEY);
+    if(!raw) return false;
+    const cached = JSON.parse(raw);
+    if(cached.SETTINGS) Object.assign(SETTINGS, cached.SETTINGS);
+    if(Array.isArray(cached.SERVICES) && cached.SERVICES.length) SERVICES = cached.SERVICES;
+    if(Array.isArray(cached.GALLERY)) GALLERY = cached.GALLERY;
+    if(Array.isArray(cached.JOBS)) JOBS = cached.JOBS;
+    if(Array.isArray(cached.PROMOTIONS)) PROMOTIONS = cached.PROMOTIONS;
+    recomputeSlugs();
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ============================================================
    SUPABASE LOAD — récupère le contenu réel (si configuré) et
    met à jour l'affichage sans bloquer l'affichage par défaut.
    ============================================================ */
@@ -2018,6 +2045,7 @@ async function loadFromSupabase(){
   applySettings();
   renderNavDropdowns();
   route();
+  saveContentCache();
 }
 
 /* ============================================================
@@ -2130,6 +2158,7 @@ function initAIChat(){
 }
 
 window.addEventListener('hashchange', route);
+loadContentCache();
 applySettings();
 renderNavDropdowns();
 initAIChat();
