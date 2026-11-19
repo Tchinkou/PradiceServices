@@ -543,9 +543,37 @@ footer.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:70p
 .mobile-nav .mn-group{padding-left:14px}
 .mobile-nav .mn-group a{font-size:.95rem;font-weight:600;color:var(--text-light);border-bottom:none;padding:10px 0}
 .mobile-nav .btn{margin-top:24px}
+
+/* ============ ÉCRAN DE CHARGEMENT ============ */
+#siteLoader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#123a63 0%,var(--navy) 70%);transition:opacity .55s ease,visibility .55s ease}
+#siteLoader.hide{opacity:0;visibility:hidden}
+.loader-inner{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:24px}
+.loader-logo{position:relative;width:88px;height:88px;border-radius:50%;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;overflow:hidden;animation:loaderPop .7s cubic-bezier(.2,.9,.3,1.3) both,loaderPulse 1.8s ease-out .7s infinite}
+.loader-logo svg{width:40px;height:40px;color:#fff;animation:loaderFloat 1.8s ease-in-out .7s infinite}
+.loader-logo::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);background-size:250% 100%;animation:loaderShine 1.8s ease-in-out .4s infinite}
+.loader-name{color:#fff;font-weight:800;font-size:1.15rem;letter-spacing:.3px;opacity:0;animation:loaderFade .6s ease .35s forwards}
+.loader-bar{width:160px;height:4px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+.loader-bar span{display:block;height:100%;width:40%;border-radius:999px;background:var(--grad-brand);animation:loaderBar 1.2s ease-in-out infinite}
+@keyframes loaderPop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes loaderPulse{0%{box-shadow:0 0 0 0 rgba(63,161,90,.55)}100%{box-shadow:0 0 0 22px rgba(63,161,90,0)}}
+@keyframes loaderFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes loaderShine{0%{background-position:150% 0}100%{background-position:-50% 0}}
+@keyframes loaderFade{to{opacity:1}}
+@keyframes loaderBar{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+@media (prefers-reduced-motion:reduce){#siteLoader *,#siteLoader *::after{animation:none!important;opacity:1!important}}
 </style>
 </head>
 <body>
+
+<!-- ============ ÉCRAN DE CHARGEMENT — 1re ouverture du site dans la session ============ -->
+<div id="siteLoader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 5.5-5 8.5A5 5 0 0 0 12 16a5 5 0 0 0 5-4.5c0-3-2-5.5-5-8.5Z" fill="currentColor"/></svg></div>
+    <div class="loader-name">Pradice Services Nettoyage</div>
+    <div class="loader-bar"><span></span></div>
+  </div>
+</div>
+<script>try{if(sessionStorage.getItem('pradice_loader_seen')){document.getElementById('siteLoader').remove();}else{sessionStorage.setItem('pradice_loader_seen','1');}}catch(e){}</script>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
@@ -2157,13 +2185,42 @@ function initAIChat(){
   });
 }
 
+/* ============================================================
+   ÉCRAN DE CHARGEMENT — masqué dès que les photos d'accueil sont
+   prêtes (affiché au moins 0,8 s pour ne pas clignoter, 3,5 s max)
+   ============================================================ */
+const LOADER_START = performance.now();
+function hideSiteLoader(){
+  const el = document.getElementById('siteLoader');
+  if(!el || el.classList.contains('hide')) return;
+  const wait = Math.max(0, 800 - (performance.now() - LOADER_START));
+  setTimeout(()=>{ el.classList.add('hide'); setTimeout(()=>el.remove(), 600); }, wait);
+}
+function hideLoaderWhenHeroReady(){
+  const imgs = [...document.querySelectorAll('.hero-triptych img')];
+  if(!imgs.length){ hideSiteLoader(); return; }
+  let left = imgs.length;
+  const done = ()=>{ if(--left <= 0) hideSiteLoader(); };
+  imgs.forEach(img=>{
+    if(img.complete) done();
+    else { img.addEventListener('load', done, {once:true}); img.addEventListener('error', done, {once:true}); }
+  });
+}
+
 window.addEventListener('hashchange', route);
-loadContentCache();
+const hadCache = loadContentCache();
+const loaderName = document.querySelector('#siteLoader .loader-name');
+if(loaderName) loaderName.textContent = SETTINGS.brand_name;
 applySettings();
 renderNavDropdowns();
 initAIChat();
 route();
-loadFromSupabase();
+const supabaseReady = loadFromSupabase();
+if(document.getElementById('siteLoader')){
+  setTimeout(hideSiteLoader, 3500);
+  if(hadCache) hideLoaderWhenHeroReady();
+  else supabaseReady.finally(hideLoaderWhenHeroReady);
+}
 </script>
 </body>
 </html>
