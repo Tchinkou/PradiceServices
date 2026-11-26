@@ -550,11 +550,15 @@ async function apiDelete(table, filterQuery){
   const res = await fetch(`${SUPA_URL}/rest/v1/${table}?${filterQuery}`, { method:'DELETE', headers: authHeaders() });
   if(!res.ok) throw new Error(await res.text());
 }
+const UPLOAD_MAX_BYTES = 5 * 1024 * 1024; // 5 Mo
+const UPLOAD_TYPES = ['image/jpeg','image/png','image/webp','image/avif','image/gif'];
 async function uploadFile(file, folder){
+  if(!UPLOAD_TYPES.includes(file.type)) throw new Error('Format refusé : seules les images JPG, PNG, WEBP, AVIF ou GIF sont acceptées.');
+  if(file.size > UPLOAD_MAX_BYTES) throw new Error('Fichier trop lourd (5 Mo maximum).');
   const path = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.\-_]/g,'_')}`;
   const res = await fetch(`${SUPA_URL}/storage/v1/object/media/${path}`, {
     method:'POST',
-    headers:{ apikey: SUPA_ANON_KEY, Authorization:`Bearer ${accessToken}`, 'Content-Type': file.type || 'application/octet-stream' },
+    headers:{ apikey: SUPA_ANON_KEY, Authorization:`Bearer ${accessToken}`, 'Content-Type': file.type },
     body: file
   });
   if(!res.ok) throw new Error('Échec upload : '+await res.text());
@@ -597,6 +601,7 @@ document.getElementById('loginForm').addEventListener('submit', async e=>{
 });
 
 document.getElementById('logoutBtn').addEventListener('click', ()=>{
+  if(accessToken){ fetch(`${SUPA_URL}/auth/v1/logout`, { method:'POST', headers: authHeaders() }).catch(()=>{}); }
   clearSession();
   accessToken = null;
   shell.classList.remove('active');
@@ -632,7 +637,10 @@ document.querySelectorAll('.sidebar nav button').forEach(btn=>{
 
 function flashMessage(text, type='success'){
   const el = document.getElementById('saveMsg');
-  el.innerHTML = `<div class="${type==='success'?'success-msg':'error-msg'}">${text}</div>`;
+  const div = document.createElement('div');
+  div.className = type==='success' ? 'success-msg' : 'error-msg';
+  div.textContent = text;
+  el.replaceChildren(div);
   setTimeout(()=>{ el.innerHTML=''; }, 4000);
 }
 
@@ -698,7 +706,7 @@ function fillGeneralForm(){
   IMAGE_FIELDS.forEach(({preview, db, alt, empty})=>{
     const el = document.getElementById(preview);
     const url = s[db] || '';
-    el.innerHTML = url ? `<img src="${url}" alt="${alt}">` : empty;
+    el.innerHTML = url ? `<img src="${esc(url)}" alt="${esc(alt)}">` : empty;
     el.dataset.url = url;
   });
 }
@@ -710,7 +718,7 @@ IMAGE_FIELDS.forEach(({upload, preview, folder, alt})=>{
     try{
       const url = await uploadFile(file, folder);
       const el = document.getElementById(preview);
-      el.innerHTML = `<img src="${url}" alt="${alt}">`;
+      el.innerHTML = `<img src="${esc(url)}" alt="${esc(alt)}">`;
       el.dataset.url = url;
       flashMessage('Photo téléversée. N\'oublie pas d\'enregistrer.');
     }catch(err){ flashMessage(err.message, 'error'); }
@@ -742,9 +750,9 @@ function renderValuesList(){
   const list = document.getElementById('valuesList');
   list.innerHTML = values.map((v,i)=>`
     <div class="value-row" data-idx="${i}">
-      <input value="${v.emoji||''}" placeholder="🤝" class="v-emoji">
-      <input value="${v.title||''}" placeholder="Titre" class="v-title">
-      <input value="${v.text||''}" placeholder="Description" class="v-text">
+      <input value="${esc(v.emoji)}" placeholder="🤝" class="v-emoji">
+      <input value="${esc(v.title)}" placeholder="Titre" class="v-title">
+      <input value="${esc(v.text)}" placeholder="Description" class="v-text">
       <button type="button" class="tag-remove" onclick="this.closest('.value-row').remove()">✕</button>
     </div>`).join('');
 }
@@ -819,7 +827,7 @@ window.editService = id => openServiceModal(id);
 function addIncludeRow(value=''){
   const row = document.createElement('div');
   row.className = 'inc-row';
-  row.innerHTML = `<input value="${value.replace(/"/g,'&quot;')}" placeholder="Ex: Dépoussiérage complet"><button type="button" class="tag-remove" onclick="this.parentElement.remove()">✕</button>`;
+  row.innerHTML = `<input value="${esc(value)}" placeholder="Ex: Dépoussiérage complet"><button type="button" class="tag-remove" onclick="this.parentElement.remove()">✕</button>`;
   document.getElementById('includesList').appendChild(row);
 }
 document.getElementById('addIncludeBtn').addEventListener('click', ()=>addIncludeRow());
@@ -991,7 +999,7 @@ window.editJob = id => openJobModal(id);
 function addJobReqRow(value=''){
   const row = document.createElement('div');
   row.className = 'inc-row';
-  row.innerHTML = `<input value="${value.replace(/"/g,'&quot;')}" placeholder="Ex: Permis B souhaité"><button type="button" class="tag-remove" onclick="this.parentElement.remove()">✕</button>`;
+  row.innerHTML = `<input value="${esc(value)}" placeholder="Ex: Permis B souhaité"><button type="button" class="tag-remove" onclick="this.parentElement.remove()">✕</button>`;
   document.getElementById('jobReqList').appendChild(row);
 }
 document.getElementById('addJobReqBtn').addEventListener('click', ()=>addJobReqRow());
@@ -1135,21 +1143,22 @@ function renderLeadsTable(){
   const body = document.getElementById('leadsBody');
   const leads = leadsFilter==='all' ? ALL_LEADS : ALL_LEADS.filter(l=>l.type===leadsFilter);
   if(!leads.length){ body.innerHTML = '<tr><td colspan="6" style="color:var(--text-light)">Aucune demande pour le moment.</td></tr>'; return; }
-  body.innerHTML = leads.map(l=>`
+  const STATUSES = ['nouveau','traité','archivé'];
+  body.innerHTML = leads.map(l=>{ const st = STATUSES.includes(l.status) ? l.status : 'nouveau'; const id = esc(l.id); return `
     <tr>
-      <td>${new Date(l.created_at).toLocaleString('fr-FR')}</td>
+      <td>${esc(new Date(l.created_at).toLocaleString('fr-FR'))}</td>
       <td>${l.type==='devis'?'Devis':l.type==='recrutement'?'Candidature':'Contact'}</td>
       <td class="lead-payload">${Object.entries(l.payload||{}).map(([k,v])=>`<strong>${esc(k)}:</strong> ${esc(v)}`).join('<br>')}</td>
-      <td><span class="status-pill status-${l.status}">${l.status}</span></td>
+      <td><span class="status-pill status-${st}">${esc(st)}</span></td>
       <td>
-        <select onchange="updateLeadStatus('${l.id}', this.value)" style="font-size:.78rem;padding:4px 6px">
-          <option value="nouveau" ${l.status==='nouveau'?'selected':''}>Nouveau</option>
-          <option value="traité" ${l.status==='traité'?'selected':''}>Traité</option>
-          <option value="archivé" ${l.status==='archivé'?'selected':''}>Archivé</option>
+        <select onchange="updateLeadStatus('${id}', this.value)" style="font-size:.78rem;padding:4px 6px">
+          <option value="nouveau" ${st==='nouveau'?'selected':''}>Nouveau</option>
+          <option value="traité" ${st==='traité'?'selected':''}>Traité</option>
+          <option value="archivé" ${st==='archivé'?'selected':''}>Archivé</option>
         </select>
       </td>
-      <td><button class="btn btn-danger btn-sm" onclick="deleteLead('${l.id}')">Supprimer</button></td>
-    </tr>`).join('');
+      <td><button class="btn btn-danger btn-sm" onclick="deleteLead('${id}')">Supprimer</button></td>
+    </tr>`; }).join('');
 }
 
 document.querySelectorAll('#leadsTabs .leads-tab').forEach(btn=>{
